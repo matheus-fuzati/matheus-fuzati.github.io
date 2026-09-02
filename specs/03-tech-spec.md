@@ -13,7 +13,7 @@
   "sério/minimalista" pede menos, não mais, artifício visual. `prefers-reduced-motion` respeitado.
 - i18n: roteamento nativo do Astro (`i18n.defaultLocale: "pt"`, `prefixDefaultLocale: false`) —
   PT-BR na raiz (`/`), EN em `/en/`.
-- Hospedagem: GitHub Pages — repositório de usuário `fuzatimatheus.github.io`
+- Hospedagem: GitHub Pages — repositório de usuário `matheus-fuzati.github.io`
 - Deploy: `.github/workflows/deploy.yml`, via `withastro/action` + `actions/deploy-pages`, a
   cada push em `main`
 
@@ -46,7 +46,7 @@ npm run preview   # serve o build
 ```
 
 ## Domínio
-`fuzatimatheus.github.io` (site de usuário). Domínio próprio: não configurado — pendente de
+`matheus-fuzati.github.io` (site de usuário). Domínio próprio: não configurado — pendente de
 decisão do autor; se vier, é só um `CNAME` em `public/` + ajuste de `site` em `astro.config.mjs`.
 
 ## Analytics

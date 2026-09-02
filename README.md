@@ -34,13 +34,13 @@ Bilíngue: PT-BR em `/`, EN em `/en/`.
 
 ## Publicar no GitHub Pages
 
-1. Criar o repositório **`fuzatimatheus/fuzatimatheus.github.io`** no GitHub (vazio, sem README).
+1. Criar o repositório **`matheus-fuzati/matheus-fuzati.github.io`** no GitHub (vazio, sem README).
 2. Neste diretório:
    ```bash
-   git remote add origin git@github.com:fuzatimatheus/fuzatimatheus.github.io.git
+   git remote add origin git@github.com:matheus-fuzati/matheus-fuzati.github.io.git
    git branch -M main
    git push -u origin main
    ```
 3. No GitHub: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
 4. O workflow em `.github/workflows/deploy.yml` builda e publica a cada push em `main`.
-5. Site fica em `https://fuzatimatheus.github.io`.
+5. Site fica em `https://matheus-fuzati.github.io`.

@@ -13,7 +13,7 @@
 - [x] Páginas de Currículo geradas do próprio conteúdo (`/cv/`, `/en/cv/`) com impressão
 - [x] Workflow de deploy (GitHub Actions → Pages)
 - [x] Build local verificado (`npm run build` — 4 páginas, sem erro)
-- [ ] **Ação do autor**: criar o repositório `fuzatimatheus/fuzatimatheus.github.io` no GitHub,
+- [ ] **Ação do autor**: criar o repositório `matheus-fuzati/matheus-fuzati.github.io` no GitHub,
       push deste código, ativar Pages → "GitHub Actions" nas settings do repo
 - [ ] Revisão de conteúdo (ver `[TODO]`s em `01-content-spec.md`: datas DP6/Atento Brasil)
 - [ ] Revisão de acessibilidade e performance pós-deploy (Lighthouse)
