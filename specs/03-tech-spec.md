@@ -25,6 +25,13 @@ portfolio/
 └── .github/workflows/deploy.yml
 ```
 
+## Internacionalização (PT-BR / EN)
+Site bilíngue desde a v1 (spec 00/01). Usar o roteamento i18n nativo do Astro
+(`i18n.locales`/`i18n.defaultLocale`), com conteúdo por idioma em `src/content/` (ex:
+`projects/pt/`, `projects/en/` ou frontmatter com campo `lang`) e um seletor "PT | EN" no header.
+URLs previstas: `/` (pt, default) e `/en/` (ou `/pt/` e `/en/` explícitos — decidir na
+implementação).
+
 ## Domínio
 _(usar domínio custom via CNAME? ou só fuzatimatheus.github.io?)_
 

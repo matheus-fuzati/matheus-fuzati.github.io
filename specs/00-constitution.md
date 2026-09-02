@@ -32,9 +32,9 @@ mesmo com texto institucional.
   (e ser) bem construído tecnicamente.
 
 ## Idioma
-PT-BR na v1. (Inglês fica como possível v2 — não decidido ainda, ver perguntas em aberto.)
+**Bilíngue desde a v1: PT-BR + EN.** Objetivo explícito do autor é atingir vagas
+internacionais/bilíngues — não é opcional, entra no escopo principal.
 
 ## Fora de escopo (v1)
 - Blog / seção de artigos
 - Qualquer dado, tela ou métrica real de clientes da DP6 (Itaú, Magalu Ads)
-- Versão em inglês (fica para depois, se decidido)

@@ -25,24 +25,30 @@ sem engenharia reversa de nada de terceiros.
 - Tipografia de referência: **Inter** (corpo) + **JetBrains Mono** (headers/labels técnicos).
 
 ## O que muda nesta v2 (para não ser um clone)
-**[PENDENTE — decidir com o autor]**, opções a validar:
-- Manter fundo escuro + mono, mas trocar o acento âmbar por outra cor de marca (ex: algo mais
-  "dado/azul-verde/roxo" para diferenciar visualmente do antigo)
-- Composição de layout diferente (o antigo é single-page com scroll; podemos manter isso ou
-  variar a grade dos cards de projeto/experiência)
-- Motivo de fundo diferente (ex: ao invés de "RAW/STAGE/MART" como decoração, usar outro
-  artefato visual ligado a dados/DP6 — grafo, terminal, linha do tempo)
+Confirmado com o autor: **fundo escuro + mono ficam, mas o acento troca de cor** (era âmbar
+`#F5B700`). Opções propostas — todas testadas para bom contraste sobre `#051226`:
+
+| Opção | Cor | Vibe |
+|---|---|---|
+| **A — Cyan de dados** | `#2DD4BF` | Frio, técnico, "data/cloud" — o mais distante do site antigo |
+| **B — Violeta moderno** | `#A78BFA` | Premium, SaaS moderno, ainda dev mas menos "terminal" |
+| **C — Verde terminal** | `#4ADE80` | Mantém o clichê hacker/terminal só que trocando de cor |
+
+**[PENDENTE]** o autor escolhe uma (ou pede outra direção) na próxima rodada.
+
+Composição/layout também vão variar em relação ao site antigo (grid de cards e ritmo de seção
+diferentes) — isso é trabalho de implementação, não uma decisão que precisa de aprovação prévia
+linha a linha.
 
 ## Referências visuais adicionais
 _(o autor mencionou que vai passar mais referências — aguardando)_
 
 ## Paleta de cores
-Base herdada (sujeita a ajuste, ver seção acima):
 | Uso | Cor |
 |---|---|
 | Fundo | `#051226` |
 | Texto principal | `#F4F3EE` |
-| Destaque/CTA | `#F5B700` |
+| Destaque/CTA | **[PENDENTE]** — ver opções A/B/C acima |
 
 Se o site ganhar gráficos/dashboards embutidos nos cases, seguir a skill `dataviz` para paleta
 categórica/sequencial acessível — não reaproveitar o acento sozinho para série de dados.

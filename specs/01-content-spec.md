@@ -8,8 +8,14 @@
 - [x] Experiência (trajetória profissional)
 - [x] Stack técnica (skills)
 - [x] Projetos / Cases
+- [x] Formação Acadêmica e Cursos
 - [x] Contato
-- [ ] Formação — perguntar se entra (site anterior tinha; autor não citou explicitamente)
+
+## Idioma
+**Site bilíngue PT-BR / EN desde a v1** (troca de idioma no header, ex: toggle "PT | EN").
+Isso significa: todo conteúdo abaixo (Sobre, Experiência, descrições de projeto, Stack, CV)
+precisa existir nas duas versões. **[PENDENTE]** o autor escreve/revisa o texto em EN, ou eu
+traduzo a partir do PT-BR que ele validar primeiro?
 
 ## Hero
 - Nome: Matheus Fuzati
@@ -101,5 +107,12 @@ Canais confirmados: **e-mail, LinkedIn, GitHub**.
 - LinkedIn: https://www.linkedin.com/in/matheus-fuzati-de-carvalho/
 - GitHub: **[PENDENTE]** usuário do GitHub a exibir/linkar
 
-O site anterior tinha um fluxo de "Iniciar conversa?" redirecionando pro WhatsApp — **[PENDENTE]**
-perguntar se isso entra de novo ou fica só e-mail/LinkedIn/GitHub.
+**Confirmado: mantém o CTA "Iniciar conversa?" redirecionando para WhatsApp**, como no site
+anterior, além de e-mail/LinkedIn/GitHub. **[PENDENTE]** número de WhatsApp a usar (o autor
+confirma se é o mesmo do site anterior ou outro).
+
+## Formação Acadêmica e Cursos
+**Confirmado: entra** como seção própria (igual ao site anterior).
+**[PENDENTE]** lista atualizada de graduação/pós/cursos (instituição, curso, período) — o site
+anterior tinha graduação em Ciência de Dados e pós em Arquitetura e Projetos de Cloud Computing,
+mais cursos em FIAP/Data Science Academy/Udemy; confirmar o que está atual/relevante hoje.
