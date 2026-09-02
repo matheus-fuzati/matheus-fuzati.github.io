@@ -1,42 +1,58 @@
 # 03 — Spec Técnica
 
-## Stack
-- Framework: Astro (output estático)
-- Animações: island isolada (React/Preact + Framer Motion, ou vanilla JS + GSAP) só nos
-  componentes que precisam — resto do site em HTML/CSS puro para performance (ver spec 02)
-- Estilo: Tailwind CSS (o site de referência já usa; mantém velocidade de execução)
-- Hospedagem: GitHub Pages — repositório de usuário `fuzatimatheus.github.io`
-- Deploy: GitHub Actions (build Astro → publish para Pages) a cada push em `main`
+> Status: **implementado e buildando** (`npm run build` verificado localmente, 4 páginas geradas).
 
-## Estrutura de pastas (proposta)
+## Stack (como foi implementado)
+- Framework: **Astro** (output estático, sem SSR)
+- Estilo: **CSS puro** com tokens (`src/styles/global.css`) — nada de Tailwind. Decisão tomada
+  na implementação: a paleta/tipografia já são um sistema pequeno e autoral, Tailwind seria peso
+  extra sem ganho real aqui.
+- Animações: **vanilla JS** — um único `IntersectionObserver` no layout base (`Base.astro`)
+  que adiciona `.is-visible` a qualquer elemento com `data-reveal`, mais transições em CSS.
+  Sem React/Framer Motion — mais simples, zero JS de framework no bundle, e o direcionamento
+  "sério/minimalista" pede menos, não mais, artifício visual. `prefers-reduced-motion` respeitado.
+- i18n: roteamento nativo do Astro (`i18n.defaultLocale: "pt"`, `prefixDefaultLocale: false`) —
+  PT-BR na raiz (`/`), EN em `/en/`.
+- Hospedagem: GitHub Pages — repositório de usuário `fuzatimatheus.github.io`
+- Deploy: `.github/workflows/deploy.yml`, via `withastro/action` + `actions/deploy-pages`, a
+  cada push em `main`
+
+## Estrutura de pastas (real)
 ```
 portfolio/
-├── specs/                  # specs (este diretório)
+├── specs/                       # specs + artifact da paleta
 ├── src/
-│   ├── content/
-│   │   └── projects/       # um .md/.yaml por projeto (schema em 01-content-spec.md)
-│   ├── components/
-│   │   └── islands/        # componentes interativos/animados hidratados no client
-│   ├── layouts/
+│   ├── data/content.ts          # todo o conteúdo do site, PT+EN, tipado
+│   ├── components/              # Header, Hero, About, Experience, Skills,
+│   │                             Projects, Education, Contact, Footer
+│   ├── layouts/Base.astro       # <head>, fontes, script de scroll-reveal
+│   ├── styles/global.css        # design tokens (paleta Ardósia) + estilos
 │   └── pages/
-├── public/
-│   └── cv.pdf              # currículo para download (spec 01)
+│       ├── index.astro          # home PT
+│       ├── en/index.astro       # home EN
+│       ├── cv/index.astro       # currículo PT (imprimível)
+│       └── en/cv/index.astro    # currículo EN (imprimível)
+├── public/favicon.svg
 ├── astro.config.mjs
 └── .github/workflows/deploy.yml
 ```
 
-## Internacionalização (PT-BR / EN)
-Site bilíngue desde a v1 (spec 00/01). Usar o roteamento i18n nativo do Astro
-(`i18n.locales`/`i18n.defaultLocale`), com conteúdo por idioma em `src/content/` (ex:
-`projects/pt/`, `projects/en/` ou frontmatter com campo `lang`) e um seletor "PT | EN" no header.
-URLs previstas: `/` (pt, default) e `/en/` (ou `/pt/` e `/en/` explícitos — decidir na
-implementação).
+## Como rodar
+```bash
+npm install
+npm run dev       # http://localhost:4321
+npm run build     # gera dist/
+npm run preview   # serve o build
+```
 
 ## Domínio
-_(usar domínio custom via CNAME? ou só fuzatimatheus.github.io?)_
+`fuzatimatheus.github.io` (site de usuário). Domínio próprio: não configurado — pendente de
+decisão do autor; se vier, é só um `CNAME` em `public/` + ajuste de `site` em `astro.config.mjs`.
 
 ## Analytics
-_(algum tipo de analytics leve/privado? ex: Plausible, GoatCounter, ou nenhum)_
+Nenhum configurado no v1 (nem GTM, o site anterior tinha — decisão deliberada de não trazer de
+volta sem necessidade real).
 
 ## Performance / acessibilidade
-Lighthouse ≥ 90 em Performance/Accessibility/SEO como meta de aceite.
+Meta: Lighthouse ≥ 90 em Performance/Accessibility/SEO. Ainda não medido contra o deploy real
+(fica pra depois de publicado — ver `04-tasks.md`).

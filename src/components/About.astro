@@ -1,0 +1,34 @@
+---
+interface Props {
+  id: string;
+  about: {
+    eyebrow: string;
+    title: string;
+    paragraphs: string[];
+    facts: { k: string; v: string }[];
+  };
+}
+const { id, about } = Astro.props;
+---
+
+<section id={id} class="section">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <span class="eyebrow">{about.eyebrow}</span>
+      <h2>{about.title}</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-copy" data-reveal>
+        {about.paragraphs.map((p) => <p>{p}</p>)}
+      </div>
+      <ul class="fact-list" data-reveal>
+        {about.facts.map((f) => (
+          <li>
+            <span class="k">{f.k}</span>
+            <span class="v">{f.v}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>

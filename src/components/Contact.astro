@@ -1,0 +1,35 @@
+---
+interface Props {
+  id: string;
+  contact: {
+    eyebrow: string;
+    title: string;
+    body: string;
+    cvLabel: string;
+    cvHref: string;
+    channels: { k: string; v: string; href: string }[];
+  };
+}
+const { id, contact } = Astro.props;
+---
+
+<section id={id} class="section">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <span class="eyebrow">{contact.eyebrow}</span>
+      <h2>{contact.title}</h2>
+      <p style="margin-top:16px;color:var(--muted);font-size:16px;">{contact.body}</p>
+      <div style="margin-top:24px;">
+        <a class="btn btn-primary" href={contact.cvHref}>{contact.cvLabel}</a>
+      </div>
+    </div>
+    <div class="contact-grid" data-reveal>
+      {contact.channels.map((c) => (
+        <a class="contact-card" href={c.href} target="_blank" rel="noopener">
+          <span class="k">{c.k}</span>
+          <span class="v">{c.v}</span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

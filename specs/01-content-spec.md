@@ -1,118 +1,87 @@
 # 01 — Spec de Conteúdo
 
-> Status: rascunho v1 — trajetória/projetos ainda com pendências (marcadas `[PENDENTE]`).
+> Status: **implementado** em `src/data/content.ts` (fonte única PT/EN). Itens `[TODO]` abaixo
+> são correções pontuais a fazer na revisão, não bloqueiam o site no ar.
 
 ## Seções do site
-- [x] Hero (nome, headline, CTA "Ver Projetos" / "Contato")
-- [x] Sobre mim
-- [x] Experiência (trajetória profissional)
-- [x] Stack técnica (skills)
-- [x] Projetos / Cases
-- [x] Formação Acadêmica e Cursos
-- [x] Contato
+Hero · Sobre · Experiência · Stack · Projetos · Formação · Contato — todas implementadas,
+em PT (`/`) e EN (`/en/`).
 
 ## Idioma
-**Site bilíngue PT-BR / EN desde a v1** (troca de idioma no header, ex: toggle "PT | EN").
-Isso significa: todo conteúdo abaixo (Sobre, Experiência, descrições de projeto, Stack, CV)
-precisa existir nas duas versões. **[PENDENTE]** o autor escreve/revisa o texto em EN, ou eu
-traduzo a partir do PT-BR que ele validar primeiro?
+Site bilíngue PT-BR / EN. Textos em inglês foram **reescritos**, não traduzidos literalmente
+(pedido do autor). Toggle "PT · EN" no header.
 
 ## Hero
-- Nome: Matheus Fuzati
-- Headline curta, estilo do site anterior: `Analytics Engineer | Cloud Computing | Business Intelligence`
-  → **[PENDENTE]** atualizar para refletir o momento atual (Engenheiro de Dados, DP6/Itaú) —
-  confirmar headline definitiva com o autor.
-- CTAs: "Ver Projetos" (→ #projetos), "Contato" (→ #contato)
+- Nome: Matheus Fuzati · Eyebrow: "Engenheiro de Dados" / "Data Engineer"
+- Tagline: "Dados, na prática — da ingestão ao dashboard."
+- CTAs: Ver Projetos (→#projetos) · Contato (→#contato)
 
 ## Sobre mim
-Base textual do site anterior (reaproveitável/adaptável, tom já bate com a constituição):
+Reescrito a partir do texto do site anterior + trajetória atual (DP6/Itaú/Magalu Ads) e dados
+de formação. Ver texto final em `src/data/content.ts` → `about.paragraphs`.
 
-> "Atuo na área de dados com foco em engenharia de dados, BI e analytics, trabalhando com
-> grandes volumes de informação para transformar dados brutos em insights acionáveis."
->
-> "Tenho experiência no desenvolvimento de pipelines de dados de ponta a ponta, em ambientes
-> on-premise e cloud, sempre priorizando qualidade, organização e confiabilidade dos dados.
-> Acredito que boas análises começam com uma base sólida, por isso aplico práticas de
-> engenharia de software como versionamento, padronização e modelagem analítica consistente."
+## Experiência
+Timeline com 6 posições, mais recente primeiro. Fontes: o que o autor confirmou no chat (DP6,
+atual no Itaú, antes na Magalu Ads) + as 5 posições anteriores extraídas do site de referência
+(Atento Brasil, Faculdade ESEG ×2, Grupo Vamos, Los Carvalhos — já publicadas pelo próprio autor
+lá, reaproveitadas aqui).
 
-**[PENDENTE]** revisar/atualizar esse texto para citar DP6/Itaú/Magalu Ads e o momento atual
-(não estava lá quando esse texto foi escrito).
-
-## Experiência (trajetória profissional)
-Confirmado pelo autor:
-- **DP6** (consultoria) — Engenheiro de Dados
-  - Atualmente: **consultor alocado no Itaú**
-  - Também já esteve alocado em: **Itaú** (uma passagem anterior) e **Magalu Ads**
-- Experiências mais antigas (pré-DP6): **[PENDENTE]** — autor vai enviar depois
-
-**[PENDENTE]** ordem cronológica exata e datas (mês/ano) de cada alocação DP6 (Itaú → Magalu Ads
-→ Itaú atual? ou outra ordem?), para montar a timeline.
+**`[TODO]`** — únicas datas não confirmadas pelo autor: mês/ano de início na DP6 (Magalu Ads →
+Itaú) e a data de saída da Atento Brasil. O site já expõe isso de forma transparente: o item
+DP6 mostra período "Atual" (sem inventar data de início) e há uma nota de rodapé na seção
+avisando que essa transição está em confirmação. **Não fabriquei nenhuma data** — só omiti o
+que não foi informado.
 
 ## Stack técnica
-O site anterior usava 3 categorias com grid de skills + stats (ex: "12+ Ferramentas",
-"3+ Anos de Experiência", "Cloud" como especialização). Estrutura de categoria é reaproveitável;
-**conteúdo está desatualizado** (não reflete Airflow, dbt, Databricks etc. que aparecem nos
-projetos do disco) — vai ser refeito com base no que o autor confirmar.
+3 categorias, com a lista de ferramentas que o autor passou (não é mais a lista desatualizada
+do site antigo):
+- **Cloud & Infraestrutura** — AWS (Step Functions, Glue, Lambda, EventBridge, EMR), GCP
+  (BigQuery, Dataform, Cloud Run, Workflows), Terraform, IaC
+- **Engenharia de Dados** — ETL/ELT, CI/CD, Data Quality, Modelagem de dados
+- **Dados & Operação** — Analytics, FinOps, Governança e observabilidade
 
-```yaml
-categoria: string        # ex: "Linguagens & Dados", "Cloud e BI", "ETL & Modelagem"
-skills: [string]
-```
-
-**[PENDENTE]** lista definitiva de categorias + ferramentas atuais.
-
-## Schema de "Projeto"
-Cada projeto no portfólio deve ter, no mínimo:
-
+## Schema de "Projeto" (para quando o backlog for preenchido)
 ```yaml
 titulo: string
-resumo: string          # 1-2 linhas
-problema: string        # que dor/contexto motivou o projeto
-solucao: string         # o que foi construído
+resumo: string
+problema: string
+solucao: string
 stack: [string]
-papel: string            # seu papel no projeto (solo, squad, liderança...)
-resultados: string       # métrica/impacto, se houver
+papel: string
+resultados: string
 link_repo: string?
 link_demo: string?
 imagens: [string]?
-confidencial: bool       # se true, descrever sem vazar dados sensíveis do empregador
+confidencial: bool
 ```
 
-## Projetos — status
-O autor confirmou que a descrição dos projetos **será enviada separadamente** (não vamos
-inferir a partir do código nas pastas do Desktop, por causa de possível conteúdo confidencial
-dos projetos ligados a cliente — ex. pastas com "itau" no nome).
-
-**[PENDENTE]** — aguardando, projeto a projeto, preenchimento do schema acima. Candidatos
-identificados no disco (a confirmar quais entram e quais ficam de fora por confidencialidade):
-
-- King_of_Languages
-- Toolkit_Engenharia_de_Dados
-- imagens-hub-gcp
-- itau_dados_tardios *(provável confidencial)*
-- itau_score_tagueamento *(provável confidencial)*
-- multa
-- pipeline_airflow
-- scripts
+## Projetos — em backlog
+Confirmado pelo autor: **nenhum case pronto ainda**. A seção existe no site com um estado vazio
+("Cases em construção") + link para o GitHub, em vez de ficar oculta — mantém a promessa de
+"Ver Projetos" do Hero coerente. Quando o primeiro case estiver pronto, populamos com o schema
+acima.
 
 ## Currículo / CV
-**Confirmado: sim**, disponibilizar para download (botão no Hero e/ou Contato).
-**[PENDENTE]** definir: PDF já existente do autor, ou gerado a partir do conteúdo do site
-(mesmos dados de Experiência/Stack, formatado para impressão)?
+**Gerado a partir do conteúdo do site** (não havia PDF pronto). Páginas dedicadas
+`/cv/` (PT) e `/en/cv/` (EN), com layout de currículo compacto + botão "Imprimir / Salvar PDF"
+(`window.print()`, com CSS de impressão próprio). Puxa os mesmos dados de Experiência,
+Stack e Formação — sem duplicar conteúdo.
+
+**`[TODO]` de produto, não de spec**: se o autor gerar um PDF definitivo por fora (ex: export do
+LinkedIn/Canva), dá pra trocar o link do botão de CV para apontar direto pra um arquivo estático
+em `public/`.
 
 ## Contato
-Canais confirmados: **e-mail, LinkedIn, GitHub**.
-
 - E-mail: `fuzatimatheus@gmail.com`
 - LinkedIn: https://www.linkedin.com/in/matheus-fuzati-de-carvalho/
-- GitHub: **[PENDENTE]** usuário do GitHub a exibir/linkar
-
-**Confirmado: mantém o CTA "Iniciar conversa?" redirecionando para WhatsApp**, como no site
-anterior, além de e-mail/LinkedIn/GitHub. **[PENDENTE]** número de WhatsApp a usar (o autor
-confirma se é o mesmo do site anterior ou outro).
+- GitHub: https://github.com/matheus-fuzati
+- WhatsApp: `(11) 94040-3278` → CTA "Iniciar conversa" / "Start a conversation" (`wa.me`)
 
 ## Formação Acadêmica e Cursos
-**Confirmado: entra** como seção própria (igual ao site anterior).
-**[PENDENTE]** lista atualizada de graduação/pós/cursos (instituição, curso, período) — o site
-anterior tinha graduação em Ciência de Dados e pós em Arquitetura e Projetos de Cloud Computing,
-mais cursos em FIAP/Data Science Academy/Udemy; confirmar o que está atual/relevante hoje.
+- **Graduação** — Ciência de Dados, Faculdade Estácio, 2023–2025
+- **Pós-graduação** — Arquitetura e Projetos de Cloud Computing, Faculdade GRAN, 2026–2027 (em
+  andamento)
+- **Cursos**: 3 na Udemy (Databricks/Spark/PySpark; GCP Associate Cloud Engineer; Python +
+  SQL/NoSQL), 2 na FIAP (BI; Big Data e Analytics), 2 na Data Science Academy (Power BI; Python
+  para Data Science) — todos herdados do site anterior, reaproveitados porque o autor não sinalizou
+  mudança.

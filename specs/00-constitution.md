@@ -1,6 +1,7 @@
 # 00 — Constituição do Projeto
 
-> Status: rascunho v1 — validar com o autor antes de travar.
+> Status: v1 implementada (autorização do autor para seguir sem travar em cada decisão —
+> ver `04-tasks.md` para o que ainda vale revisar).
 
 ## Objetivo do site
 Construir **autoridade e marca pessoal** na área de dados. Não é uma landing page de

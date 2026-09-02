@@ -1,0 +1,30 @@
+---
+interface Props {
+  hero: {
+    eyebrow: string;
+    name: string;
+    tagline: string;
+    ctaPrimary: { label: string; href: string };
+    ctaSecondary: { label: string; href: string };
+    meta: { k: string; v: string }[];
+  };
+}
+const { hero } = Astro.props;
+---
+
+<section class="hero">
+  <div class="container">
+    <span class="eyebrow">{hero.eyebrow}</span>
+    <h1>{hero.name}</h1>
+    <p class="tagline">{hero.tagline}</p>
+    <div class="actions">
+      <a class="btn btn-primary" href={hero.ctaPrimary.href}>{hero.ctaPrimary.label}</a>
+      <a class="btn btn-ghost" href={hero.ctaSecondary.href}>{hero.ctaSecondary.label}</a>
+    </div>
+    <div class="meta">
+      {hero.meta.map((m) => (
+        <span><strong>{m.k}:</strong> {m.v}</span>
+      ))}
+    </div>
+  </div>
+</section>

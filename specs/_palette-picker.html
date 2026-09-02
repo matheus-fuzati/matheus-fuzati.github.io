@@ -1,0 +1,342 @@
+<title>Paleta Fuzati</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+  :root{
+    --bg:#FAFAF9;
+    --ink:#181A1E;
+    --muted:#666B72;
+    --line:rgba(24,26,30,0.12);
+    --card-bg:#FFFFFF;
+    --ui-accent:#5B6472;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#111316;
+      --ink:#EDEEF0;
+      --muted:#9BA1A8;
+      --line:rgba(237,238,240,0.14);
+      --card-bg:#17191D;
+      --ui-accent:#9BA1A8;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#111316;
+    --ink:#EDEEF0;
+    --muted:#9BA1A8;
+    --line:rgba(237,238,240,0.14);
+    --card-bg:#17191D;
+    --ui-accent:#9BA1A8;
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'IBM Plex Sans',ui-sans-serif,system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1080px;margin:0 auto;padding:64px 28px 96px;}
+
+  header.intro{margin-bottom:56px;}
+  .eyebrow{
+    font-family:'IBM Plex Mono',ui-monospace,monospace;
+    font-size:12.5px;
+    letter-spacing:.09em;
+    text-transform:uppercase;
+    color:var(--muted);
+    display:block;
+    margin-bottom:14px;
+  }
+  h1{
+    font-family:'Source Serif 4',Georgia,serif;
+    font-weight:600;
+    font-size:clamp(30px,4.4vw,44px);
+    line-height:1.1;
+    margin:0 0 18px;
+    text-wrap:balance;
+    max-width:18ch;
+  }
+  .lede{
+    font-size:16.5px;
+    line-height:1.65;
+    color:var(--muted);
+    max-width:62ch;
+    margin:0;
+  }
+
+  .grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:28px;
+  }
+  @media (max-width:760px){ .grid{grid-template-columns:1fr;} }
+
+  .card{
+    border:1px solid var(--line);
+    border-radius:4px;
+    background:var(--card-bg);
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+  }
+
+  .card-head{
+    padding:20px 22px 16px;
+    border-bottom:1px solid var(--line);
+  }
+  .card-name{
+    font-family:'Source Serif 4',Georgia,serif;
+    font-weight:600;
+    font-size:19px;
+    margin:0 0 6px;
+  }
+  .card-note{
+    font-size:13.5px;
+    line-height:1.55;
+    color:var(--muted);
+    margin:0;
+  }
+
+  .swatches{
+    display:flex;
+    border-bottom:1px solid var(--line);
+  }
+  .sw{
+    flex:1;
+    height:40px;
+    position:relative;
+  }
+  .sw span{
+    position:absolute;
+    bottom:4px;
+    left:6px;
+    font-family:'IBM Plex Mono',ui-monospace,monospace;
+    font-size:9px;
+    letter-spacing:.02em;
+    opacity:.85;
+    mix-blend-mode:difference;
+    color:#fff;
+  }
+
+  /* live mockup, uses the palette's own custom properties, deliberately NOT
+     tied to the viewer theme tokens above — it is a fixed preview of a
+     design direction, not part of the page chrome */
+  .mock{
+    background:var(--m-bg);
+    color:var(--m-text);
+    padding:34px 26px 30px;
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    gap:14px;
+    font-family:'IBM Plex Sans',ui-sans-serif,sans-serif;
+  }
+  .mock .eyebrow-m{
+    font-family:'IBM Plex Mono',ui-monospace,monospace;
+    font-size:10.5px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--m-accent);
+  }
+  .mock h2{
+    font-family:'Source Serif 4',Georgia,serif;
+    font-weight:600;
+    font-size:26px;
+    line-height:1.08;
+    margin:2px 0 0;
+    color:var(--m-text);
+  }
+  .mock p.tag{
+    font-size:14px;
+    color:var(--m-muted);
+    margin:2px 0 6px;
+    max-width:34ch;
+  }
+  .mock .row{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    margin-top:4px;
+  }
+  .mock button{
+    font-family:'IBM Plex Sans',sans-serif;
+    font-size:13px;
+    font-weight:500;
+    padding:9px 16px;
+    border-radius:2px;
+    border:1px solid var(--m-accent);
+    background:var(--m-accent);
+    color:var(--m-on-accent);
+    cursor:default;
+  }
+  .mock .stat{
+    font-family:'IBM Plex Mono',ui-monospace,monospace;
+    font-size:11.5px;
+    color:var(--m-muted);
+  }
+
+  /* palette A — Ardósia */
+  .card-a .sw:nth-child(1){background:#12161C}
+  .card-a .sw:nth-child(2){background:#1A2028}
+  .card-a .sw:nth-child(3){background:#E7EAEE}
+  .card-a .sw:nth-child(4){background:#8A94A3}
+  .card-a .sw:nth-child(5){background:#5C8DF6}
+  .card-a .mock{--m-bg:#12161C;--m-text:#E7EAEE;--m-muted:#8A94A3;--m-accent:#5C8DF6;--m-on-accent:#0B0D10;}
+
+  /* palette B — Papel */
+  .card-b .sw:nth-child(1){background:#F1F2F0}
+  .card-b .sw:nth-child(2){background:#E4E6E2}
+  .card-b .sw:nth-child(3){background:#161A17}
+  .card-b .sw:nth-child(4){background:#5B6660}
+  .card-b .sw:nth-child(5){background:#1F6F64}
+  .card-b .mock{--m-bg:#F1F2F0;--m-text:#161A17;--m-muted:#5B6660;--m-accent:#1F6F64;--m-on-accent:#F1F2F0;}
+
+  /* palette C — Grafite */
+  .card-c .sw:nth-child(1){background:#0E0F11}
+  .card-c .sw:nth-child(2){background:#17181B}
+  .card-c .sw:nth-child(3){background:#EDEDED}
+  .card-c .sw:nth-child(4){background:#8C8C8F}
+  .card-c .sw:nth-child(5){background:#4C6EF5}
+  .card-c .mock{--m-bg:#0E0F11;--m-text:#EDEDED;--m-muted:#8C8C8F;--m-accent:#4C6EF5;--m-on-accent:#F5F6FA;}
+
+  /* palette D — Latão */
+  .card-d .sw:nth-child(1){background:#1A1613}
+  .card-d .sw:nth-child(2){background:#24201B}
+  .card-d .sw:nth-child(3){background:#F1ECE3}
+  .card-d .sw:nth-child(4){background:#9C8F79}
+  .card-d .sw:nth-child(5){background:#8A6A3D}
+  .card-d .mock{--m-bg:#1A1613;--m-text:#F1ECE3;--m-muted:#9C8F79;--m-accent:#8A6A3D;--m-on-accent:#F1ECE3;}
+
+  footer.legend{
+    margin-top:44px;
+    padding-top:22px;
+    border-top:1px solid var(--line);
+    font-size:13px;
+    color:var(--muted);
+    line-height:1.7;
+  }
+  footer.legend code{
+    font-family:'IBM Plex Mono',ui-monospace,monospace;
+    font-size:12px;
+  }
+</style>
+
+<div class="wrap">
+  <header class="intro">
+    <span class="eyebrow">Quatro direções, mesmo tom: sério · moderno · minimalista</span>
+    <h1>Escolhendo o acento certo</h1>
+    <p class="lede">
+      Nenhuma reaproveita o navy/âmbar/mono do portfólio anterior. Tipografia é a mesma nas
+      quatro (Source Serif 4 + IBM Plex Sans + IBM Plex Mono) — assim a comparação é só sobre
+      cor. Cada cartão mostra a paleta pura em cima e um mini-preview real do hero embaixo.
+    </p>
+  </header>
+
+  <div class="grid">
+
+    <section class="card card-a">
+      <div class="card-head">
+        <p class="card-name">A — Ardósia</p>
+        <p class="card-note">Escuro, frio, confiante. Azul-aço em vez de âmbar — lê como
+          engenharia/cloud, não como terminal hacker.</p>
+      </div>
+      <div class="swatches">
+        <div class="sw"><span>bg</span></div>
+        <div class="sw"><span>surface</span></div>
+        <div class="sw"><span>text</span></div>
+        <div class="sw"><span>muted</span></div>
+        <div class="sw"><span>accent</span></div>
+      </div>
+      <div class="mock">
+        <span class="eyebrow-m">Engenheiro de Dados</span>
+        <h2>Matheus Fuzati</h2>
+        <p class="tag">Dados, na prática — da ingestão ao dashboard.</p>
+        <div class="row">
+          <button>Ver projetos</button>
+          <span class="stat">DP6 · Itaú</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="card card-b">
+      <div class="card-head">
+        <p class="card-name">B — Papel</p>
+        <p class="card-note">Claro, editorial, direto — parece um dossiê técnico bem
+          diagramado. Verde-petróleo como único acento, sem clichê de terracota.</p>
+      </div>
+      <div class="swatches">
+        <div class="sw"><span>bg</span></div>
+        <div class="sw"><span>surface</span></div>
+        <div class="sw"><span>text</span></div>
+        <div class="sw"><span>muted</span></div>
+        <div class="sw"><span>accent</span></div>
+      </div>
+      <div class="mock">
+        <span class="eyebrow-m">Engenheiro de Dados</span>
+        <h2>Matheus Fuzati</h2>
+        <p class="tag">Dados, na prática — da ingestão ao dashboard.</p>
+        <div class="row">
+          <button>Ver projetos</button>
+          <span class="stat">DP6 · Itaú</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="card card-c">
+      <div class="card-head">
+        <p class="card-name">C — Grafite</p>
+        <p class="card-note">O mais minimalista dos quatro: quase monocromático, o azul só
+          aparece em botão/link. Cor como exceção, não como identidade.</p>
+      </div>
+      <div class="swatches">
+        <div class="sw"><span>bg</span></div>
+        <div class="sw"><span>surface</span></div>
+        <div class="sw"><span>text</span></div>
+        <div class="sw"><span>muted</span></div>
+        <div class="sw"><span>accent</span></div>
+      </div>
+      <div class="mock">
+        <span class="eyebrow-m">Engenheiro de Dados</span>
+        <h2>Matheus Fuzati</h2>
+        <p class="tag">Dados, na prática — da ingestão ao dashboard.</p>
+        <div class="row">
+          <button>Ver projetos</button>
+          <span class="stat">DP6 · Itaú</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="card card-d">
+      <div class="card-head">
+        <p class="card-name">D — Latão</p>
+        <p class="card-note">Escuro e quente em vez de frio — acento em bronze fosco, bem
+          dessaturado. Distante do âmbar vibrante antigo, mas mantém um traço pessoal.</p>
+      </div>
+      <div class="swatches">
+        <div class="sw"><span>bg</span></div>
+        <div class="sw"><span>surface</span></div>
+        <div class="sw"><span>text</span></div>
+        <div class="sw"><span>muted</span></div>
+        <div class="sw"><span>accent</span></div>
+      </div>
+      <div class="mock">
+        <span class="eyebrow-m">Engenheiro de Dados</span>
+        <h2>Matheus Fuzati</h2>
+        <p class="tag">Dados, na prática — da ingestão ao dashboard.</p>
+        <div class="row">
+          <button>Ver projetos</button>
+          <span class="stat">DP6 · Itaú</span>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <footer class="legend">
+    Ordem dos swatches em cada cartão: <code>bg</code> · <code>surface</code> · <code>text</code>
+    · <code>muted</code> · <code>accent</code>. Pode escolher uma direção inteira, pedir uma
+    mistura (ex: fundo de B com acento de A), ou pedir uma quinta opção.
+  </footer>
+</div>

@@ -25,20 +25,30 @@ sem engenharia reversa de nada de terceiros.
 - Tipografia de referência: **Inter** (corpo) + **JetBrains Mono** (headers/labels técnicos).
 
 ## O que muda nesta v2 (para não ser um clone)
-Confirmado com o autor: **fundo escuro + mono ficam, mas o acento troca de cor** (era âmbar
-`#F5B700`). Opções propostas — todas testadas para bom contraste sobre `#051226`:
+O autor pediu explicitamente para **desconsiderar toda a identidade visual anterior** (não só a
+cor) em favor de algo **sério, moderno e minimalista**. Publiquei 4 direções completas
+(cor + preview de hero) num artifact para revisão:
+https://claude.ai/code/artifact/40d59467-0a38-401d-a0d1-0beef653ba1a — fonte em
+`specs/_palette-picker.html`.
 
-| Opção | Cor | Vibe |
+**Decisão tomada para destravar a implementação** (autorização do autor: "manda bala, amanhã
+revisa"): opção **A — Ardósia**. Fácil de trocar depois — é tudo token de CSS.
+
+| Token | Cor | Uso |
 |---|---|---|
-| **A — Cyan de dados** | `#2DD4BF` | Frio, técnico, "data/cloud" — o mais distante do site antigo |
-| **B — Violeta moderno** | `#A78BFA` | Premium, SaaS moderno, ainda dev mas menos "terminal" |
-| **C — Verde terminal** | `#4ADE80` | Mantém o clichê hacker/terminal só que trocando de cor |
+| `bg` | `#12161C` | Fundo |
+| `surface` | `#1A2028` | Cards |
+| `text` | `#E7EAEE` | Texto principal |
+| `muted` | `#8A94A3` | Texto secundário |
+| `accent` | `#5C8DF6` | CTA, links, destaque |
 
-**[PENDENTE]** o autor escolhe uma (ou pede outra direção) na próxima rodada.
+Vibe: escuro, frio, confiante — azul-aço em vez de âmbar, lê como engenharia/cloud, não como
+terminal hacker. As outras 3 opções (B Papel, C Grafite, D Latão) continuam no artifact caso o
+autor prefira trocar na revisão.
 
-Composição/layout também vão variar em relação ao site antigo (grid de cards e ritmo de seção
-diferentes) — isso é trabalho de implementação, não uma decisão que precisa de aprovação prévia
-linha a linha.
+Layout também é uma variação real em relação ao site antigo: sem motivo RAW/STAGE/MART, sem
+"//" como label decorativo de seção (eyebrow ainda usa mono, mas como label discreto, não como
+comentário de código), timeline vertical mais sóbria, cards de skill sem glow.
 
 ## Referências visuais adicionais
 _(o autor mencionou que vai passar mais referências — aguardando)_
