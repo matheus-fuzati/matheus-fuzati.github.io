@@ -1,0 +1,56 @@
+---
+interface CaseItem {
+  title: string;
+  summary: string;
+  problem: string;
+  solution: string;
+  stack: string[];
+  result: string;
+}
+interface Props {
+  id: string;
+  aiDev: {
+    eyebrow: string;
+    title: string;
+    intro: string;
+    labels: { problem: string; solution: string; result: string };
+    items: CaseItem[];
+  };
+}
+const { id, aiDev } = Astro.props;
+---
+
+<section id={id} class="section">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <span class="eyebrow">{aiDev.eyebrow}</span>
+      <h2>{aiDev.title}</h2>
+      <p class="ai-dev-intro">{aiDev.intro}</p>
+    </div>
+    <div class="ai-dev-grid">
+      {aiDev.items.map((item) => (
+        <div class="ai-dev-card" data-reveal>
+          <h3>{item.title}</h3>
+          <p class="ai-dev-summary">{item.summary}</p>
+          <dl>
+            <div>
+              <dt>{aiDev.labels.problem}</dt>
+              <dd>{item.problem}</dd>
+            </div>
+            <div>
+              <dt>{aiDev.labels.solution}</dt>
+              <dd>{item.solution}</dd>
+            </div>
+            <div>
+              <dt>{aiDev.labels.result}</dt>
+              <dd>{item.result}</dd>
+            </div>
+          </dl>
+          <ul class="ai-dev-stack">
+            {item.stack.map((s) => <li>{s}</li>)}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

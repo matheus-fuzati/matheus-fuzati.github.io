@@ -15,7 +15,10 @@ const { hero } = Astro.props;
 <section class="hero">
   <div class="container">
     <span class="eyebrow">{hero.eyebrow}</span>
-    <h1>{hero.name}</h1>
+    <h1>
+      <span data-hero-name aria-hidden="true">{hero.name}</span>
+      <span class="sr-only">{hero.name}</span>
+    </h1>
     <p class="tagline">{hero.tagline}</p>
     <div class="actions">
       <a class="btn btn-primary" href={hero.ctaPrimary.href}>{hero.ctaPrimary.label}</a>
@@ -28,3 +31,42 @@ const { hero } = Astro.props;
     </div>
   </div>
 </section>
+
+<script>
+  const el = document.querySelector<HTMLElement>("[data-hero-name]");
+  const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if (el && !prefersReduced) {
+    const finalText = el.textContent ?? "";
+    const scrambleChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    const framesPerChar = 3;
+    const scrambleFrames = 8;
+    let frame = 0;
+
+    const tick = () => {
+      let output = "";
+      let done = true;
+
+      for (let i = 0; i < finalText.length; i++) {
+        const char = finalText[i];
+        if (char === " ") {
+          output += " ";
+          continue;
+        }
+        const revealAt = i * framesPerChar + scrambleFrames;
+        if (frame >= revealAt) {
+          output += char;
+        } else {
+          output += scrambleChars[Math.floor(Math.random() * scrambleChars.length)];
+          done = false;
+        }
+      }
+
+      el.textContent = output;
+      frame++;
+      if (!done) requestAnimationFrame(tick);
+    };
+
+    requestAnimationFrame(tick);
+  }
+</script>

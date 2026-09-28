@@ -71,13 +71,17 @@ categórica/sequencial acessível — não reaproveitar o acento sozinho para s�
 Dev-terminal / editorial técnico. Moderno, não minimalista vazio — tem textura (grid, bordas,
 labels tipo comentário de código), mas sem poluir.
 
-## Animações (a especificar em detalhe na implementação)
-- Hero: efeito de digitação/decrypt no nome ou headline
-- Scroll-reveal em seções e cards (stagger em listas)
-- Hover states nos cards de projeto/skill com transição de borda + glow na cor de destaque
-- Implementação: dado que a stack é Astro, animações ficam em **islands** (componente
-  React/Preact isolado com Framer Motion, ou vanilla JS + GSAP/CSS) — o resto do site
-  permanece HTML estático para performance.
+## Animações
+- **[x] Hero**: efeito de digitação/decrypt no nome (`src/components/Hero.astro`) — scramble
+  progressivo esquerda→direita em vanilla JS (`requestAnimationFrame`), com fallback estático
+  (nome legível sem JS) e guard explícito de `prefers-reduced-motion`.
+- **[x] Scroll-reveal** em seções e cards — `IntersectionObserver` + `data-reveal` em
+  `Base.astro`, já cobrindo todas as seções exceto o Hero (above the fold).
+- **[x] Hover glow** nos cards de skill (`.skill-card`) e no estado vazio de projetos
+  (`.projects-empty`) — `box-shadow` com `--accent`/`--accent-dim`, mesma linguagem de transição
+  do `.btn-ghost`/`.contact-card`.
+- Implementação real: **vanilla JS + CSS**, sem framework de UI (ver decisão em
+  `03-tech-spec.md`) — mais simples e sem JS de framework no bundle.
 
 ## Responsividade
 Mobile-first, breakpoints padrão (Tailwind: sm/md/lg/xl).

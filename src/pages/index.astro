@@ -5,6 +5,7 @@ import Hero from "../components/Hero.astro";
 import About from "../components/About.astro";
 import Experience from "../components/Experience.astro";
 import Skills from "../components/Skills.astro";
+import AIDevelopment from "../components/AIDevelopment.astro";
 import Projects from "../components/Projects.astro";
 import Education from "../components/Education.astro";
 import Contact from "../components/Contact.astro";
@@ -21,6 +22,7 @@ const d = content.pt;
     <About id="sobre" about={d.about} />
     <Experience id="experiencia" experience={d.experience} />
     <Skills id="stack" skills={d.skills} />
+    <AIDevelopment id="ia-dev" aiDev={d.aiDev} />
     <Projects id="projetos" projects={d.projects} />
     <Education id="formacao" education={d.education} />
     <Contact id="contato" contact={d.contact} />

@@ -12,6 +12,7 @@ export const content = {
         { href: "#sobre", label: "Sobre" },
         { href: "#experiencia", label: "Experiência" },
         { href: "#stack", label: "Stack" },
+        { href: "#ia-dev", label: "IA Dev" },
         { href: "#projetos", label: "Projetos" },
         { href: "#formacao", label: "Formação" },
         { href: "#contato", label: "Contato" },
@@ -40,17 +41,16 @@ export const content = {
         { k: "Empresa", v: "DP6 — consultoria de dados" },
         { k: "Alocação atual", v: "Itaú" },
         { k: "Base", v: "Brasil" },
+        { k: "Inglês", v: "C1" },
         { k: "Idiomas do site", v: "PT-BR / EN" },
       ],
     },
     experience: {
       eyebrow: "Experiência",
       title: "Trajetória Profissional",
-      footnote:
-        "* Datas exatas da transição Atento Brasil → DP6 (Magalu Ads → Itaú) em confirmação.",
       items: [
         {
-          period: "Atual",
+          period: "Desde 02/2026",
           current: true,
           role: "Engenheiro de Dados",
           company: "DP6 — consultoria",
@@ -59,7 +59,7 @@ export const content = {
             "Consultor de dados atuando em ambiente de cliente (Itaú), com foco em pipelines de dados, cloud e boas práticas de engenharia. Passagem anterior pela conta Magalu Ads.",
         },
         {
-          period: "A partir de 07/2025",
+          period: "07/2025 – 02/2026",
           role: "Analista de Dados Pleno",
           company: "Atento Brasil",
           description:
@@ -102,8 +102,8 @@ export const content = {
         {
           title: "Cloud & Infraestrutura",
           items: [
-            "AWS — Step Functions, Glue, Lambda, EventBridge, EMR",
-            "GCP — BigQuery, Dataform, Cloud Run, Workflows",
+            "AWS — Glue Jobs, Lambda, Step Functions, EMR, Athena, S3",
+            "GCP — BigQuery, Cloud SQL, Data Transfer, Cloud Run, Workflows, Dataform",
             "Terraform",
             "Infraestrutura como Código (IaC)",
           ],
@@ -120,6 +120,56 @@ export const content = {
         {
           title: "Dados & Operação",
           items: ["Analytics", "FinOps", "Governança e observabilidade de dados"],
+        },
+      ],
+    },
+    aiDev: {
+      eyebrow: "IA Development",
+      title: "Desenvolvimento assistido por IA",
+      intro:
+        "Uso IA como parte do processo de engenharia, não como ferramenta pontual: specs escritas antes do código, arquivo de contexto por repositório, ADRs para decisões e sessões multi-repositório orquestradas com Claude Code. Os cases abaixo são de iniciativas internas reais da DP6 — sem dados de cliente ou capturas de tela, só problema, solução e resultado.",
+      labels: { problem: "Problema", solution: "Solução", result: "Resultado" },
+      items: [
+        {
+          title: "Atlas",
+          summary: "Plataforma de observabilidade de dados no GCP",
+          problem:
+            "A iniciativa de dados da DP6 não tinha visibilidade centralizada sobre saúde e custo dos pipelines entre os projetos do programa.",
+          solution:
+            "Arquitetura em monorepo (backend, frontend e infraestrutura em Terraform), com dev/prod no mesmo projeto GCP, conduzida em specs antes do código — arquivo de contexto próprio, ADRs para decisões e disciplina de changelog/sessionlog a cada entrega.",
+          stack: ["GCP", "Terraform", "Monorepo (backend + frontend)", "OAuth/IAP", "Spec-driven development"],
+          result:
+            "Tornou-se a referência de autenticação (OAuth via IAP) reaproveitada pelos outros repositórios da iniciativa e o exemplo mais maduro do processo de desenvolvimento assistido por IA usado no programa.",
+        },
+        {
+          title: "Billing Platform",
+          summary: "Camada de custo (FinOps) para toda a conta de faturamento GCP",
+          problem:
+            "O modelo de custo existente cobria só um projeto GCP por vez; faltava visibilidade de FinOps para a conta de faturamento inteira, por projeto.",
+          solution:
+            "Adaptação de uma arquitetura de custo já validada (Dataform + API + painel) para ingerir o billing export da conta inteira, adicionando a dimensão de projeto — mesmo processo de specs e ADRs documentado no repositório de origem.",
+          stack: ["GCP BigQuery", "Dataform", "API de custo", "Painel FinOps"],
+          result: "Em produção, com visibilidade de custo em nível de projeto para toda a conta de faturamento.",
+        },
+        {
+          title: "Polaris (Heap)",
+          summary: "Acervo de conhecimento da Engenharia de Dados da DP6",
+          problem:
+            "O conhecimento de engenharia de dados da DP6 estava espalhado, sem um lugar único e vivo de documentação para o time.",
+          solution:
+            "Hub de documentação em Docusaurus, centralizando convenções entre repositórios e integrando o design system da iniciativa.",
+          stack: ["Docusaurus", "Site estático", "Design tokens"],
+          result: "Base de conhecimento ativa da iniciativa de dados da DP6.",
+        },
+        {
+          title: "Certifications",
+          summary: "Plataforma de certificações dos colaboradores DP6",
+          problem:
+            "A DP6 precisava de um jeito estruturado de catalogar, aprovar e acompanhar certificações dos colaboradores e rodar campanhas, sem plataforma própria para isso.",
+          solution:
+            "Plataforma em Next.js com Firestore/BigQuery, usando o fluxo formal de Spec-Kit do GitHub (spec → plano → tarefas) e ADRs — o exemplo mais rigoroso de desenvolvimento orientado a specs entre os projetos da iniciativa.",
+          stack: ["Next.js", "Firestore", "BigQuery", "GitHub Spec-Kit"],
+          result: "Plataforma ativa, em uso interno na DP6 para catálogo, badges, aprovação e campanhas de certificação.",
         },
       ],
     },
@@ -189,6 +239,7 @@ export const content = {
         { href: "#about", label: "About" },
         { href: "#experience", label: "Experience" },
         { href: "#stack", label: "Stack" },
+        { href: "#ia-dev", label: "AI Dev" },
         { href: "#projects", label: "Projects" },
         { href: "#education", label: "Education" },
         { href: "#contact", label: "Contact" },
@@ -217,17 +268,16 @@ export const content = {
         { k: "Company", v: "DP6 — data consultancy" },
         { k: "Current allocation", v: "Itaú" },
         { k: "Based in", v: "Brazil" },
+        { k: "English", v: "C1" },
         { k: "Site languages", v: "PT-BR / EN" },
       ],
     },
     experience: {
       eyebrow: "Experience",
       title: "Professional Journey",
-      footnote:
-        "* Exact transition dates (Atento Brasil → DP6, Magalu Ads → Itaú) pending confirmation.",
       items: [
         {
-          period: "Current",
+          period: "Since 02/2026",
           current: true,
           role: "Data Engineer",
           company: "DP6 — consulting",
@@ -236,7 +286,7 @@ export const content = {
             "Data consultant working on-site at a client environment (Itaú), focused on data pipelines, cloud, and engineering best practices. Previously on the Magalu Ads account.",
         },
         {
-          period: "Since 07/2025",
+          period: "07/2025 – 02/2026",
           role: "Mid-level Data Analyst",
           company: "Atento Brasil",
           description:
@@ -279,8 +329,8 @@ export const content = {
         {
           title: "Cloud & Infrastructure",
           items: [
-            "AWS — Step Functions, Glue, Lambda, EventBridge, EMR",
-            "GCP — BigQuery, Dataform, Cloud Run, Workflows",
+            "AWS — Glue Jobs, Lambda, Step Functions, EMR, Athena, S3",
+            "GCP — BigQuery, Cloud SQL, Data Transfer, Cloud Run, Workflows, Dataform",
             "Terraform",
             "Infrastructure as Code (IaC)",
           ],
@@ -292,6 +342,55 @@ export const content = {
         {
           title: "Data & Operations",
           items: ["Analytics", "FinOps", "Data governance & observability"],
+        },
+      ],
+    },
+    aiDev: {
+      eyebrow: "IA Development",
+      title: "AI-Assisted Development",
+      intro:
+        "I use AI as part of the engineering process, not as a one-off tool: specs written before code, a context file per repository, ADRs for decisions, and multi-repository sessions orchestrated with Claude Code. The cases below are real internal DP6 initiatives — no client data or screenshots, just problem, solution, and result.",
+      labels: { problem: "Problem", solution: "Solution", result: "Result" },
+      items: [
+        {
+          title: "Atlas",
+          summary: "Data observability platform on GCP",
+          problem:
+            "DP6's data initiative had no centralized visibility into pipeline health and cost across the program's projects.",
+          solution:
+            "Monorepo architecture (backend, frontend, and Terraform infrastructure), with dev/prod in the same GCP project, driven by specs written before code — its own context file, ADRs for decisions, and changelog/sessionlog discipline on every delivery.",
+          stack: ["GCP", "Terraform", "Monorepo (backend + frontend)", "OAuth/IAP", "Spec-driven development"],
+          result:
+            "Became the authentication reference (OAuth via IAP) reused by the initiative's other repositories, and the most mature example of the AI-assisted development process used across the program.",
+        },
+        {
+          title: "Billing Platform",
+          summary: "FinOps cost layer for the entire GCP billing account",
+          problem:
+            "The existing cost model covered a single GCP project at a time; leadership needed FinOps visibility across the entire billing account, per project.",
+          solution:
+            "Adapted an already-validated cost architecture (Dataform + API + dashboard) to ingest the full account's billing export, adding a project dimension — same specs-and-ADRs process documented in the source repository.",
+          stack: ["GCP BigQuery", "Dataform", "Cost API", "FinOps dashboard"],
+          result: "In production, with project-level cost visibility across the entire billing account.",
+        },
+        {
+          title: "Polaris (Heap)",
+          summary: "DP6 Data Engineering knowledge base",
+          problem: "DP6's data engineering knowledge was scattered, with no single, living place to document it for the team.",
+          solution:
+            "Docusaurus documentation hub, centralizing cross-repository conventions and integrating the initiative's design system.",
+          stack: ["Docusaurus", "Static site", "Design tokens"],
+          result: "The active knowledge base for DP6's data initiative.",
+        },
+        {
+          title: "Certifications",
+          summary: "DP6 employee certifications platform",
+          problem:
+            "DP6 needed a structured way to catalog, approve, and track employee certifications and run campaigns, with no dedicated platform for it.",
+          solution:
+            "Next.js platform with Firestore/BigQuery, using GitHub's formal Spec-Kit flow (spec → plan → tasks) and ADRs — the most rigorous spec-driven example among the initiative's projects.",
+          stack: ["Next.js", "Firestore", "BigQuery", "GitHub Spec-Kit"],
+          result: "Active platform, used internally at DP6 for certification catalog, badges, approval, and campaigns.",
         },
       ],
     },

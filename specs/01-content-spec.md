@@ -4,8 +4,8 @@
 > são correções pontuais a fazer na revisão, não bloqueiam o site no ar.
 
 ## Seções do site
-Hero · Sobre · Experiência · Stack · Projetos · Formação · Contato — todas implementadas,
-em PT (`/`) e EN (`/en/`).
+Hero · Sobre · Experiência · Stack · IA Development · Projetos · Formação · Contato — todas
+implementadas, em PT (`/`) e EN (`/en/`).
 
 ## Idioma
 Site bilíngue PT-BR / EN. Textos em inglês foram **reescritos**, não traduzidos literalmente
@@ -26,19 +26,39 @@ atual no Itaú, antes na Magalu Ads) + as 5 posições anteriores extraídas do 
 (Atento Brasil, Faculdade ESEG ×2, Grupo Vamos, Los Carvalhos — já publicadas pelo próprio autor
 lá, reaproveitadas aqui).
 
-**`[TODO]`** — únicas datas não confirmadas pelo autor: mês/ano de início na DP6 (Magalu Ads →
-Itaú) e a data de saída da Atento Brasil. O site já expõe isso de forma transparente: o item
-DP6 mostra período "Atual" (sem inventar data de início) e há uma nota de rodapé na seção
-avisando que essa transição está em confirmação. **Não fabriquei nenhuma data** — só omiti o
-que não foi informado.
+Transição Atento Brasil → DP6 (Magalu Ads → Itaú) confirmada pelo autor: **02/2026**. Atento
+Brasil aparece como `07/2025 – 02/2026`, DP6 como `Desde 02/2026` (badge "atual"). Removida a
+nota de rodapé de datas em confirmação — não é mais necessária.
 
 ## Stack técnica
 3 categorias, com a lista de ferramentas que o autor passou (não é mais a lista desatualizada
 do site antigo):
-- **Cloud & Infraestrutura** — AWS (Step Functions, Glue, Lambda, EventBridge, EMR), GCP
-  (BigQuery, Dataform, Cloud Run, Workflows), Terraform, IaC
+- **Cloud & Infraestrutura** — AWS (Glue Jobs, Lambda, Step Functions, EMR, Athena, S3), GCP
+  (BigQuery, Cloud SQL, Data Transfer, Cloud Run, Workflows, Dataform), Terraform, IaC
 - **Engenharia de Dados** — ETL/ELT, CI/CD, Data Quality, Modelagem de dados
 - **Dados & Operação** — Analytics, FinOps, Governança e observabilidade
+
+Inglês C1 adicionado como fact na seção Sobre (o autor já atuou no dia a dia com times
+internacionais).
+
+## IA Development
+Nova seção (entre Stack e Projetos), com foco no **processo** de desenvolvimento assistido por
+IA do autor (specs antes do código, arquivo de contexto por repositório, ADRs, orquestração
+multi-repositório com Claude Code) — não em funcionalidades de IA dentro de produtos.
+
+4 cases reais de iniciativas internas da DP6 (repositório `ci-polaris` do autor), descritos por
+problema/solução/stack/resultado, **sem link de repositório e sem dado de cliente/captura de
+tela** (mesmo princípio de confidencialidade da seção Projetos, ver `00-constitution.md`):
+- **Atlas** (`polaris-atlas`) — plataforma de observabilidade de dados no GCP, referência de
+  autenticação (OAuth/IAP) da iniciativa
+- **Billing Platform** (`dp6-billing-platform`) — camada de custo/FinOps para toda a conta de
+  faturamento GCP
+- **Polaris (Heap)** (`polaris-heap`) — acervo de conhecimento de Engenharia de Dados da DP6
+- **Certifications** (`dp6-certifications`) — plataforma de certificações dos colaboradores DP6
+
+**`[TODO]` de revisão do autor**: o texto de cada case assume autoria/protagonismo ("arquitetei",
+"desenvolvi") inferida da presença dos repositórios no ambiente do autor — não de confirmação
+explícita do papel exato em cada um. Revisar antes de publicar.
 
 ## Schema de "Projeto" (para quando o backlog for preenchido)
 ```yaml
