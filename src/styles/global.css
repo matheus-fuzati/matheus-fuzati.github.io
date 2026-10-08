@@ -772,18 +772,13 @@ p {
   display: grid;
   grid-template-columns: 1.1fr 1fr;
   gap: clamp(32px, 5vw, 64px);
-  align-items: stretch;
+  align-items: start;
 }
 
 @media (max-width: 860px) {
   .stack-formacao-grid {
     grid-template-columns: 1fr;
   }
-}
-
-.stack-formacao-col {
-  display: flex;
-  flex-direction: column;
 }
 
 .stack-formacao-subtitle {
@@ -795,23 +790,25 @@ p {
   margin-bottom: 18px;
 }
 
-/* as duas colunas esticam pra mesma altura (align-items: stretch acima);
-   o grid/flex interno de cada uma distribui o próprio conteúdo nesse
-   espaço, em vez de uma ficar visivelmente mais curta que a outra. */
 .stack-cat-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 12px;
-  flex: 1;
-  align-content: space-between;
 }
 
+/* Formação Acadêmica e Cursos lado a lado (em vez de empilhados) — isso é
+   o que de fato equilibra a altura com a coluna de Stack, sem precisar
+   esticar espaçamento artificialmente. */
 .edu-blocks {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 32px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+@media (max-width: 560px) {
+  .edu-blocks {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 500px) {
