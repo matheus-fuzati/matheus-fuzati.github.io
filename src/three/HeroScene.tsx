@@ -1,16 +1,22 @@
-import { Suspense } from "react";
+import { Suspense, type MutableRefObject } from "react";
 import { Canvas } from "@react-three/fiber";
 import GlassBlob from "./GlassBlob";
+import ParticleField from "./ParticleField";
+
+interface Props {
+  scrollRef: MutableRefObject<number>;
+}
 
 /**
  * Importado via React.lazy — só entra no bundle quando o WebGL check passa
- * e prefers-reduced-motion está desligado (ver Hero.tsx). Luz quente contida
- * do accent2 (verde-petróleo), sombra suave em vez de glow.
+ * e prefers-reduced-motion está desligado (ver Hero.tsx). Cena cheia (não
+ * um ícone decorativo): núcleo de vidro + 3 fragmentos orbitando + campo de
+ * partículas, com parallax real ligado ao scroll da seção Hero.
  */
-export default function HeroScene() {
+export default function HeroScene({ scrollRef }: Props) {
   return (
     <Canvas
-      camera={{ position: [0, 0, 5], fov: 35 }}
+      camera={{ position: [0, 0, 6], fov: 38 }}
       gl={{ alpha: true, antialias: true }}
       dpr={[1, 1.5]}
     >
@@ -19,7 +25,8 @@ export default function HeroScene() {
       <directionalLight position={[-3, -1, -2]} intensity={0.5} color="#2f5bd1" />
       <pointLight position={[1.2, 1.6, 2.4]} intensity={6} color="#ffffff" distance={6} />
       <Suspense fallback={null}>
-        <GlassBlob />
+        <ParticleField />
+        <GlassBlob scrollRef={scrollRef} />
       </Suspense>
     </Canvas>
   );

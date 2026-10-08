@@ -1,15 +1,19 @@
 import { useContent } from "../../content/useContent";
 import Reveal from "../motion/Reveal";
+import ParallaxLabel from "../motion/ParallaxLabel";
 
 interface Props {
   id: string;
 }
+
+const SIDES = ["left", "right"] as const;
 
 export default function AIDevelopment({ id }: Props) {
   const { aiDev } = useContent();
 
   return (
     <section id={id} className="section">
+      <ParallaxLabel text={aiDev.eyebrow} />
       <div className="container">
         <Reveal className="section-head">
           <span className="eyebrow">{aiDev.eyebrow}</span>
@@ -18,7 +22,7 @@ export default function AIDevelopment({ id }: Props) {
         </Reveal>
         <div className="ai-dev-grid">
           {aiDev.items.map((item, i) => (
-            <Reveal className="ai-dev-card" delay={i * 0.08} key={item.title}>
+            <Reveal className="ai-dev-card" delay={(i % 2) * 0.1} from={SIDES[i % 2]} key={item.title}>
               <h3>{item.title}</h3>
               <p className="ai-dev-summary">{item.summary}</p>
               <dl>

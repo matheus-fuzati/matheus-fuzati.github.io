@@ -4,6 +4,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useContent } from "../../content/useContent";
 import { usePrefersReducedMotion } from "../../hooks/usePrefersReducedMotion";
 import Reveal from "../motion/Reveal";
+import ParallaxLabel from "../motion/ParallaxLabel";
 
 interface Props {
   id: string;
@@ -37,6 +38,7 @@ export default function Experience({ id }: Props) {
 
   return (
     <section id={id} className="section">
+      <ParallaxLabel text={experience.eyebrow} />
       <div className="container">
         <Reveal className="section-head">
           <span className="eyebrow">{experience.eyebrow}</span>
