@@ -55,7 +55,9 @@ export default function Hero() {
           </SceneErrorBoundary>
         </div>
       )}
-      <img src="/profile.png" alt={hero.name} className="hero-photo" data-hero-in />
+      <div className="hero-photo" data-hero-in>
+        <img src="/profile.png" alt={hero.name} />
+      </div>
       <div className="container">
         <span className="eyebrow" data-hero-in>
           {hero.eyebrow}
