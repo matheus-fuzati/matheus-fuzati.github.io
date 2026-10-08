@@ -1,12 +1,16 @@
 # 00 — Constituição do Projeto
 
-> Status: v1 implementada (autorização do autor para seguir sem travar em cada decisão —
-> ver `04-tasks.md` para o que ainda vale revisar).
+> Status: v3 implementada — reescrita cinematográfica (Vite+React), ver `04-tasks.md`.
 
 ## Objetivo do site
 Construir **autoridade e marca pessoal** na área de dados. Não é uma landing page de
 "procurando vaga X" — é o cartão de visitas permanente para onde recrutadores e a
 comunidade são direcionados.
+
+**Desde a v3**, o site também é explicitamente o **playground pessoal do autor pra testar
+técnicas avançadas de frontend** (scroll storytelling, smooth scroll, View Transitions, WebGL)
+com Claude Code — os dois objetivos convivem: o currículo continua completo e navegável, a
+camada visual/interação é onde o autor experimenta de propósito.
 
 ## Público-alvo
 1. **Recrutadores técnicos** (leitura rápida, precisam bater trajetória + stack em segundos)

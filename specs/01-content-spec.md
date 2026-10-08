@@ -1,7 +1,8 @@
 # 01 — Spec de Conteúdo
 
-> Status: **implementado** em `src/data/content.ts` (fonte única PT/EN). Itens `[TODO]` abaixo
-> são correções pontuais a fazer na revisão, não bloqueiam o site no ar.
+> Status: **implementado** em `src/content/content.ts` (fonte única PT/EN, movida de
+> `src/data/` na reescrita v3 — ver `03-tech-spec.md`). Itens `[TODO]` abaixo são correções
+> pontuais a fazer na revisão, não bloqueiam o site no ar.
 
 ## Seções do site
 Hero · Sobre · Experiência · Stack · IA Development · Projetos · Formação · Contato — todas
