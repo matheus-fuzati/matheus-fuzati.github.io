@@ -3,6 +3,11 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { usePrefersReducedMotion } from "../../hooks/usePrefersReducedMotion";
 
+// Registro próprio — Reveal agora também roda em rotas que não montam o
+// SmoothScrollProvider (ex: ProjectPage), então não pode depender dele
+// pra registrar o plugin primeiro. gsap.registerPlugin é idempotente.
+gsap.registerPlugin(ScrollTrigger);
+
 interface Props {
   children: ReactNode;
   className?: string;

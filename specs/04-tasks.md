@@ -69,3 +69,28 @@
 - [ ] Reavaliar `react-router-dom@7` quando `vite-react-ssg` suportar (ver CVEs aceitos em
       `03-tech-spec.md`)
 - [ ] Decidir commit/push — nada foi commitado ainda nesta rodada, aguardando autor
+
+## v4 — reescrita de conteúdo completa (ditada pelo autor)
+
+> Autor passou um documento único com as 7 seções do site reescritas (Hero, Sobre, Atuação,
+> Projetos com IA, Experiência, Stack, Contato), inspirado num mock visual anterior
+> (marianalavy.com). Ver `01-content-spec.md` pro detalhe de conteúdo.
+
+- [x] Hero: eyebrow/tagline/meta reescritos (agora "Engenheiro de Dados & AI Developer")
+- [x] Sobre: 4 parágrafos novos (duas frentes na DP6, processo de IA, trajetória)
+- [x] Seção nova "Atuação" (3 cards descritivos) — `Atuacao.tsx`
+- [x] "IA Development" renomeada "Projetos com IA", expandida de 4 pra 5 projetos (+ Plugin
+      ci-polaris), cards da home simplificados (resumo + link)
+- [x] 5 páginas dedicadas de projeto (`/projetos/:slug`, `/en/projetos/:slug`) via
+      `getStaticPaths` do `vite-react-ssg` — template: capa (placeholder) → problema → solução →
+      galeria (3 placeholders) → arquitetura → decisões → destaque → resultados → stack
+- [x] Experiência: DP6 vira item com sub-itens aninhados (`highlights`) — Itaú, CI Polaris,
+      Magalu Ads como frentes simultâneas, não mais um item plano com nota
+- [x] Stack: 5 categorias (era 3), grid `auto-fit`
+- [x] Antiga seção "Projetos" (backlog vazio) removida — nav e componente
+- [x] Contato: WhatsApp removido do conjunto de canais
+- [x] Bug corrigido no processo: `ScrollTrigger` não registrado na rota de projeto (só
+      `SmoothScrollProvider` registrava) — `Reveal.tsx` agora registra o próprio plugin
+- [ ] **Pendente do autor**: capturas de tela reais pros 5 projetos (capa + galeria) — os
+      placeholders já estão no lugar certo, esperando os arquivos
+- [ ] Decidir commit/push desta rodada — aguardando autor

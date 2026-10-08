@@ -1,108 +1,77 @@
 # 01 — Spec de Conteúdo
 
-> Status: **implementado** em `src/content/content.ts` (fonte única PT/EN, movida de
-> `src/data/` na reescrita v3 — ver `03-tech-spec.md`). Itens `[TODO]` abaixo são correções
-> pontuais a fazer na revisão, não bloqueiam o site no ar.
+> Status: **v4 implementada** em `src/content/content.ts` (fonte única PT/EN). Reescrita
+> completa de conteúdo + estrutura, ditada pelo autor num documento único (ver histórico de
+> `04-tasks.md`), não mais incremental como v1-v3.
 
 ## Seções do site
-Hero · Sobre · Experiência · Stack · IA Development · Projetos · Formação · Contato — todas
-implementadas, em PT (`/`) e EN (`/en/`).
+Hero · Sobre · Atuação · Projetos com IA (+ 5 páginas dedicadas por projeto) · Experiência ·
+Stack · Formação · Contato — em PT (`/`) e EN (`/en/`). A antiga seção "Projetos" (backlog vazio
+de cases públicos) foi **removida** — "Projetos com IA" é a única seção de projetos agora.
 
 ## Idioma
-Site bilíngue PT-BR / EN. Textos em inglês foram **reescritos**, não traduzidos literalmente
-(pedido do autor). Toggle "PT · EN" no header.
+Site bilíngue PT-BR / EN. Textos em inglês são **reescritos**, não traduzidos literalmente.
 
 ## Hero
-- Nome: Matheus Fuzati · Eyebrow: "Engenheiro de Dados" / "Data Engineer"
-- Tagline: "Dados, na prática — da ingestão ao dashboard."
-- CTAs: Ver Projetos (→#projetos) · Contato (→#contato)
+- Eyebrow: "Engenheiro de Dados & AI Developer" / "Data Engineer & AI Developer"
+- Tagline (2 frases, vira o `hero-statement` grande no layout v3-mock): processo de pipelines
+  multi-cloud (GCP+AWS) com Governança/FinOps/Observabilidade/Qualidade/IaC e IA agêntica, +
+  ferramentas de dados construídas com IA (Spec-Driven, Loop Engineering)
+- Meta: "DP6 — Data Engineer Consultant" + "Ciência de Dados"
+- CTA primário aponta pra `#ia-dev` (era `#projetos`, que não existe mais)
 
 ## Sobre mim
-Reescrito a partir do texto do site anterior + trajetória atual (DP6/Itaú/Magalu Ads) e dados
-de formação. Ver texto final em `src/data/content.ts` → `about.paragraphs`.
+4 parágrafos: (1) quem é/formação, (2) as duas frentes atuais na DP6 (Itaú/Data Mesh + liderança
+do CI Polaris), (3) como essas ferramentas foram construídas com IA (processo de engenharia,
+não só a ferramenta), (4) trajetória anterior (Atento, ESEG).
+
+## Atuação (seção nova)
+3 cards descritivos (não lista de bullets, ao contrário de Stack): Engenharia de Dados, Cloud e
+Infraestrutura, AI Development. Fica entre Sobre e Projetos com IA.
+
+## Projetos com IA (renomeada de "IA Development")
+Cards resumidos na home (título + resumo + link "Ver projeto") — o detalhe foi pra **páginas
+dedicadas** (`/projetos/:slug`, `/en/projetos/:slug`, pré-renderizadas via `getStaticPaths` do
+`vite-react-ssg`). Intro ganhou um selo "Como eu trabalho com IA" (4 chips). 5 projetos agora
+(antes 4) — a autoria ("desenhei e construí", "lidero e desenvolvo") foi **confirmada
+explicitamente pelo autor** nesta rodada, resolvendo o `[TODO]` de revisão de autoria das specs
+anteriores:
+- **Polaris Atlas** — observabilidade/governança no GCP (catálogo, lineage, PII, qualidade,
+  freshness, FinOps, Cloud Storage)
+- **Billing Platform** — FinOps da conta de faturamento inteira (custo, evolução, anomalias,
+  forecast)
+- **DP6 Certifications** — catálogo/badges/campanhas/análises de certificação
+- **Polaris Heap** — guia do engenheiro de dados da DP6
+- **Plugin ci-polaris** — hook de política + skills do Claude Code, 147 testes
+
+Cada página de projeto segue o template: voltar · eyebrow/título/resumo · **placeholder de
+capa** · problema · solução · **3 placeholders de galeria** · arquitetura · decisões técnicas ·
+destaque (citação) · resultados · stack. Os placeholders (`.project-cover-placeholder`,
+`.project-gallery-item`) são caixas tracejadas aguardando os prints reais — **o autor vai mandar
+em separado**; ainda não existem imagens reais nesta rodada. Sem dado de cliente/Itaú em
+nenhum case — tudo é sobre a iniciativa interna CI Polaris da DP6.
 
 ## Experiência
-Timeline com 6 posições, mais recente primeiro. Fontes: o que o autor confirmou no chat (DP6,
-atual no Itaú, antes na Magalu Ads) + as 5 posições anteriores extraídas do site de referência
-(Atento Brasil, Faculdade ESEG ×2, Grupo Vamos, Los Carvalhos — já publicadas pelo próprio autor
-lá, reaproveitadas aqui).
-
-Transição Atento Brasil → DP6 (Magalu Ads → Itaú) confirmada pelo autor: **02/2026**. Atento
-Brasil aparece como `07/2025 – 02/2026`, DP6 como `Desde 02/2026` (badge "atual"). Removida a
-nota de rodapé de datas em confirmação — não é mais necessária.
+DP6 agora é **um item com sub-itens aninhados** (`experience.items[].highlights[]`), não mais
+um item plano com `companyNote` — reflete que o autor atua em 3 frentes simultâneas sob o mesmo
+vínculo (DP6, desde 02/2026): Itaú (Data Mesh, desde 06/2026), CI Polaris (liderança, desde
+04/2026) e Magalu Ads (discovery, 02/2026–06/2026, encerrado). Itens anteriores (Atento, ESEG ×2,
+Los Carvalhos) mantidos; **Grupo Vamos (Assistente Financeiro) removido** — não apareceu na
+lista que o autor passou nesta rodada.
 
 ## Stack técnica
-3 categorias, com a lista de ferramentas que o autor passou (não é mais a lista desatualizada
-do site antigo):
-- **Cloud & Infraestrutura** — AWS (Glue Jobs, Lambda, Step Functions, EMR, Athena, S3), GCP
-  (BigQuery, Cloud SQL, Data Transfer, Cloud Run, Workflows, Dataform), Terraform, IaC
-- **Engenharia de Dados** — ETL/ELT, CI/CD, Data Quality, Modelagem de dados
-- **Dados & Operação** — Analytics, FinOps, Governança e observabilidade
-
-Inglês C1 adicionado como fact na seção Sobre (o autor já atuou no dia a dia com times
-internacionais).
-
-## IA Development
-Nova seção (entre Stack e Projetos), com foco no **processo** de desenvolvimento assistido por
-IA do autor (specs antes do código, arquivo de contexto por repositório, ADRs, orquestração
-multi-repositório com Claude Code) — não em funcionalidades de IA dentro de produtos.
-
-4 cases reais de iniciativas internas da DP6 (repositório `ci-polaris` do autor), descritos por
-problema/solução/stack/resultado, **sem link de repositório e sem dado de cliente/captura de
-tela** (mesmo princípio de confidencialidade da seção Projetos, ver `00-constitution.md`):
-- **Atlas** (`polaris-atlas`) — plataforma de observabilidade de dados no GCP, referência de
-  autenticação (OAuth/IAP) da iniciativa
-- **Billing Platform** (`dp6-billing-platform`) — camada de custo/FinOps para toda a conta de
-  faturamento GCP
-- **Polaris (Heap)** (`polaris-heap`) — acervo de conhecimento de Engenharia de Dados da DP6
-- **Certifications** (`dp6-certifications`) — plataforma de certificações dos colaboradores DP6
-
-**`[TODO]` de revisão do autor**: o texto de cada case assume autoria/protagonismo ("arquitetei",
-"desenvolvi") inferida da presença dos repositórios no ambiente do autor — não de confirmação
-explícita do papel exato em cada um. Revisar antes de publicar.
-
-## Schema de "Projeto" (para quando o backlog for preenchido)
-```yaml
-titulo: string
-resumo: string
-problema: string
-solucao: string
-stack: [string]
-papel: string
-resultados: string
-link_repo: string?
-link_demo: string?
-imagens: [string]?
-confidencial: bool
-```
-
-## Projetos — em backlog
-Confirmado pelo autor: **nenhum case pronto ainda**. A seção existe no site com um estado vazio
-("Cases em construção") + link para o GitHub, em vez de ficar oculta — mantém a promessa de
-"Ver Projetos" do Hero coerente. Quando o primeiro case estiver pronto, populamos com o schema
-acima.
+5 categorias agora (antes 3): Engenharia de Dados, Cloud e Infraestrutura, AI Development,
+Aplicações, Automação — ver `src/content/content.ts` → `skills.categories` pro detalhe completo
+de cada uma (grid virou `auto-fit` pra acomodar o número variável de categorias).
 
 ## Currículo / CV
-**Gerado a partir do conteúdo do site** (não havia PDF pronto). Páginas dedicadas
-`/cv/` (PT) e `/en/cv/` (EN), com layout de currículo compacto + botão "Imprimir / Salvar PDF"
-(`window.print()`, com CSS de impressão próprio). Puxa os mesmos dados de Experiência,
-Stack e Formação — sem duplicar conteúdo.
-
-**`[TODO]` de produto, não de spec**: se o autor gerar um PDF definitivo por fora (ex: export do
-LinkedIn/Canva), dá pra trocar o link do botão de CV para apontar direto pra um arquivo estático
-em `public/`.
+Sem mudança de mecanismo (gerado do conteúdo do site, `/cv/` e `/en/cv/`). Passou a renderizar
+os sub-itens de experiência (`highlights`) também, de forma compacta.
 
 ## Contato
-- E-mail: `fuzatimatheus@gmail.com`
-- LinkedIn: https://www.linkedin.com/in/matheus-fuzati-de-carvalho/
-- GitHub: https://github.com/matheus-fuzati
-- WhatsApp: `(11) 94040-3278` → CTA "Iniciar conversa" / "Start a conversation" (`wa.me`)
+- E-mail, LinkedIn, GitHub — **WhatsApp removido** do conjunto de canais (não apareceu na lista
+  que o autor passou nesta rodada; fácil de devolver se for só omissão).
 
 ## Formação Acadêmica e Cursos
-- **Graduação** — Ciência de Dados, Faculdade Estácio, 2023–2025
-- **Pós-graduação** — Arquitetura e Projetos de Cloud Computing, Faculdade GRAN, 2026–2027 (em
-  andamento)
-- **Cursos**: 3 na Udemy (Databricks/Spark/PySpark; GCP Associate Cloud Engineer; Python +
-  SQL/NoSQL), 2 na FIAP (BI; Big Data e Analytics), 2 na Data Science Academy (Power BI; Python
-  para Data Science) — todos herdados do site anterior, reaproveitados porque o autor não sinalizou
-  mudança.
+Sem mudança — autor confirmou manter como está, mesmo não aparecendo na lista de 7 seções que
+ele passou.

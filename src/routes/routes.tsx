@@ -1,4 +1,7 @@
 import type { RouteRecord } from "vite-react-ssg";
+import { content } from "../content/content";
+
+const slugs = content.pt.aiDev.items.map((p) => p.slug);
 
 // `lazy` (convenção nativa do React Router) garante chunk separado por rota —
 // crítico pra /cv e /en/cv nunca carregarem o bundle de Lenis/GSAP/R3F que só
@@ -8,4 +11,14 @@ export const routes: RouteRecord[] = [
   { path: "/en", lazy: () => import("./HomePage") },
   { path: "/cv", lazy: () => import("./CvPage") },
   { path: "/en/cv", lazy: () => import("./CvPage") },
+  {
+    path: "/projetos/:slug",
+    lazy: () => import("./ProjectPage"),
+    getStaticPaths: () => slugs.map((s) => `/projetos/${s}`),
+  },
+  {
+    path: "/en/projetos/:slug",
+    lazy: () => import("./ProjectPage"),
+    getStaticPaths: () => slugs.map((s) => `/en/projetos/${s}`),
+  },
 ];

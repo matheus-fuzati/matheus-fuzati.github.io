@@ -82,6 +82,18 @@ export function Component() {
                   {item.companyNote ? ` — ${item.companyNote}` : ""}
                 </p>
                 <p className="desc">{item.description}</p>
+                {item.highlights && (
+                  <div className="tl-highlights">
+                    {item.highlights.map((h) => (
+                      <div className="tl-highlight" key={h.label}>
+                        <span className="tl-highlight-head">
+                          <strong>{h.label}</strong> <span className="period">{h.period}</span>
+                        </span>
+                        <p>{h.description}</p>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
             ))}
           </div>
