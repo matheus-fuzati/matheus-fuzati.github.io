@@ -59,8 +59,8 @@ export function Component() {
             <p className="project-summary">{project.summary}</p>
           </Reveal>
 
-          <Reveal className="project-cover-placeholder">
-            <span>{aiDev.labels.gallery} — capa</span>
+          <Reveal className="project-cover">
+            <img src={project.cover} alt={project.title} loading="lazy" />
           </Reveal>
 
           <div className="project-body">
@@ -112,9 +112,9 @@ export function Component() {
           <Reveal className="project-section project-gallery-section">
             <span className="project-label">{aiDev.labels.gallery}</span>
             <div className="project-gallery">
-              {[1, 2, 3].map((n) => (
-                <div className="project-gallery-item" key={n}>
-                  <span>{aiDev.labels.gallery} {n}</span>
+              {project.gallery.map((src, i) => (
+                <div className="project-gallery-item" key={src}>
+                  <img src={src} alt={`${project.title} — ${aiDev.labels.gallery} ${i + 1}`} loading="lazy" />
                 </div>
               ))}
             </div>

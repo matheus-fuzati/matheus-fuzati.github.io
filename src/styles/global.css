@@ -1035,17 +1035,17 @@ p {
   line-height: 1.6;
 }
 
-.project-cover-placeholder {
+.project-cover {
   margin-top: 40px;
-  aspect-ratio: 16 / 7;
-  border: 1px dashed var(--line-strong);
+  border: 1px solid var(--line);
   border-radius: var(--radius);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--muted);
-  font-family: var(--font-mono);
-  font-size: 13px;
+  overflow: hidden;
+}
+
+.project-cover img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .project-body {
@@ -1165,15 +1165,18 @@ p {
 }
 
 .project-gallery-item {
-  aspect-ratio: 4 / 3;
-  border: 1px dashed var(--line-strong);
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--line);
   border-radius: var(--radius);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--muted);
-  font-family: var(--font-mono);
-  font-size: 12px;
+  overflow: hidden;
+}
+
+.project-gallery-item img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
 }
 
 .ai-dev-stack {

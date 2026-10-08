@@ -40,6 +40,8 @@ export interface AIDevCase {
   results: string;
   highlight: string;
   stack: string[];
+  cover: string;
+  gallery: string[];
 }
 
 interface EducationAcademic {
@@ -316,6 +318,15 @@ export const content: Record<Locale, SiteContent> = {
           results: "Tornou-se o exemplo mais maduro de desenvolvimento assistido por IA da iniciativa e a referência de autenticação para os demais projetos.",
           highlight: "Dev e prod no mesmo projeto GCP, isolados por nomes de recurso — foi restrição do cliente.",
           stack: ["GCP", "Terraform", "Monorepo (backend + frontend)", "OAuth/IAP", "Spec-Driven Development"],
+          cover: "/projects/polaris-atlas/cover.png",
+          gallery: [
+            "/projects/polaris-atlas/gallery-1.png",
+            "/projects/polaris-atlas/gallery-2.png",
+            "/projects/polaris-atlas/gallery-3.png",
+            "/projects/polaris-atlas/gallery-4.png",
+            "/projects/polaris-atlas/gallery-5.png",
+            "/projects/polaris-atlas/gallery-6.png",
+          ],
         },
         {
           slug: "billing-platform",
@@ -339,6 +350,12 @@ export const content: Record<Locale, SiteContent> = {
           results: "Em produção, com visibilidade de custo em nível de projeto e ambiente pra toda a conta de faturamento, incluindo evolução, anomalias e forecast.",
           highlight: "Nasceu como fork estrutural do Cost Model. A sincronização incremental por partição rodou em modo sombra antes do cutover.",
           stack: ["GCP BigQuery", "Dataform", "API de custo", "Painel FinOps"],
+          cover: "/projects/billing-platform/cover.png",
+          gallery: [
+            "/projects/billing-platform/gallery-1.png",
+            "/projects/billing-platform/gallery-2.png",
+            "/projects/billing-platform/gallery-3.png",
+          ],
         },
         {
           slug: "dp6-certifications",
@@ -362,6 +379,12 @@ export const content: Record<Locale, SiteContent> = {
           results: "Plataforma ativa, em uso interno na DP6 para catálogo, badges, aprovação e campanhas de certificação.",
           highlight: "É o projeto de referência do Spec-Driven, com 10 specs. O armazenamento é híbrido, Firestore mais BigQuery.",
           stack: ["Next.js", "Firestore", "BigQuery", "GitHub Spec-Kit"],
+          cover: "/projects/dp6-certifications/cover.png",
+          gallery: [
+            "/projects/dp6-certifications/gallery-1.png",
+            "/projects/dp6-certifications/gallery-2.png",
+            "/projects/dp6-certifications/gallery-3.png",
+          ],
         },
         {
           slug: "polaris-heap",
@@ -382,6 +405,12 @@ export const content: Record<Locale, SiteContent> = {
           results: "Base de conhecimento ativa da iniciativa de dados da DP6.",
           highlight: "Um script verifica links e regras de conteúdo automaticamente.",
           stack: ["Docusaurus", "Site estático", "Design tokens"],
+          cover: "/projects/polaris-heap/cover.png",
+          gallery: [
+            "/projects/polaris-heap/gallery-1.png",
+            "/projects/polaris-heap/gallery-2.png",
+            "/projects/polaris-heap/gallery-3.png",
+          ],
         },
       ],
     },
@@ -598,6 +627,15 @@ export const content: Record<Locale, SiteContent> = {
           results: "Became the most mature example of AI-assisted development in the initiative, and the authentication reference for the other projects.",
           highlight: "Dev and prod share the same GCP project, isolated by resource names — a client constraint.",
           stack: ["GCP", "Terraform", "Monorepo (backend + frontend)", "OAuth/IAP", "Spec-Driven Development"],
+          cover: "/projects/polaris-atlas/cover.png",
+          gallery: [
+            "/projects/polaris-atlas/gallery-1.png",
+            "/projects/polaris-atlas/gallery-2.png",
+            "/projects/polaris-atlas/gallery-3.png",
+            "/projects/polaris-atlas/gallery-4.png",
+            "/projects/polaris-atlas/gallery-5.png",
+            "/projects/polaris-atlas/gallery-6.png",
+          ],
         },
         {
           slug: "billing-platform",
@@ -619,6 +657,12 @@ export const content: Record<Locale, SiteContent> = {
           results: "In production, with project- and environment-level cost visibility across the entire billing account, including trends, anomalies, and forecasting.",
           highlight: "Started as a structural fork of the Cost Model. Incremental per-partition sync ran in shadow mode before cutover.",
           stack: ["GCP BigQuery", "Dataform", "Cost API", "FinOps dashboard"],
+          cover: "/projects/billing-platform/cover.png",
+          gallery: [
+            "/projects/billing-platform/gallery-1.png",
+            "/projects/billing-platform/gallery-2.png",
+            "/projects/billing-platform/gallery-3.png",
+          ],
         },
         {
           slug: "dp6-certifications",
@@ -638,6 +682,12 @@ export const content: Record<Locale, SiteContent> = {
           results: "Active platform, used internally at DP6 for certification catalog, badges, approval, and campaigns.",
           highlight: "The Spec-Driven reference project, with 10 specs. Storage is hybrid — Firestore plus BigQuery.",
           stack: ["Next.js", "Firestore", "BigQuery", "GitHub Spec-Kit"],
+          cover: "/projects/dp6-certifications/cover.png",
+          gallery: [
+            "/projects/dp6-certifications/gallery-1.png",
+            "/projects/dp6-certifications/gallery-2.png",
+            "/projects/dp6-certifications/gallery-3.png",
+          ],
         },
         {
           slug: "polaris-heap",
@@ -657,6 +707,12 @@ export const content: Record<Locale, SiteContent> = {
           results: "The active knowledge base for DP6's data initiative.",
           highlight: "A script automatically checks links and content rules.",
           stack: ["Docusaurus", "Static site", "Design tokens"],
+          cover: "/projects/polaris-heap/cover.png",
+          gallery: [
+            "/projects/polaris-heap/gallery-1.png",
+            "/projects/polaris-heap/gallery-2.png",
+            "/projects/polaris-heap/gallery-3.png",
+          ],
         },
       ],
     },
