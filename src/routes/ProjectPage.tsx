@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Head } from "vite-react-ssg";
 import { useContent, useLocale } from "../content/useContent";
@@ -19,6 +20,12 @@ export function Component() {
   const { aiDev } = d;
   const project = aiDev.items.find((p) => p.slug === slug);
   const backHref = locale === "pt" ? "/#ia-dev" : "/en/#ia-dev";
+
+  // navegação via ViewTransitionLink é SPA (sem reload) — o browser mantém
+  // o scroll da página anterior, então a página de projeto abria no meio.
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [slug]);
 
   if (!project) {
     return (
