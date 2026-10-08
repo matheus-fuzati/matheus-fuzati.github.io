@@ -767,18 +767,12 @@ p {
   }
 }
 
-/* ---------- stack & formação (v6, StackFormacao.tsx) ---------- */
-.stack-formacao-grid {
-  display: grid;
-  grid-template-columns: 1.1fr 1fr;
-  gap: clamp(32px, 5vw, 64px);
-  align-items: start;
-}
-
-@media (max-width: 860px) {
-  .stack-formacao-grid {
-    grid-template-columns: 1fr;
-  }
+/* ---------- stack & formação (v7.1 — blocos empilhados, tópicos em linha) ----------
+   Ferramentas e Habilidades em cima (1 linha, grid de 5 colunas — uma por
+   categoria); Formação Acadêmica e Cursos embaixo (2 linhas — uma pra
+   acadêmico, outra pra cursos), cada uma distribuída horizontalmente. */
+.stack-formacao-block + .stack-formacao-block {
+  margin-top: 48px;
 }
 
 .stack-formacao-subtitle {
@@ -792,29 +786,8 @@ p {
 
 .stack-cat-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 12px;
-}
-
-/* Formação Acadêmica e Cursos lado a lado (em vez de empilhados) — isso é
-   o que de fato equilibra a altura com a coluna de Stack, sem precisar
-   esticar espaçamento artificialmente. */
-.edu-blocks {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-}
-
-@media (max-width: 560px) {
-  .edu-blocks {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 500px) {
-  .stack-cat-grid {
-    grid-template-columns: 1fr;
-  }
 }
 
 .stack-cat-card {
@@ -835,6 +808,96 @@ p {
   font-size: 12.5px;
   line-height: 1.55;
   color: var(--muted);
+}
+
+.edu-row-group + .edu-row-group {
+  margin-top: 28px;
+}
+
+.edu-row-title {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+
+.edu-row {
+  display: grid;
+  gap: 12px;
+}
+
+.edu-row.academic {
+  grid-template-columns: repeat(2, 1fr);
+  max-width: 560px;
+}
+
+.edu-row.courses {
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.edu-card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  background: var(--surface);
+}
+
+.edu-card .period {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.edu-card .title {
+  margin: 4px 0 0;
+  font-size: 13.5px;
+  color: var(--text);
+  line-height: 1.4;
+}
+
+.edu-card .inst {
+  margin: 2px 0 0;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+@media (max-width: 1200px) {
+  .edu-row.courses {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 860px) {
+  .stack-cat-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .edu-row.academic {
+    max-width: none;
+  }
+  .edu-row.courses {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .stack-cat-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .edu-row.academic {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 420px) {
+  .stack-cat-grid,
+  .edu-row.courses {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* ---------- carrossel de stack (v6, StackCarousel.tsx) ---------- */
@@ -1132,15 +1195,6 @@ p {
 }
 
 /* ---------- education ---------- */
-.edu-block h3 {
-  font-family: var(--font-mono);
-  font-size: 13px;
-  text-transform: uppercase;
-  letter-spacing: 0.07em;
-  color: var(--accent);
-  margin-bottom: 20px;
-}
-
 .edu-item {
   border-left: 3px solid var(--accent);
   padding: 4px 0 4px 16px;
