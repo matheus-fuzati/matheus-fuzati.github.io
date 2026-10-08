@@ -1,6 +1,7 @@
 import { useContent } from "../../content/useContent";
 import Reveal from "../motion/Reveal";
 import ViewTransitionLink from "../motion/ViewTransitionLink";
+import SectionSideLabel from "../motion/SectionSideLabel";
 
 interface Props {
   id: string;
@@ -11,6 +12,7 @@ export default function Contact({ id }: Props) {
 
   return (
     <section id={id} className="section">
+      <SectionSideLabel text={contact.eyebrow} />
       <div className="container">
         <Reveal className="section-head">
           <span className="eyebrow">{contact.eyebrow}</span>

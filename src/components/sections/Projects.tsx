@@ -1,5 +1,6 @@
 import { useContent } from "../../content/useContent";
 import Reveal from "../motion/Reveal";
+import SectionSideLabel from "../motion/SectionSideLabel";
 
 interface Props {
   id: string;
@@ -10,6 +11,7 @@ export default function Projects({ id }: Props) {
 
   return (
     <section id={id} className="section">
+      <SectionSideLabel text={projects.eyebrow} />
       <div className="container">
         <Reveal className="section-head">
           <span className="eyebrow">{projects.eyebrow}</span>

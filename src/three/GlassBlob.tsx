@@ -65,9 +65,9 @@ export default function GlassBlob({ scrollRef }: Props) {
   } as const;
 
   return (
-    <group ref={group} position={[1.7, 0, 0]}>
+    <group ref={group} position={[1.95, -0.9, 0]}>
       <mesh ref={core}>
-        <icosahedronGeometry args={[1.5, 6]} />
+        <icosahedronGeometry args={[1.25, 6]} />
         <meshPhysicalMaterial color="#dff2ec" {...glass} />
       </mesh>
       <mesh ref={shardA}>

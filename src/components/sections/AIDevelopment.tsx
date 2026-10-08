@@ -1,6 +1,7 @@
 import { useContent } from "../../content/useContent";
 import Reveal from "../motion/Reveal";
 import ParallaxLabel from "../motion/ParallaxLabel";
+import SectionSideLabel from "../motion/SectionSideLabel";
 
 interface Props {
   id: string;
@@ -14,6 +15,7 @@ export default function AIDevelopment({ id }: Props) {
   return (
     <section id={id} className="section">
       <ParallaxLabel text={aiDev.eyebrow} />
+      <SectionSideLabel text={aiDev.eyebrow} />
       <div className="container">
         <Reveal className="section-head">
           <span className="eyebrow">{aiDev.eyebrow}</span>
