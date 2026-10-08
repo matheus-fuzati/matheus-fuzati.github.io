@@ -101,12 +101,14 @@ export default function FloatingShards({ scrollRef }: Props) {
   const glass = {
     roughness: 0.06,
     metalness: 0.05,
-    transmission: 1,
+    transmission: 0.85,
     thickness: 0.6,
     ior: 1.35,
-    clearcoat: 1,
+    clearcoat: 0.6,
     clearcoatRoughness: 0.05,
-    specularIntensity: 1,
+    specularIntensity: 0.5,
+    transparent: true,
+    opacity: 0.55,
   } as const;
 
   return (

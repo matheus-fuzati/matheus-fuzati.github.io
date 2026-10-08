@@ -51,13 +51,16 @@ export default function Hero() {
   return (
     <section className="hero" ref={sectionRef}>
       {showScene && (
-        <div className="hero-scene" aria-hidden="true">
-          <SceneErrorBoundary>
-            <Suspense fallback={null}>
-              <HeroScene scrollRef={scrollProgress} />
-            </Suspense>
-          </SceneErrorBoundary>
-        </div>
+        <>
+          <div className="hero-scene" aria-hidden="true">
+            <SceneErrorBoundary>
+              <Suspense fallback={null}>
+                <HeroScene scrollRef={scrollProgress} />
+              </Suspense>
+            </SceneErrorBoundary>
+          </div>
+          <div className="hero-veil" aria-hidden="true" />
+        </>
       )}
       <div className="container hero-center">
         <span className="hero-badge" data-hero-in>
