@@ -37,18 +37,21 @@ export default function GlassBlob({ scrollRef }: Props) {
       core.current.rotation.y += delta * 0.12;
       core.current.rotation.z += delta * 0.03;
     }
+    // Z fixo e negativo (sempre mais longe da câmera que o núcleo) —
+    // os fragmentos nunca cruzam na frente da esfera/foto, só orbitam
+    // em X/Y por trás dela (ver bug: fragmento "furando" a foto).
     if (shardA.current) {
-      shardA.current.position.set(Math.cos(t * 0.35) * 2.1, Math.sin(t * 0.5) * 0.9 + 0.6, Math.sin(t * 0.35) * 2.1);
+      shardA.current.position.set(Math.cos(t * 0.35) * 2.1, Math.sin(t * 0.5) * 0.9 + 0.6, -1.8);
       shardA.current.rotation.x += delta * 0.4;
       shardA.current.rotation.y += delta * 0.25;
     }
     if (shardB.current) {
-      shardB.current.position.set(Math.cos(t * 0.22 + 2) * 2.6, Math.sin(t * 0.3 + 1) * 1.1 - 0.5, Math.sin(t * 0.22 + 2) * 2.6);
+      shardB.current.position.set(Math.cos(t * 0.22 + 2) * 2.6, Math.sin(t * 0.3 + 1) * 1.1 - 0.5, -2.3);
       shardB.current.rotation.x += delta * 0.18;
       shardB.current.rotation.z += delta * 0.3;
     }
     if (shardC.current) {
-      shardC.current.position.set(Math.cos(t * 0.28 + 4) * 1.5, Math.sin(t * 0.4 + 3) * 0.7 + 1.3, Math.sin(t * 0.28 + 4) * 1.5);
+      shardC.current.position.set(Math.cos(t * 0.28 + 4) * 1.5, Math.sin(t * 0.4 + 3) * 0.7 + 1.3, -1.5);
       shardC.current.rotation.y += delta * 0.35;
     }
   });
