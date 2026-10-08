@@ -41,7 +41,7 @@ export function Component() {
       </Head>
       <Header />
       <main className="project-page">
-        <div className="container">
+        <div className="container project-container">
           <ViewTransitionLink className="project-back" to={locale === "pt" ? "/" : "/en"}>
             ← {aiDev.labels.back}
           </ViewTransitionLink>
@@ -57,53 +57,61 @@ export function Component() {
           </Reveal>
 
           <div className="project-body">
-            <Reveal className="project-section">
-              <span className="project-label">{aiDev.labels.problem}</span>
-              <p>{project.problem}</p>
-            </Reveal>
+            <div className="project-main">
+              <Reveal className="project-section">
+                <span className="project-label">{aiDev.labels.description}</span>
+                <p>{project.problem}</p>
+                <p>{project.solution}</p>
+              </Reveal>
 
-            <Reveal className="project-section">
-              <span className="project-label">{aiDev.labels.solution}</span>
-              <p>{project.solution}</p>
-            </Reveal>
+              <Reveal className="project-section">
+                <span className="project-label">{aiDev.labels.built}</span>
+                <p>{project.architecture}</p>
+                <p>{project.decisions}</p>
+              </Reveal>
 
-            <Reveal className="project-gallery">
+              <Reveal className="project-section">
+                <span className="project-label">{aiDev.labels.features}</span>
+                <ul className="project-features">
+                  {project.features.map((f) => (
+                    <li key={f}>{f}</li>
+                  ))}
+                </ul>
+              </Reveal>
+            </div>
+
+            <div className="project-aside">
+              <Reveal className="project-aside-card">
+                <span className="project-label">{aiDev.labels.stack}</span>
+                <ul className="ai-dev-stack">
+                  {project.stack.map((s) => (
+                    <li key={s}>{s}</li>
+                  ))}
+                </ul>
+              </Reveal>
+
+              <Reveal className="project-highlight" delay={0.05}>
+                <span className="project-label">{aiDev.labels.highlight}</span>
+                <p>{project.highlight}</p>
+              </Reveal>
+
+              <Reveal className="project-aside-card" delay={0.1}>
+                <span className="project-label">{aiDev.labels.results}</span>
+                <p>{project.results}</p>
+              </Reveal>
+            </div>
+          </div>
+
+          <Reveal className="project-section project-gallery-section">
+            <span className="project-label">{aiDev.labels.gallery}</span>
+            <div className="project-gallery">
               {[1, 2, 3].map((n) => (
                 <div className="project-gallery-item" key={n}>
                   <span>{aiDev.labels.gallery} {n}</span>
                 </div>
               ))}
-            </Reveal>
-
-            <Reveal className="project-section">
-              <span className="project-label">{aiDev.labels.architecture}</span>
-              <p>{project.architecture}</p>
-            </Reveal>
-
-            <Reveal className="project-section">
-              <span className="project-label">{aiDev.labels.decisions}</span>
-              <p>{project.decisions}</p>
-            </Reveal>
-
-            <Reveal className="project-highlight">
-              <span className="project-label">{aiDev.labels.highlight}</span>
-              <p>{project.highlight}</p>
-            </Reveal>
-
-            <Reveal className="project-section">
-              <span className="project-label">{aiDev.labels.results}</span>
-              <p>{project.results}</p>
-            </Reveal>
-
-            <Reveal className="project-section">
-              <span className="project-label">{aiDev.labels.stack}</span>
-              <ul className="ai-dev-stack">
-                {project.stack.map((s) => (
-                  <li key={s}>{s}</li>
-                ))}
-              </ul>
-            </Reveal>
-          </div>
+            </div>
+          </Reveal>
         </div>
       </main>
       <Footer />

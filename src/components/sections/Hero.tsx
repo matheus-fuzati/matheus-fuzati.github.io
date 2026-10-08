@@ -1,4 +1,4 @@
-import { Suspense, lazy, useEffect, useRef } from "react";
+import { Fragment, Suspense, lazy, useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useContent } from "../../content/useContent";
@@ -9,6 +9,11 @@ import HeroNameEffect from "../motion/HeroNameEffect";
 
 const HeroScene = lazy(() => import("../../three/HeroScene"));
 
+/**
+ * Hero minimalista (v6): só eyebrow, nome e a linha Cargo/Formação —
+ * sem tagline nem CTA, pedido do autor pra reduzir o hero ao essencial.
+ * Mantém a cena 3D (FloatingShards + ParticleField) atrás do conteúdo.
+ */
 export default function Hero() {
   const { hero } = useContent();
   const prefersReduced = usePrefersReducedMotion();
@@ -18,7 +23,6 @@ export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
   const scrollProgress = useRef(0);
 
-  // coreografia de entrada do hero inteiro (não só o nome) + parallax de scroll
   useEffect(() => {
     const section = sectionRef.current;
     if (!section || prefersReduced) return;
@@ -44,11 +48,6 @@ export default function Hero() {
     };
   }, [prefersReduced]);
 
-  // destaca o trecho depois do travessão (ex: "— da ingestão ao dashboard")
-  const taglineParts = hero.tagline.split(/—/);
-  const taglineLead = taglineParts[0]?.trim();
-  const taglineHighlight = taglineParts[1]?.trim();
-
   return (
     <section className="hero" ref={sectionRef}>
       {showScene && (
@@ -60,43 +59,26 @@ export default function Hero() {
           </SceneErrorBoundary>
         </div>
       )}
-      <div className="container hero-grid">
-        <div className="hero-left">
-          <span className="hero-badge" data-hero-in>
-            {hero.eyebrow}
-          </span>
-          <p className="hero-greeting" data-hero-in>
-            {hero.greeting}
-          </p>
-          <h1 data-hero-in>
-            <HeroNameEffect name={hero.name} />
-          </h1>
-          <div className="hero-caption" data-hero-in>
-            {hero.meta.map((m) => (
-              <span key={m.k}>
-                <strong>{m.k}:</strong> {m.v}
-              </span>
-            ))}
-          </div>
-        </div>
-        <div className="hero-right">
-          <p className="hero-statement" data-hero-in>
-            {taglineLead}
-            {taglineHighlight && (
-              <>
-                {" — "}
-                <span className="hero-highlight">{taglineHighlight}</span>
-              </>
-            )}
-          </p>
-          <div className="actions" data-hero-in>
-            <a className="btn btn-primary" href={hero.ctaPrimary.href}>
-              {hero.ctaPrimary.label}
-            </a>
-            <a className="btn btn-ghost" href={hero.ctaSecondary.href}>
-              {hero.ctaSecondary.label}
-            </a>
-          </div>
+      <div className="container hero-center">
+        <span className="hero-badge" data-hero-in>
+          {hero.eyebrow}
+        </span>
+        <p className="hero-greeting" data-hero-in>
+          {hero.greeting}
+        </p>
+        <h1 data-hero-in>
+          <HeroNameEffect name={hero.name} />
+        </h1>
+        <div className="hero-meta-row" data-hero-in>
+          {hero.meta.map((m, i) => (
+            <Fragment key={m.k}>
+              {i > 0 && <span className="hero-meta-divider" aria-hidden="true" />}
+              <div className="hero-meta-item">
+                <span className="hero-meta-k">{m.k}</span>
+                <span className="hero-meta-v">{m.v}</span>
+              </div>
+            </Fragment>
+          ))}
         </div>
       </div>
     </section>

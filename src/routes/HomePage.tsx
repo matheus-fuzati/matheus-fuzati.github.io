@@ -3,35 +3,27 @@ import SmoothScrollProvider from "../app/providers/SmoothScrollProvider";
 import Header from "../components/layout/Header";
 import Footer from "../components/layout/Footer";
 import Hero from "../components/sections/Hero";
-import About from "../components/sections/About";
-import Atuacao from "../components/sections/Atuacao";
+import StackCarousel from "../components/sections/StackCarousel";
 import AIDevelopment from "../components/sections/AIDevelopment";
 import Experience from "../components/sections/Experience";
-import Skills from "../components/sections/Skills";
-import Education from "../components/sections/Education";
+import StackFormacao from "../components/sections/StackFormacao";
 import Contact from "../components/sections/Contact";
 import { useContent, useLocale } from "../content/useContent";
 import type { Locale } from "../i18n/paths";
 
-type SectionKey = "about" | "atuacao" | "experience" | "stack" | "iaDev" | "education" | "contact";
+type SectionKey = "experience" | "stack" | "iaDev" | "contact";
 
 const SECTION_IDS: Record<Locale, Record<SectionKey, string>> = {
   pt: {
-    about: "sobre",
-    atuacao: "atuacao",
     experience: "experiencia",
     stack: "stack",
     iaDev: "ia-dev",
-    education: "formacao",
     contact: "contato",
   },
   en: {
-    about: "about",
-    atuacao: "atuacao",
     experience: "experience",
     stack: "stack",
     iaDev: "ia-dev",
-    education: "education",
     contact: "contact",
   },
 };
@@ -68,12 +60,10 @@ export function Component() {
         <Header />
         <main>
           <Hero />
-          <About id={ids.about} />
-          <Atuacao id={ids.atuacao} />
-          <AIDevelopment id={ids.iaDev} />
+          <StackCarousel />
           <Experience id={ids.experience} />
-          <Skills id={ids.stack} />
-          <Education id={ids.education} />
+          <AIDevelopment id={ids.iaDev} />
+          <StackFormacao id={ids.stack} />
           <Contact id={ids.contact} />
         </main>
         <Footer />

@@ -118,5 +118,48 @@
       repo) — mesma estrutura corrigida do hero em 5 paletas (Daylight atual, Terminal Ink,
       Glacier, Graphite Signal, Clay Studio) pro autor escolher antes de aplicar no site de
       verdade
-- [ ] **Aguardando o autor**: qual paleta do mock escolher (ou pedido de ajuste)
+- [x] **Aguardando o autor**: qual paleta do mock escolher (ou pedido de ajuste) — resolvido na v6
 - [ ] **Pendente do autor**: capturas de tela reais pros 4 projetos (capa + galeria)
+
+## v6 — redesign completo: tema claro/escuro, hero minimalista, nova estrutura (ditado pelo autor)
+
+> A partir dos mocks de paleta (v5) e de várias rodadas de Artifact comparando estrutura de home
+> (hero, carrossel de stack, linha do tempo, Atuação→Stack/Formação), o autor fechou a direção:
+> **Glacier** (claro) e **Cobalt Night** (escuro) como as duas paletas finais, tipografia
+> Poppins/Inter/Roboto, hero reduzido ao essencial, e uma reestruturação de seções. Aprovado e
+> publicado nesta rodada, com os prints dos projetos ainda pendentes.
+
+- [x] **Tema claro/escuro de verdade**: script inline no `index.html` aplica `data-theme` antes do
+      primeiro paint (sem flash); toggle (`ThemeToggle.tsx` + `useTheme.ts`) no header, persistido
+      em `localStorage`. Tokens em `global.css`: `:root` (claro, Glacier) + `[data-theme="dark"]` +
+      fallback `@media (prefers-color-scheme: dark)` (Cobalt Night)
+- [x] Tipografia trocada: Fraunces/IBM Plex Sans/IBM Plex Mono → Poppins (`--font-display`),
+      Inter (`--font-body`), Roboto (`--font-mono` — nome mantido por histórico, não é mais mono)
+- [x] Hero reduzido ao essencial: só eyebrow, nome e uma linha horizontal Cargo/Formação — tagline
+      e CTAs removidos de vez (`hero.tagline`/`ctaPrimary`/`ctaSecondary` saíram do `content.ts`).
+      Cena 3D (`FloatingShards`+`ParticleField`) mantida atrás do conteúdo
+- [x] `StackCarousel.tsx` novo: carrossel infinito (CSS puro, sem lib) de ícone+nome da stack,
+      sem chapa/fundo — só entre o hero e a Experiência. Para sob `prefers-reduced-motion`
+- [x] `Experience.tsx` reescrito: linha do tempo **horizontal** (era vertical), cronológica da
+      esquerda (mais antigo) pra direita (atual, destacado/pulsando) — texto sempre abaixo da
+      linha, nunca em cima. Cada parada expande/colapsa o detalhe daquela experiência ao clicar
+      (estado local em React, sem nova lib)
+- [x] Seção "Atuação" removida (componente e dado); "Stack & Formação" (`StackFormacao.tsx`) nova,
+      reaproveitando `content.skills` + `content.education` sem mudar o schema
+- [x] Ordem final das seções: Home → Experiência → Projetos com IA → Stack & Formação → Contato
+      (nav, `SECTION_IDS` e `nav.links` atualizados; "Sobre" também saiu da Home — `about` continua
+      em `content.ts` só porque o CvPage ainda usa `about.paragraphs[0]`)
+- [x] Página de projeto reestruturada: "Problema"+"Solução" viraram "Descrição", "Arquitetura"+
+      "Decisões técnicas" viraram "Como foi construído", nova seção "Funcionalidades" (campo
+      `features: string[]` novo em `AIDevCase`, preenchido pros 4 projetos em PT+EN a partir do
+      texto já existente, sem inventar fato novo). Layout em 2 colunas (conteúdo + stack/destaque/
+      resultados) com a galeria "Prints das telas" embaixo, full-width
+- [x] Componentes removidos (substituídos): `About.tsx`, `Atuacao.tsx`, `Skills.tsx`,
+      `Education.tsx`. CSS correspondente (`.about-grid`, `.fact-list`, `.skills-grid`,
+      `.skill-card`, `.atuacao-grid`, `.atuacao-card`) removido também
+- [x] `public/profile.png` e toda a lógica de foto no Hero já tinham saído na v5 — nada de novo
+      aqui, só confirmando que não voltou
+- [x] Build limpo (12 páginas), `tsc --noEmit` limpo, verificado via Playwright em todas as rotas
+      (PT/EN, 4 páginas de projeto, CV) nos dois temas — zero erro de console/página
+- [ ] **Pendente do autor**: capturas de tela reais pros 4 projetos (capa + galeria) — os
+      placeholders "Prints das telas" já estão no lugar certo

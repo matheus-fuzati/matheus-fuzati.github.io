@@ -7,11 +7,6 @@ interface LabeledValue {
   v: string;
 }
 
-interface CtaLink {
-  label: string;
-  href: string;
-}
-
 interface ExperienceHighlight {
   label: string;
   period: string;
@@ -33,11 +28,6 @@ interface SkillCategory {
   items: string[];
 }
 
-interface AtuacaoItem {
-  title: string;
-  description: string;
-}
-
 export interface AIDevCase {
   slug: string;
   title: string;
@@ -46,6 +36,7 @@ export interface AIDevCase {
   solution: string;
   architecture: string;
   decisions: string;
+  features: string[];
   results: string;
   highlight: string;
   stack: string[];
@@ -78,9 +69,6 @@ export interface SiteContent {
     eyebrow: string;
     greeting: string;
     name: string;
-    tagline: string;
-    ctaPrimary: CtaLink;
-    ctaSecondary: CtaLink;
     meta: LabeledValue[];
   };
   about: {
@@ -88,11 +76,6 @@ export interface SiteContent {
     title: string;
     paragraphs: string[];
     facts: LabeledValue[];
-  };
-  atuacao: {
-    eyebrow: string;
-    title: string;
-    items: AtuacaoItem[];
   };
   experience: {
     eyebrow: string;
@@ -112,10 +95,9 @@ export interface SiteContent {
     howTitle: string;
     how: string[];
     labels: {
-      problem: string;
-      solution: string;
-      architecture: string;
-      decisions: string;
+      description: string;
+      built: string;
+      features: string;
       results: string;
       highlight: string;
       stack: string;
@@ -157,12 +139,9 @@ export const content: Record<Locale, SiteContent> = {
     nav: {
       brand: "MF",
       links: [
-        { href: "#sobre", label: "Sobre" },
-        { href: "#atuacao", label: "Atuação" },
-        { href: "#ia-dev", label: "Projetos IA" },
         { href: "#experiencia", label: "Experiência" },
-        { href: "#stack", label: "Stack" },
-        { href: "#formacao", label: "Formação" },
+        { href: "#ia-dev", label: "Projetos IA" },
+        { href: "#stack", label: "Stack & Formação" },
         { href: "#contato", label: "Contato" },
       ],
     },
@@ -170,12 +149,8 @@ export const content: Record<Locale, SiteContent> = {
       eyebrow: "Engenheiro de Dados & AI Developer",
       greeting: "Olá, eu sou",
       name: "Matheus Fuzati",
-      tagline:
-        "Construo e governo data pipelines multi-cloud (GCP e AWS) aplicando boas práticas de Governança, FinOps, Observabilidade, Qualidade e IaC, utilizando IA agêntica no processo. Desenvolvo ferramentas e plataformas de dados com IA, com frameworks como Spec Driven e Loop Engineering.",
-      ctaPrimary: { label: "Ver Projetos", href: "#ia-dev" },
-      ctaSecondary: { label: "Contato", href: "#contato" },
       meta: [
-        { k: "Atual", v: "DP6 — Data Engineer Consultant" },
+        { k: "Cargo", v: "DP6 — Data Engineer Consultant" },
         { k: "Formação", v: "Ciência de Dados" },
       ],
     },
@@ -194,27 +169,6 @@ export const content: Record<Locale, SiteContent> = {
         { k: "Base", v: "Brasil" },
         { k: "Inglês", v: "C1" },
         { k: "Idiomas do site", v: "PT-BR / EN" },
-      ],
-    },
-    atuacao: {
-      eyebrow: "Atuação",
-      title: "Como eu atuo",
-      items: [
-        {
-          title: "Engenharia de Dados",
-          description:
-            "Pipelines de ponta a ponta em on-premise e multi-cloud: ingestão, processamento, orquestração e modelagem.",
-        },
-        {
-          title: "Cloud e Infraestrutura",
-          description:
-            "Infraestrutura como código com Terraform, ambientes dev e prod espelhados, CI/CD com GitHub Actions e Workload Identity Federation, autenticação com IAP e FinOps com labels, budgets e showback.",
-        },
-        {
-          title: "AI Development",
-          description:
-            "Plataformas completas construídas com Claude Code: backend, frontend, infraestrutura e documentação. O processo é Spec-Driven, e o plugin próprio traz hook de política e skills reutilizáveis.",
-        },
       ],
     },
     experience: {
@@ -334,14 +288,13 @@ export const content: Record<Locale, SiteContent> = {
       howTitle: "Como eu trabalho com IA",
       how: ["spec antes do código", "decisões registradas em ADRs", "guardrails automáticos", "um fato, um lugar"],
       labels: {
-        problem: "Problema",
-        solution: "Solução",
-        architecture: "Arquitetura",
-        decisions: "Decisões técnicas",
+        description: "Descrição",
+        built: "Como foi construído",
+        features: "Funcionalidades",
         results: "Resultados",
         highlight: "Destaque",
         stack: "Stack",
-        gallery: "Capturas de tela",
+        gallery: "Prints das telas",
         viewProject: "Ver projeto",
         back: "Voltar",
       },
@@ -358,6 +311,14 @@ export const content: Record<Locale, SiteContent> = {
             "Dev e prod rodam no mesmo projeto GCP, isolados por convenção de nome de recurso em vez de projetos separados — restrição do cliente para esse programa. Autenticação via OAuth sobre IAP.",
           decisions:
             "A autenticação OAuth/IAP do Atlas virou a implementação de referência reaproveitada pelos outros repositórios da iniciativa (Billing Platform, Certifications), em vez de cada um implementar a própria.",
+          features: [
+            "Catálogo de dados centralizado",
+            "Lineage entre pipelines",
+            "Detecção automática de PII",
+            "Métricas de qualidade e freshness",
+            "FinOps da iniciativa",
+            "Integração com Cloud Storage",
+          ],
           results: "Tornou-se o exemplo mais maduro de desenvolvimento assistido por IA da iniciativa e a referência de autenticação para os demais projetos.",
           highlight: "Dev e prod no mesmo projeto GCP, isolados por nomes de recurso — foi restrição do cliente.",
           stack: ["GCP", "Terraform", "Monorepo (backend + frontend)", "OAuth/IAP", "Spec-Driven Development"],
@@ -374,6 +335,13 @@ export const content: Record<Locale, SiteContent> = {
             "Mesma espinha dorsal do Cost Model (Dataform sobre BigQuery + API + painel), com grão adicional de projeto/ambiente vindo do billing export completo da conta.",
           decisions:
             "A sincronização incremental por partição rodou em modo sombra antes do cutover — validando os números em paralelo com o pipeline antigo antes de desligar a fonte anterior, pra não arriscar quebrar um relatório de custo que a liderança já usava.",
+          features: [
+            "Ingestão do billing export da conta inteira",
+            "Granularidade por projeto e ambiente",
+            "Evolução de custo",
+            "Detecção de anomalias",
+            "Forecast de gastos",
+          ],
           results: "Em produção, com visibilidade de custo em nível de projeto e ambiente pra toda a conta de faturamento, incluindo evolução, anomalias e forecast.",
           highlight: "Nasceu como fork estrutural do Cost Model. A sincronização incremental por partição rodou em modo sombra antes do cutover.",
           stack: ["GCP BigQuery", "Dataform", "API de custo", "Painel FinOps"],
@@ -390,6 +358,13 @@ export const content: Record<Locale, SiteContent> = {
             "Next.js no frontend/backend, Firestore pra dados operacionais (catálogo, badges, aprovações) e BigQuery pras análises e campanhas — armazenamento híbrido, cada banco no que faz melhor.",
           decisions:
             "É o projeto com mais specs formais da iniciativa (10), servindo de referência de como estruturar o fluxo Spec-Kit pros outros repositórios.",
+          features: [
+            "Catálogo de certificações",
+            "Sistema de badges",
+            "Fluxo de aprovação",
+            "Campanhas de certificação",
+            "Análises em BigQuery",
+          ],
           results: "Plataforma ativa, em uso interno na DP6 para catálogo, badges, aprovação e campanhas de certificação.",
           highlight: "É o projeto de referência do Spec-Driven, com 10 specs. O armazenamento é híbrido, Firestore mais BigQuery.",
           stack: ["Next.js", "Firestore", "BigQuery", "GitHub Spec-Kit"],
@@ -403,6 +378,13 @@ export const content: Record<Locale, SiteContent> = {
             "Construí um hub de documentação em Docusaurus reunindo padrões, boas práticas e cases, centralizando convenções entre repositórios e integrando o design system da iniciativa.",
           architecture: "Site estático Docusaurus, com os tokens de design compartilhados da iniciativa CI Polaris.",
           decisions: "Um script próprio verifica links e regras de conteúdo automaticamente a cada atualização, pra evitar link quebrado ou página fora do padrão.",
+          features: [
+            "Hub de documentação centralizado",
+            "Padrões e boas práticas",
+            "Cases documentados",
+            "Verificação automática de links e regras de conteúdo",
+            "Design tokens compartilhados da iniciativa",
+          ],
           results: "Base de conhecimento ativa da iniciativa de dados da DP6.",
           highlight: "Um script verifica links e regras de conteúdo automaticamente.",
           stack: ["Docusaurus", "Site estático", "Design tokens"],
@@ -463,12 +445,9 @@ export const content: Record<Locale, SiteContent> = {
     nav: {
       brand: "MF",
       links: [
-        { href: "#about", label: "About" },
-        { href: "#atuacao", label: "Practice" },
-        { href: "#ia-dev", label: "AI Projects" },
         { href: "#experience", label: "Experience" },
-        { href: "#stack", label: "Stack" },
-        { href: "#education", label: "Education" },
+        { href: "#ia-dev", label: "AI Projects" },
+        { href: "#stack", label: "Stack & Education" },
         { href: "#contact", label: "Contact" },
       ],
     },
@@ -476,12 +455,8 @@ export const content: Record<Locale, SiteContent> = {
       eyebrow: "Data Engineer & AI Developer",
       greeting: "Hi, I'm",
       name: "Matheus Fuzati",
-      tagline:
-        "I build and govern multi-cloud (GCP and AWS) data pipelines following strong practices in governance, FinOps, observability, quality, and IaC, using agentic AI throughout the process. I develop data tools and platforms with AI, using frameworks like Spec-Driven Development and Loop Engineering.",
-      ctaPrimary: { label: "View Projects", href: "#ia-dev" },
-      ctaSecondary: { label: "Contact", href: "#contact" },
       meta: [
-        { k: "Currently", v: "DP6 — Data Engineer Consultant" },
+        { k: "Role", v: "DP6 — Data Engineer Consultant" },
         { k: "Background", v: "Data Science" },
       ],
     },
@@ -500,26 +475,6 @@ export const content: Record<Locale, SiteContent> = {
         { k: "Based in", v: "Brazil" },
         { k: "English", v: "C1" },
         { k: "Site languages", v: "PT-BR / EN" },
-      ],
-    },
-    atuacao: {
-      eyebrow: "Practice",
-      title: "How I work",
-      items: [
-        {
-          title: "Data Engineering",
-          description: "End-to-end pipelines across on-premise and multi-cloud environments: ingestion, processing, orchestration, and modeling.",
-        },
-        {
-          title: "Cloud & Infrastructure",
-          description:
-            "Infrastructure as code with Terraform, mirrored dev and prod environments, CI/CD with GitHub Actions and Workload Identity Federation, IAP authentication, and FinOps with labels, budgets, and showback.",
-        },
-        {
-          title: "AI Development",
-          description:
-            "Full platforms built with Claude Code: backend, frontend, infrastructure, and documentation. The process is Spec-Driven, and my own plugin brings a policy hook and reusable skills.",
-        },
       ],
     },
     experience: {
@@ -619,10 +574,9 @@ export const content: Record<Locale, SiteContent> = {
       howTitle: "How I work with AI",
       how: ["spec before code", "decisions logged as ADRs", "automatic guardrails", "one fact, one place"],
       labels: {
-        problem: "Problem",
-        solution: "Solution",
-        architecture: "Architecture",
-        decisions: "Technical decisions",
+        description: "Description",
+        built: "How it was built",
+        features: "Features",
         results: "Results",
         highlight: "Highlight",
         stack: "Stack",
@@ -642,6 +596,14 @@ export const content: Record<Locale, SiteContent> = {
           architecture:
             "Dev and prod run in the same GCP project, isolated by resource-naming convention instead of separate projects — a client constraint for this program. Authentication via OAuth over IAP.",
           decisions: "Atlas's OAuth/IAP authentication became the reference implementation reused by the initiative's other repositories (Billing Platform, Certifications) instead of each one building its own.",
+          features: [
+            "Centralized data catalog",
+            "Pipeline lineage",
+            "Automatic PII detection",
+            "Quality and freshness metrics",
+            "Initiative FinOps",
+            "Cloud Storage integration",
+          ],
           results: "Became the most mature example of AI-assisted development in the initiative, and the authentication reference for the other projects.",
           highlight: "Dev and prod share the same GCP project, isolated by resource names — a client constraint.",
           stack: ["GCP", "Terraform", "Monorepo (backend + frontend)", "OAuth/IAP", "Spec-Driven Development"],
@@ -656,6 +618,13 @@ export const content: Record<Locale, SiteContent> = {
           architecture: "Same backbone as the Cost Model (Dataform over BigQuery + API + dashboard), with an added project/environment grain coming from the full account billing export.",
           decisions:
             "Incremental per-partition sync ran in shadow mode before cutover — validating the numbers alongside the old pipeline before switching off the previous source, so as not to risk breaking a cost report leadership already relied on.",
+          features: [
+            "Full-account billing export ingestion",
+            "Per-project and per-environment granularity",
+            "Cost trend tracking",
+            "Anomaly detection",
+            "Spend forecasting",
+          ],
           results: "In production, with project- and environment-level cost visibility across the entire billing account, including trends, anomalies, and forecasting.",
           highlight: "Started as a structural fork of the Cost Model. Incremental per-partition sync ran in shadow mode before cutover.",
           stack: ["GCP BigQuery", "Dataform", "Cost API", "FinOps dashboard"],
@@ -668,6 +637,13 @@ export const content: Record<Locale, SiteContent> = {
           solution: "I built the platform in Next.js with hybrid storage (Firestore + BigQuery), using GitHub's formal Spec-Kit flow (spec → plan → tasks) and ADRs.",
           architecture: "Next.js on frontend/backend, Firestore for operational data (catalog, badges, approvals), and BigQuery for analytics and campaigns — hybrid storage, each database doing what it does best.",
           decisions: "It's the initiative's most spec'd project (10 formal specs), serving as the reference for how to structure the Spec-Kit flow in the other repositories.",
+          features: [
+            "Certification catalog",
+            "Badge system",
+            "Approval workflow",
+            "Certification campaigns",
+            "BigQuery analytics",
+          ],
           results: "Active platform, used internally at DP6 for certification catalog, badges, approval, and campaigns.",
           highlight: "The Spec-Driven reference project, with 10 specs. Storage is hybrid — Firestore plus BigQuery.",
           stack: ["Next.js", "Firestore", "BigQuery", "GitHub Spec-Kit"],
@@ -680,6 +656,13 @@ export const content: Record<Locale, SiteContent> = {
           solution: "I built a Docusaurus documentation hub bringing together standards, best practices, and case studies, centralizing cross-repository conventions and integrating the initiative's design system.",
           architecture: "Static Docusaurus site, sharing the CI Polaris initiative's design tokens.",
           decisions: "A custom script automatically checks links and content rules on every update, to catch broken links or off-standard pages.",
+          features: [
+            "Centralized documentation hub",
+            "Standards and best practices",
+            "Documented case studies",
+            "Automatic link and content-rule checking",
+            "Shared design tokens",
+          ],
           results: "The active knowledge base for DP6's data initiative.",
           highlight: "A script automatically checks links and content rules.",
           stack: ["Docusaurus", "Static site", "Design tokens"],

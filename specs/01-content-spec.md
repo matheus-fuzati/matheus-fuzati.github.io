@@ -1,13 +1,13 @@
 # 01 — Spec de Conteúdo
 
-> Status: **v4 implementada** em `src/content/content.ts` (fonte única PT/EN). Reescrita
-> completa de conteúdo + estrutura, ditada pelo autor num documento único (ver histórico de
-> `04-tasks.md`), não mais incremental como v1-v3.
+> Status: **v6 implementada** (ver `04-tasks.md` pro histórico completo v1→v6). Conteúdo em
+> `src/content/content.ts` (fonte única PT/EN).
 
-## Seções do site
-Hero · Sobre · Atuação · Projetos com IA (+ 5 páginas dedicadas por projeto) · Experiência ·
-Stack · Formação · Contato — em PT (`/`) e EN (`/en/`). A antiga seção "Projetos" (backlog vazio
-de cases públicos) foi **removida** — "Projetos com IA" é a única seção de projetos agora.
+## Seções do site (v6)
+Home (Hero minimalista + carrossel de stack) → Experiência (linha do tempo horizontal) →
+Projetos com IA (+ 4 páginas dedicadas) → Stack & Formação → Contato — em PT (`/`) e EN (`/en/`).
+"Sobre" e "Atuação" **saíram da Home** na v6 (ver `04-tasks.md`); `about` continua em
+`content.ts` só porque o CvPage ainda usa `about.paragraphs[0]`.
 
 ## Idioma
 Site bilíngue PT-BR / EN. Textos em inglês são **reescritos**, não traduzidos literalmente.
