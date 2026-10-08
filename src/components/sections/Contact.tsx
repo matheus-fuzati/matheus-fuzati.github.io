@@ -15,11 +15,11 @@ export default function Contact({ id }: Props) {
     <section id={id} className="section">
       <SectionSideLabel text={contact.eyebrow} />
       <div className="container">
-        <Reveal className="section-head">
+        <Reveal className="section-head contact-head">
           <span className="eyebrow">{contact.eyebrow}</span>
           <h2>{contact.title}</h2>
-          <p style={{ marginTop: 16, color: "var(--muted)", fontSize: 16 }}>{contact.body}</p>
-          <div style={{ marginTop: 24 }}>
+          <p className="contact-body">{contact.body}</p>
+          <div className="contact-cta">
             <ViewTransitionLink className="btn btn-primary" to={contact.cvHref}>
               {contact.cvLabel}
             </ViewTransitionLink>

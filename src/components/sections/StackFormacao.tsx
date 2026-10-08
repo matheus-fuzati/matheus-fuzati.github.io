@@ -37,24 +37,26 @@ export default function StackFormacao({ id }: Props) {
           </Reveal>
           <Reveal className="stack-formacao-col" from="right" delay={0.1}>
             <h3 className="stack-formacao-subtitle">{education.title}</h3>
-            <div className="edu-block">
-              <h3>{education.academicTitle}</h3>
-              {education.academic.map((a) => (
-                <div className="edu-item" key={a.degree}>
-                  <span className="period">{a.period}</span>
-                  <p className="title">{a.degree}</p>
-                  <p className="inst">{a.institution}</p>
-                </div>
-              ))}
-            </div>
-            <div className="edu-block">
-              <h3>{education.coursesTitle}</h3>
-              {education.courses.map((c) => (
-                <div className="edu-item" key={c.course}>
-                  <p className="title">{c.course}</p>
-                  <p className="inst">{c.institution}</p>
-                </div>
-              ))}
+            <div className="edu-blocks">
+              <div className="edu-block">
+                <h3>{education.academicTitle}</h3>
+                {education.academic.map((a) => (
+                  <div className="edu-item" key={a.degree}>
+                    <span className="period">{a.period}</span>
+                    <p className="title">{a.degree}</p>
+                    <p className="inst">{a.institution}</p>
+                  </div>
+                ))}
+              </div>
+              <div className="edu-block">
+                <h3>{education.coursesTitle}</h3>
+                {education.courses.map((c) => (
+                  <div className="edu-item" key={c.course}>
+                    <p className="title">{c.course}</p>
+                    <p className="inst">{c.institution}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           </Reveal>
         </div>

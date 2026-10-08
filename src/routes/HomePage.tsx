@@ -1,5 +1,6 @@
 import { Head } from "vite-react-ssg";
 import SmoothScrollProvider from "../app/providers/SmoothScrollProvider";
+import FloatingTechIcons from "../components/decor/FloatingTechIcons";
 import Header from "../components/layout/Header";
 import Footer from "../components/layout/Footer";
 import Hero from "../components/sections/Hero";
@@ -57,6 +58,7 @@ export function Component() {
         <meta property="og:type" content="website" />
       </Head>
       <SmoothScrollProvider>
+        <FloatingTechIcons />
         <Header />
         <main>
           <Hero />

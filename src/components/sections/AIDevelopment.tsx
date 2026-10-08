@@ -24,12 +24,6 @@ export default function AIDevelopment({ id }: Props) {
           <span className="eyebrow">{aiDev.eyebrow}</span>
           <h2>{aiDev.title}</h2>
           <p className="ai-dev-intro">{aiDev.intro}</p>
-          <ul className="ai-dev-how">
-            <span className="ai-dev-how-title">{aiDev.howTitle}:</span>
-            {aiDev.how.map((h) => (
-              <li key={h}>{h}</li>
-            ))}
-          </ul>
         </Reveal>
         <div className="ai-dev-grid">
           {aiDev.items.map((item, i) => (

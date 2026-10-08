@@ -163,3 +163,44 @@
       (PT/EN, 4 páginas de projeto, CV) nos dois temas — zero erro de console/página
 - [ ] **Pendente do autor**: capturas de tela reais pros 4 projetos (capa + galeria) — os
       placeholders "Prints das telas" já estão no lugar certo
+
+## v7 — ajustes de conteúdo, scroll bi-direcional, interação de trajetória e equilíbrio de layout
+
+> Rodada pedida pelo autor como um brief único de 4 blocos (conteúdo, animações globais,
+> interação de clique na Experiência, ajustes de layout), depois de publicada a v6.
+
+- [x] Removida a saudação "Olá, eu sou" do Hero (`hero.greeting` saiu do `content.ts` e da UI)
+- [x] Removido o bloco "Como eu trabalho com IA" (chips) da seção de Projetos com IA
+      (`aiDev.howTitle`/`aiDev.how` saíram do `content.ts` e da UI)
+- [x] Título da seção renomeado: "Projetos com IA" → "Plataformas Desenvolvidas - IA Development"
+      (eyebrow mantido como estava; só o `<h2>` mudou)
+- [x] Item de Experiência da DP6: `company` virou "DP6 | Itaú & MagaluAds" (PT+EN) — aparece tanto
+      na timeline horizontal quanto no CvPage, que lê o mesmo campo
+- [x] `Reveal.tsx` ficou bi-direcional: trocado `once:true`/`onEnter` único por
+      `onEnter`+`onEnterBack` (mostra) e `onLeave`+`onLeaveBack` (esconde de novo ao sair da
+      viewport em qualquer sentido) — verificado via scroll simulado (opacidade 0→1→0)
+- [x] Fundo decorativo novo: `FloatingTechIcons.tsx` — camada fixa atrás de todo o conteúdo com
+      ícones técnicos (`</>`, `{ }`, `<tag/>`, `db`) em opacidade 0.05, posições fixas (não
+      aleatórias, pra não gerar mismatch de hidratação no `vite-react-ssg`), drift lento via CSS
+      `@keyframes`. Não renderiza nada sob `prefers-reduced-motion` (decorativo puro, sem razão
+      pra existir estático)
+- [x] `Experience.tsx`: clique numa parada agora é exclusivo (um `activeKey` em vez de um
+      `Set` de abertos) — a parada ativa expande (flip 3D via `@keyframes` de `rotateX` no
+      `.tl-h-detail`, domina a largura da linha, ganha borda/sombra de destaque) e as demais
+      encolhem pra ~68px com `blur(3px)` + opacidade 0.35. Fallback mobile (`.tl-h-list`)
+      continua um accordion simples, sem flip/blur — não faz sentido com o card já ocupando a
+      largura toda
+- [x] `StackFormacao.tsx`: colunas "Ferramentas e Habilidades" e "Formação Acadêmica e Cursos"
+      igualadas em altura (`align-items: stretch` no grid + `flex`/`align-content`/
+      `justify-content: space-between` internos) em vez de uma ficar visivelmente mais curta
+- [x] `Contact.tsx`: conteúdo (eyebrow, título, corpo, botão de CV, grid de canais) centralizado
+      — era alinhado à esquerda
+- [x] **Bug de regressão da v6 encontrado e corrigido**: `.tl-h-list` (fallback mobile da
+      Experiência) nunca aparecia — uma regra `display: none` sem media query estava depois do
+      `@media (max-width: 900px)` que tentava reativá-la, então sempre ganhava o empate de
+      especificidade. Mobile ficava sem nenhum conteúdo de timeline desde a v6. Corrigido
+      reordenando as regras
+- [x] Verificado: `tsc --noEmit` limpo, `npm run build` limpo (12 páginas), Playwright em
+      desktop (1440px) e mobile (390px) — bi-directional reveal, clique/flip/blur da Experiência,
+      alturas iguais no Stack/Formação (906px nos dois lados), centralização do Contato e
+      ausência de scroll horizontal no mobile, todos confirmados por medição (não só visual)

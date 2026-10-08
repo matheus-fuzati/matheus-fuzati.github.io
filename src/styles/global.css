@@ -333,12 +333,6 @@ p {
   margin-bottom: 22px;
 }
 
-.hero-greeting {
-  font-size: 16px;
-  color: var(--muted);
-  margin-bottom: 4px;
-}
-
 .hero h1 {
   font-family: var(--font-body);
   font-weight: 800;
@@ -644,8 +638,34 @@ p {
 
 .tl-h-label {
   flex: 1;
+  min-width: 0;
   text-align: center;
   padding: 0 10px;
+  cursor: pointer;
+  border-radius: var(--radius);
+  transition: flex-grow 0.5s ease, flex-basis 0.5s ease, opacity 0.4s ease, filter 0.4s ease, background 0.3s ease,
+    box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.tl-h-labels.has-active .tl-h-label {
+  flex: 0 1 68px;
+  overflow: hidden;
+}
+
+.tl-h-labels.has-active .tl-h-label.dimmed {
+  opacity: 0.35;
+  filter: blur(3px);
+}
+
+.tl-h-labels.has-active .tl-h-label.active {
+  flex: 1 1 auto;
+  overflow: visible;
+  position: relative;
+  z-index: 2;
+  background: var(--surface);
+  border: 1px solid var(--accent);
+  box-shadow: 0 0 0 1px var(--accent-dim), 0 16px 40px -16px var(--accent);
+  padding: 20px 22px;
 }
 
 .tl-h-label .tl-h-current-tag {
@@ -685,6 +705,29 @@ p {
   line-height: 1.6;
   color: var(--muted);
   text-align: left;
+  transform-origin: top center;
+  animation: tl-flip-in 0.5s ease forwards;
+}
+
+@keyframes tl-flip-in {
+  from {
+    opacity: 0;
+    transform: perspective(600px) rotateX(-70deg) translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: perspective(600px) rotateX(0deg) translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tl-h-detail {
+    animation: none;
+  }
+  .tl-h-label,
+  .tl-h-labels.has-active .tl-h-label {
+    transition: none;
+  }
 }
 
 .tl-h-hint {
@@ -693,6 +736,13 @@ p {
   font-family: var(--font-mono);
   font-size: 11.5px;
   color: var(--muted);
+}
+
+/* desktop esconde a lista empilhada; o media query abaixo inverte no mobile —
+   essa regra precisa vir ANTES do @media, senão ganha da dele no empate de
+   especificidade e a lista mobile nunca aparece. */
+.tl-h-list {
+  display: none;
 }
 
 @media (max-width: 900px) {
@@ -706,23 +756,23 @@ p {
   }
 }
 
-/* desktop esconde a lista empilhada; o media query acima inverte no mobile */
-.tl-h-list {
-  display: none;
-}
-
 /* ---------- stack & formação (v6, StackFormacao.tsx) ---------- */
 .stack-formacao-grid {
   display: grid;
   grid-template-columns: 1.1fr 1fr;
   gap: clamp(32px, 5vw, 64px);
-  align-items: start;
+  align-items: stretch;
 }
 
 @media (max-width: 860px) {
   .stack-formacao-grid {
     grid-template-columns: 1fr;
   }
+}
+
+.stack-formacao-col {
+  display: flex;
+  flex-direction: column;
 }
 
 .stack-formacao-subtitle {
@@ -734,10 +784,23 @@ p {
   margin-bottom: 18px;
 }
 
+/* as duas colunas esticam pra mesma altura (align-items: stretch acima);
+   o grid/flex interno de cada uma distribui o próprio conteúdo nesse
+   espaço, em vez de uma ficar visivelmente mais curta que a outra. */
 .stack-cat-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 12px;
+  flex: 1;
+  align-content: space-between;
+}
+
+.edu-blocks {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 32px;
 }
 
 @media (max-width: 500px) {
@@ -855,33 +918,6 @@ p {
   color: var(--accent);
   font-family: var(--font-mono);
   font-size: 12.5px;
-}
-
-.ai-dev-how {
-  margin: 18px 0 0;
-  padding: 0;
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 10px;
-  align-items: center;
-}
-
-.ai-dev-how-title {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--muted);
-}
-
-.ai-dev-how li {
-  font-family: var(--font-mono);
-  font-size: 11.5px;
-  color: var(--text);
-  border: 1px solid var(--line-strong);
-  border-radius: var(--radius);
-  padding: 4px 9px;
 }
 
 .ai-dev-link {
@@ -1088,10 +1124,6 @@ p {
 }
 
 /* ---------- education ---------- */
-.edu-block + .edu-block {
-  margin-top: 44px;
-}
-
 .edu-block h3 {
   font-family: var(--font-mono);
   font-size: 13px;
@@ -1128,9 +1160,28 @@ p {
 }
 
 /* ---------- contact ---------- */
+.contact-head {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.contact-body {
+  margin-top: 16px;
+  color: var(--muted);
+  font-size: 16px;
+}
+
+.contact-cta {
+  margin-top: 24px;
+  display: flex;
+  justify-content: center;
+}
+
 .contact-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  justify-content: center;
   gap: 16px;
 }
 
@@ -1243,6 +1294,37 @@ p {
   }
 }
 
+/* ---------- fundo decorativo (ícones flutuantes, FloatingTechIcons.tsx) ---------- */
+.floating-icons {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.floating-icon {
+  position: absolute;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  color: var(--text);
+  opacity: 0.05;
+  white-space: nowrap;
+  animation-name: floating-icon-drift;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+@keyframes floating-icon-drift {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate(var(--drift, 16px), calc(var(--drift, 16px) * -1)) rotate(6deg);
+  }
+}
+
 /* ---------- print (CV pages) ---------- */
 @media print {
   :root {
@@ -1252,6 +1334,7 @@ p {
   }
   .site-header,
   .site-footer,
+  .floating-icons,
   .no-print {
     display: none !important;
   }

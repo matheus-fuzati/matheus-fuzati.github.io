@@ -1,13 +1,15 @@
 # 01 — Spec de Conteúdo
 
-> Status: **v6 implementada** (ver `04-tasks.md` pro histórico completo v1→v6). Conteúdo em
+> Status: **v7 implementada** (ver `04-tasks.md` pro histórico completo v1→v7). Conteúdo em
 > `src/content/content.ts` (fonte única PT/EN).
 
-## Seções do site (v6)
-Home (Hero minimalista + carrossel de stack) → Experiência (linha do tempo horizontal) →
-Projetos com IA (+ 4 páginas dedicadas) → Stack & Formação → Contato — em PT (`/`) e EN (`/en/`).
-"Sobre" e "Atuação" **saíram da Home** na v6 (ver `04-tasks.md`); `about` continua em
-`content.ts` só porque o CvPage ainda usa `about.paragraphs[0]`.
+## Seções do site (v7)
+Home (Hero minimalista + carrossel de stack) → Experiência (linha do tempo horizontal, clique
+expande full-width) → Plataformas Desenvolvidas - IA Development (+ 4 páginas dedicadas) →
+Stack & Formação → Contato — em PT (`/`) e EN (`/en/`). "Sobre" e "Atuação" **saíram da Home**
+na v6 (ver `04-tasks.md`); `about` continua em `content.ts` só porque o CvPage ainda usa
+`about.paragraphs[0]`. Na v7 saíram também a saudação do Hero (`hero.greeting`) e o bloco
+"Como eu trabalho com IA" (`aiDev.howTitle`/`how`).
 
 ## Idioma
 Site bilíngue PT-BR / EN. Textos em inglês são **reescritos**, não traduzidos literalmente.
@@ -29,7 +31,7 @@ não só a ferramenta), (4) trajetória anterior (Atento, ESEG).
 3 cards descritivos (não lista de bullets, ao contrário de Stack): Engenharia de Dados, Cloud e
 Infraestrutura, AI Development. Fica entre Sobre e Projetos com IA.
 
-## Projetos com IA (renomeada de "IA Development")
+## Plataformas Desenvolvidas - IA Development (título renomeado na v7; eyebrow continua "Projetos com IA")
 Cards resumidos na home (título + resumo + link "Ver projeto") — o detalhe foi pra **páginas
 dedicadas** (`/projetos/:slug`, `/en/projetos/:slug`, pré-renderizadas via `getStaticPaths` do
 `vite-react-ssg`). Intro ganhou um selo "Como eu trabalho com IA" (4 chips). 4 projetos agora
@@ -56,7 +58,9 @@ um item plano com `companyNote` — reflete que o autor atua em 3 frentes simult
 vínculo (DP6, desde 02/2026): Itaú (Data Mesh, desde 06/2026), CI Polaris (liderança, desde
 04/2026) e Magalu Ads (discovery, 02/2026–06/2026, encerrado). Itens anteriores (Atento, ESEG ×2,
 Los Carvalhos) mantidos; **Grupo Vamos (Assistente Financeiro) removido** — não apareceu na
-lista que o autor passou nesta rodada.
+lista que o autor passou nesta rodada. Na v7, o campo `company` desse item virou
+"DP6 | Itaú & MagaluAds" (era só "DP6") — os `highlights` aninhados (Itaú/CI Polaris/Magalu Ads)
+continuam intactos, só o rótulo visível do item mudou.
 
 ## Stack técnica
 5 categorias agora (antes 3): Engenharia de Dados, Cloud e Infraestrutura, AI Development,

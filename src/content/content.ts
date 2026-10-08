@@ -67,7 +67,6 @@ export interface SiteContent {
   };
   hero: {
     eyebrow: string;
-    greeting: string;
     name: string;
     meta: LabeledValue[];
   };
@@ -92,8 +91,6 @@ export interface SiteContent {
     eyebrow: string;
     title: string;
     intro: string;
-    howTitle: string;
-    how: string[];
     labels: {
       description: string;
       built: string;
@@ -147,7 +144,6 @@ export const content: Record<Locale, SiteContent> = {
     },
     hero: {
       eyebrow: "Engenheiro de Dados & AI Developer",
-      greeting: "Olá, eu sou",
       name: "Matheus Fuzati",
       meta: [
         { k: "Cargo", v: "DP6 — Data Engineer Consultant" },
@@ -179,7 +175,7 @@ export const content: Record<Locale, SiteContent> = {
           period: "Desde 02/2026",
           current: true,
           role: "Data Engineer Consultant",
-          company: "DP6",
+          company: "DP6 | Itaú & MagaluAds",
           description:
             "Consultoria de dados atuando em duas frentes: cliente (Itaú) e iniciativa interna (CI Polaris), depois de uma passagem inicial pela conta Magalu Ads.",
           highlights: [
@@ -282,11 +278,9 @@ export const content: Record<Locale, SiteContent> = {
     },
     aiDev: {
       eyebrow: "Projetos com IA",
-      title: "Projetos com IA",
+      title: "Plataformas Desenvolvidas - IA Development",
       intro:
         "Ferramentas que desenhei e construí com IA dentro do CI Polaris, iniciativa interna da DP6. Cada projeto tem uma página com problema, arquitetura, decisões técnicas e como a IA entrou no processo.",
-      howTitle: "Como eu trabalho com IA",
-      how: ["spec antes do código", "decisões registradas em ADRs", "guardrails automáticos", "um fato, um lugar"],
       labels: {
         description: "Descrição",
         built: "Como foi construído",
@@ -453,7 +447,6 @@ export const content: Record<Locale, SiteContent> = {
     },
     hero: {
       eyebrow: "Data Engineer & AI Developer",
-      greeting: "Hi, I'm",
       name: "Matheus Fuzati",
       meta: [
         { k: "Role", v: "DP6 — Data Engineer Consultant" },
@@ -485,7 +478,7 @@ export const content: Record<Locale, SiteContent> = {
           period: "Since 02/2026",
           current: true,
           role: "Data Engineer Consultant",
-          company: "DP6",
+          company: "DP6 | Itaú & MagaluAds",
           description: "Data consulting across two fronts: a client account (Itaú) and an internal initiative (CI Polaris), after an initial stint on the Magalu Ads account.",
           highlights: [
             {
@@ -568,11 +561,9 @@ export const content: Record<Locale, SiteContent> = {
     },
     aiDev: {
       eyebrow: "AI Projects",
-      title: "AI Projects",
+      title: "Developed Platforms - IA Development",
       intro:
         "Tools I designed and built with AI inside CI Polaris, an internal DP6 initiative. Each project has its own page with problem, architecture, technical decisions, and how AI was part of the process.",
-      howTitle: "How I work with AI",
-      how: ["spec before code", "decisions logged as ADRs", "automatic guardrails", "one fact, one place"],
       labels: {
         description: "Description",
         built: "How it was built",

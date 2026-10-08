@@ -21,9 +21,10 @@ function ChevronIcon() {
 
 /**
  * Linha do tempo horizontal (v6) — substitui a lista vertical. Texto
- * sempre abaixo da linha (nunca em cima dela); cada parada expande o
- * detalhe daquela experiência ao clicar (estado local, sem Reveal nos
- * itens — eles nascem visíveis, só o detalhe abre/fecha).
+ * sempre abaixo da linha (nunca em cima dela). Clicar numa experiência
+ * expande ela (flip 3D + domina a largura da linha de detalhes) e
+ * borra/esmaece as demais — só uma aberta por vez (estado local, sem
+ * Reveal nos itens — eles nascem visíveis, só o detalhe abre/fecha).
  */
 export default function Experience({ id }: Props) {
   const { experience } = useContent();
@@ -34,7 +35,7 @@ export default function Experience({ id }: Props) {
   const trackRef = useRef<HTMLDivElement>(null);
   const lineRef = useRef<HTMLDivElement>(null);
   const prefersReduced = usePrefersReducedMotion();
-  const [openKeys, setOpenKeys] = useState<Set<string>>(new Set());
+  const [activeKey, setActiveKey] = useState<string | null>(null);
 
   useEffect(() => {
     const track = trackRef.current;
@@ -56,13 +57,7 @@ export default function Experience({ id }: Props) {
     };
   }, [prefersReduced]);
 
-  const toggle = (key: string) =>
-    setOpenKeys((prev) => {
-      const next = new Set(prev);
-      if (next.has(key)) next.delete(key);
-      else next.add(key);
-      return next;
-    });
+  const toggle = (key: string) => setActiveKey((prev) => (prev === key ? null : key));
 
   return (
     <section id={id} className="section">
@@ -84,8 +79,8 @@ export default function Experience({ id }: Props) {
                   <div className="tl-h-stop" key={key}>
                     <button
                       type="button"
-                      className={`tl-h-toggle${item.current ? " current" : ""}${openKeys.has(key) ? " open" : ""}`}
-                      aria-expanded={openKeys.has(key)}
+                      className={`tl-h-toggle${item.current ? " current" : ""}${activeKey === key ? " open" : ""}`}
+                      aria-expanded={activeKey === key}
                       onClick={() => toggle(key)}
                     >
                       <ChevronIcon />
@@ -96,11 +91,25 @@ export default function Experience({ id }: Props) {
             </div>
           </div>
 
-          <div className="tl-h-labels">
+          <div className={`tl-h-labels${activeKey ? " has-active" : ""}`}>
             {chronological.map((item) => {
               const key = `${item.company}-${item.period}`;
+              const isActive = activeKey === key;
               return (
-                <div className="tl-h-label" key={key}>
+                <div
+                  className={`tl-h-label${isActive ? " active" : ""}${activeKey && !isActive ? " dimmed" : ""}`}
+                  key={key}
+                  role="button"
+                  tabIndex={0}
+                  aria-expanded={isActive}
+                  onClick={() => toggle(key)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      toggle(key);
+                    }
+                  }}
+                >
                   {item.current && <span className="tl-h-current-tag">{"●"} Atual</span>}
                   <div className="period">{item.period}</div>
                   <h3>{item.role}</h3>
@@ -108,7 +117,7 @@ export default function Experience({ id }: Props) {
                     {item.company}
                     {item.companyNote ? ` — ${item.companyNote}` : ""}
                   </p>
-                  {openKeys.has(key) && (
+                  {isActive && (
                     <div className="tl-h-detail">
                       <p>{item.description}</p>
                       {item.highlights?.map((h) => (
@@ -123,10 +132,11 @@ export default function Experience({ id }: Props) {
             })}
           </div>
 
-          {/* fallback empilhado pra telas estreitas (ver @media em global.css) */}
+          {/* fallback empilhado pra telas estreitas (ver @media em global.css) — sem flip/blur, só accordion simples */}
           <div className="tl-h-list">
             {chronological.map((item) => {
               const key = `${item.company}-${item.period}`;
+              const isActive = activeKey === key;
               return (
                 <div className="tl-h-label" key={key} style={{ marginBottom: 28, textAlign: "left" }}>
                   {item.current && <span className="tl-h-current-tag">{"●"} Atual</span>}
@@ -138,14 +148,14 @@ export default function Experience({ id }: Props) {
                   </p>
                   <button
                     type="button"
-                    className={`tl-h-toggle${openKeys.has(key) ? " open" : ""}`}
-                    aria-expanded={openKeys.has(key)}
+                    className={`tl-h-toggle${isActive ? " open" : ""}`}
+                    aria-expanded={isActive}
                     onClick={() => toggle(key)}
                     style={{ width: 22, height: 22, border: "1px solid var(--line-strong)", color: "var(--muted)", marginTop: 8 }}
                   >
                     <ChevronIcon />
                   </button>
-                  {openKeys.has(key) && (
+                  {isActive && (
                     <div className="tl-h-detail">
                       <p>{item.description}</p>
                       {item.highlights?.map((h) => (

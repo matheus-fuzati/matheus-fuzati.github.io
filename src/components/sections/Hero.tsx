@@ -63,9 +63,6 @@ export default function Hero() {
         <span className="hero-badge" data-hero-in>
           {hero.eyebrow}
         </span>
-        <p className="hero-greeting" data-hero-in>
-          {hero.greeting}
-        </p>
         <h1 data-hero-in>
           <HeroNameEffect name={hero.name} />
         </h1>

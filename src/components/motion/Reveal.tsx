@@ -19,8 +19,11 @@ interface Props {
 
 /**
  * Substitui o antigo `data-reveal` + IntersectionObserver por um reveal
- * dirigido por ScrollTrigger. Sob prefers-reduced-motion não anima nada —
- * o conteúdo já nasce visível (ver "Make the page complete at rest").
+ * dirigido por ScrollTrigger. Bi-direcional: entra ao aparecer na viewport
+ * (de baixo ou de volta pra baixo) e sai (fade+offset) ao deixar a tela em
+ * qualquer sentido — não é mais `once`. Sob prefers-reduced-motion não
+ * anima nada — o conteúdo já nasce visível (ver "Make the page complete
+ * at rest").
  */
 export default function Reveal({ children, className, delay = 0, from = "up" }: Props) {
   const ref = useRef<HTMLDivElement>(null);
@@ -37,13 +40,18 @@ export default function Reveal({ children, className, delay = 0, from = "up" }: 
           ? { opacity: 0, x: 48, y: 0, scale: 1 }
           : { opacity: 0, x: 0, y: 48, scale: 0.96 };
 
+    const show = () => gsap.to(el, { opacity: 1, x: 0, y: 0, scale: 1, duration: 0.9, delay, ease: "power3.out", overwrite: true });
+    const hide = () => gsap.to(el, { ...fromVars, duration: 0.5, ease: "power2.inOut", overwrite: true });
+
     gsap.set(el, fromVars);
     const trigger = ScrollTrigger.create({
       trigger: el,
       start: "top 85%",
-      once: true,
-      onEnter: () =>
-        gsap.to(el, { opacity: 1, x: 0, y: 0, scale: 1, duration: 0.9, delay, ease: "power3.out" }),
+      end: "bottom 15%",
+      onEnter: show,
+      onEnterBack: show,
+      onLeave: hide,
+      onLeaveBack: hide,
     });
 
     return () => {
