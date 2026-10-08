@@ -407,22 +407,6 @@ export const content: Record<Locale, SiteContent> = {
           highlight: "Um script verifica links e regras de conteúdo automaticamente.",
           stack: ["Docusaurus", "Site estático", "Design tokens"],
         },
-        {
-          slug: "plugin-ci-polaris",
-          title: "Plugin ci-polaris",
-          summary:
-            "Hook de política e skills do Claude Code que mantêm o agente dentro das regras. Pede confirmação para ações irreversíveis e tem 147 casos de teste.",
-          problem:
-            "Trabalhar com agentes de IA em múltiplos repositórios de infraestrutura real traz um risco direto: um agente pode rodar um comando destrutivo (force-push, terraform apply, merge) sem supervisão.",
-          solution:
-            "Desenvolvi um plugin pro Claude Code com um hook de política e skills reutilizáveis entre os repositórios da iniciativa, criando uma camada de guardrail automática em vez de depender só de instrução em prompt.",
-          architecture: "Hook de política interceptando ações do agente antes da execução, mais um conjunto de skills compartilhadas entre os repositórios do CI Polaris.",
-          decisions:
-            "O hook falha fechado — por padrão, bloqueia em vez de permitir. Force-push e push direto em main são bloqueados; terraform apply, merge e deploy exigem confirmação explícita. Coberto por 147 casos de teste.",
-          results: "Em uso em todos os repositórios da iniciativa CI Polaris, mantendo o agente dentro das regras combinadas sem depender de repetir a instrução em cada sessão.",
-          highlight: "O hook falha fechado. Force-push e push em main são bloqueados, e terraform apply, merge e deploy exigem confirmação.",
-          stack: ["Claude Code", "Plugin / hook de política", "Skills reutilizáveis", "147 testes automatizados"],
-        },
       ],
     },
     education: {
@@ -699,19 +683,6 @@ export const content: Record<Locale, SiteContent> = {
           results: "The active knowledge base for DP6's data initiative.",
           highlight: "A script automatically checks links and content rules.",
           stack: ["Docusaurus", "Static site", "Design tokens"],
-        },
-        {
-          slug: "plugin-ci-polaris",
-          title: "ci-polaris Plugin",
-          summary: "A Claude Code policy hook and skill set that keep the agent inside the rules. Asks for confirmation on irreversible actions, backed by 147 test cases.",
-          problem: "Working with AI agents across multiple real-infrastructure repositories carries a direct risk: an agent could run a destructive command (force-push, terraform apply, merge) unsupervised.",
-          solution: "I built a Claude Code plugin with a policy hook and reusable skills shared across the initiative's repositories, creating an automatic guardrail layer instead of relying only on prompt instructions.",
-          architecture: "A policy hook intercepting agent actions before execution, plus a set of skills shared across the CI Polaris repositories.",
-          decisions:
-            "The hook fails closed — it blocks by default instead of allowing. Force-push and direct pushes to main are blocked; terraform apply, merge, and deploy require explicit confirmation. Covered by 147 automated test cases.",
-          results: "In use across every CI Polaris repository, keeping the agent inside the agreed rules without relying on repeating the instruction in every session.",
-          highlight: "The hook fails closed. Force-push and pushes to main are blocked, and terraform apply, merge, and deploy require confirmation.",
-          stack: ["Claude Code", "Plugin / policy hook", "Reusable skills", "147 automated tests"],
         },
       ],
     },

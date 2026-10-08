@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import type { Group, Mesh } from "three";
 
@@ -7,10 +7,10 @@ interface Props {
 }
 
 /**
- * Sem objeto central — 4 fragmentos de vidro flutuando e derivando de
+ * Sem objeto central — 6 fragmentos de vidro flutuando e derivando de
  * forma independente pela cena (cada um com seu próprio período/fase),
- * mais o campo de partículas (ver ParticleField). Pedido do autor: tirar
- * a "bola" que ficava atrás da foto e deixar só a animação 3D solta.
+ * mais o campo de partículas (ver ParticleField) e um tilt leve de
+ * paralaxe seguindo o cursor (lerp, sem libs extras).
  */
 export default function FloatingShards({ scrollRef }: Props) {
   const group = useRef<Group>(null);
@@ -18,6 +18,18 @@ export default function FloatingShards({ scrollRef }: Props) {
   const shardB = useRef<Mesh>(null);
   const shardC = useRef<Mesh>(null);
   const shardD = useRef<Mesh>(null);
+  const shardE = useRef<Mesh>(null);
+  const shardF = useRef<Mesh>(null);
+  const pointer = useRef({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const onMove = (e: PointerEvent) => {
+      pointer.current.x = (e.clientX / window.innerWidth) * 2 - 1;
+      pointer.current.y = (e.clientY / window.innerHeight) * 2 - 1;
+    };
+    window.addEventListener("pointermove", onMove);
+    return () => window.removeEventListener("pointermove", onMove);
+  }, []);
 
   useFrame((state, delta) => {
     const t = state.clock.elapsedTime;
@@ -27,6 +39,8 @@ export default function FloatingShards({ scrollRef }: Props) {
       group.current.position.y = -scroll * 2.4;
       const scale = Math.max(0.001, 1 - scroll * 0.9);
       group.current.scale.setScalar(scale);
+      group.current.rotation.y += (pointer.current.x * 0.25 - group.current.rotation.y) * 0.03;
+      group.current.rotation.x += (-pointer.current.y * 0.15 - group.current.rotation.x) * 0.03;
     }
 
     if (shardA.current) {
@@ -64,6 +78,24 @@ export default function FloatingShards({ scrollRef }: Props) {
       shardD.current.rotation.z += delta * 0.22;
       shardD.current.rotation.x += delta * 0.15;
     }
+    if (shardE.current) {
+      shardE.current.position.set(
+        Math.sin(t * 0.12 + 3) * 2.4 + 2.1,
+        Math.cos(t * 0.19 + 2.5) * 1.5 - 0.8,
+        Math.sin(t * 0.12) * 1.3 - 1.4
+      );
+      shardE.current.rotation.x += delta * 0.28;
+      shardE.current.rotation.z += delta * 0.19;
+    }
+    if (shardF.current) {
+      shardF.current.position.set(
+        Math.cos(t * 0.21 + 5) * 1.9 - 2.3,
+        Math.sin(t * 0.17 + 4) * 1.2 + 1.4,
+        Math.cos(t * 0.21) * 1.2 - 0.9
+      );
+      shardF.current.rotation.y += delta * 0.22;
+      shardF.current.rotation.x += delta * 0.12;
+    }
   });
 
   const glass = {
@@ -94,6 +126,14 @@ export default function FloatingShards({ scrollRef }: Props) {
       <mesh ref={shardD}>
         <icosahedronGeometry args={[0.36, 1]} />
         <meshPhysicalMaterial color="#eef0ea" {...glass} />
+      </mesh>
+      <mesh ref={shardE}>
+        <dodecahedronGeometry args={[0.3, 0]} />
+        <meshPhysicalMaterial color="#e7ecfb" {...glass} />
+      </mesh>
+      <mesh ref={shardF}>
+        <octahedronGeometry args={[0.24, 0]} />
+        <meshPhysicalMaterial color="#fdeef0" {...glass} />
       </mesh>
     </group>
   );

@@ -91,6 +91,32 @@
 - [x] Contato: WhatsApp removido do conjunto de canais
 - [x] Bug corrigido no processo: `ScrollTrigger` não registrado na rota de projeto (só
       `SmoothScrollProvider` registrava) — `Reveal.tsx` agora registra o próprio plugin
-- [ ] **Pendente do autor**: capturas de tela reais pros 5 projetos (capa + galeria) — os
-      placeholders já estão no lugar certo, esperando os arquivos
-- [ ] Decidir commit/push desta rodada — aguardando autor
+- [x] **Pendente do autor**: capturas de tela reais pros projetos — ainda esperando os arquivos
+      (ver v5 abaixo pra atualização do número de projetos)
+- [x] Commit/push desta rodada
+
+## v5 — correção do hero + remoção da foto + ajustes pontuais (ditado pelo autor)
+
+> Autor reportou print do hero quebrado/desproporcional em produção (tagline dominando a tela,
+> foto colidindo com o nav) e pediu replanejar a distribuição, tirar a foto de vez, remover o
+> projeto "Plugin ci-polaris", mais animação 3D/transições, e um conjunto de ícones leve. Também
+> pediu 5 mocks de paleta pra escolher — entregues como Artifact (não como arquivo no repo), já
+> que o autor não consegue ver screenshot do Playwright.
+
+- [x] Foto do Hero removida (markup, CSS `.hero-photo`, parallax de scroll que a acompanhava)
+- [x] "Plugin ci-polaris" removido de `content.ts` (PT+EN) — volta a 4 projetos com IA
+- [x] Hero reequilibrado: `.hero-grid` menos espremido (breakpoint de 980px pra 1180px), `h1`
+      ligeiramente menor, `.hero-statement` reduzido de peso/tamanho (700→600, até 48px→34px) e
+      alongado (`max-width` 21ch→28ch) pra não competir visualmente com o nome
+- [x] `FloatingShards`: de 4 pra 6 fragmentos + tilt de paralaxe seguindo o cursor (lerp simples,
+      sem lib nova)
+- [x] Transição de rota com giro 3D leve (`perspective` + `rotateY` nos pseudo-elementos
+      `::view-transition-old/new(root)`), só CSS, sem mudar `ViewTransitionLink.tsx`
+- [x] 3 ícones inline (email/LinkedIn/GitHub, `ContactIcons.tsx`, ~0.3kb cada, sem lib) nos
+      cards de Contato
+- [x] Mock de 5 direções de paleta entregue como Artifact (link na conversa, não arquivo de
+      repo) — mesma estrutura corrigida do hero em 5 paletas (Daylight atual, Terminal Ink,
+      Glacier, Graphite Signal, Clay Studio) pro autor escolher antes de aplicar no site de
+      verdade
+- [ ] **Aguardando o autor**: qual paleta do mock escolher (ou pedido de ajuste)
+- [ ] **Pendente do autor**: capturas de tela reais pros 4 projetos (capa + galeria)

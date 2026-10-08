@@ -2,6 +2,7 @@ import { useContent } from "../../content/useContent";
 import Reveal from "../motion/Reveal";
 import ViewTransitionLink from "../motion/ViewTransitionLink";
 import SectionSideLabel from "../motion/SectionSideLabel";
+import { contactIcons } from "../icons/ContactIcons";
 
 interface Props {
   id: string;
@@ -25,12 +26,18 @@ export default function Contact({ id }: Props) {
           </div>
         </Reveal>
         <Reveal className="contact-grid" delay={0.1}>
-          {contact.channels.map((c) => (
-            <a className="contact-card" href={c.href} target="_blank" rel="noopener" key={c.k}>
-              <span className="k">{c.k}</span>
-              <span className="v">{c.v}</span>
-            </a>
-          ))}
+          {contact.channels.map((c) => {
+            const Icon = contactIcons[c.k];
+            return (
+              <a className="contact-card" href={c.href} target="_blank" rel="noopener" key={c.k}>
+                <span className="contact-card-head">
+                  {Icon && <Icon />}
+                  <span className="k">{c.k}</span>
+                </span>
+                <span className="v">{c.v}</span>
+              </a>
+            );
+          })}
         </Reveal>
       </div>
     </section>

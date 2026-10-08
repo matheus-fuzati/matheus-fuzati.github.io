@@ -16,7 +16,6 @@ export default function Hero() {
   const showScene = webglSupported === true && !prefersReduced;
 
   const sectionRef = useRef<HTMLElement>(null);
-  const photoRef = useRef<HTMLDivElement>(null);
   const scrollProgress = useRef(0);
 
   // coreografia de entrada do hero inteiro (não só o nome) + parallax de scroll
@@ -36,13 +35,6 @@ export default function Hero() {
       scrub: 0.4,
       onUpdate: (self) => {
         scrollProgress.current = self.progress;
-        if (photoRef.current) {
-          gsap.set(photoRef.current, {
-            y: -self.progress * 260,
-            scale: Math.max(0.001, 1 - self.progress * 0.95),
-            opacity: 1 - self.progress * 1.2,
-          });
-        }
       },
     });
 
@@ -68,9 +60,6 @@ export default function Hero() {
           </SceneErrorBoundary>
         </div>
       )}
-      <div className="hero-photo" data-hero-in ref={photoRef}>
-        <img src="/profile.png" alt={hero.name} />
-      </div>
       <div className="container hero-grid">
         <div className="hero-left">
           <span className="hero-badge" data-hero-in>

@@ -32,17 +32,16 @@ Infraestrutura, AI Development. Fica entre Sobre e Projetos com IA.
 ## Projetos com IA (renomeada de "IA Development")
 Cards resumidos na home (título + resumo + link "Ver projeto") — o detalhe foi pra **páginas
 dedicadas** (`/projetos/:slug`, `/en/projetos/:slug`, pré-renderizadas via `getStaticPaths` do
-`vite-react-ssg`). Intro ganhou um selo "Como eu trabalho com IA" (4 chips). 5 projetos agora
-(antes 4) — a autoria ("desenhei e construí", "lidero e desenvolvo") foi **confirmada
-explicitamente pelo autor** nesta rodada, resolvendo o `[TODO]` de revisão de autoria das specs
-anteriores:
+`vite-react-ssg`). Intro ganhou um selo "Como eu trabalho com IA" (4 chips). 4 projetos agora
+(voltou de 5 — **Plugin ci-polaris removido** a pedido do autor nesta rodada) — a autoria
+("desenhei e construí", "lidero e desenvolvo") foi **confirmada explicitamente pelo autor**
+numa rodada anterior, resolvendo o `[TODO]` de revisão de autoria das specs antigas:
 - **Polaris Atlas** — observabilidade/governança no GCP (catálogo, lineage, PII, qualidade,
   freshness, FinOps, Cloud Storage)
 - **Billing Platform** — FinOps da conta de faturamento inteira (custo, evolução, anomalias,
   forecast)
 - **DP6 Certifications** — catálogo/badges/campanhas/análises de certificação
 - **Polaris Heap** — guia do engenheiro de dados da DP6
-- **Plugin ci-polaris** — hook de política + skills do Claude Code, 147 testes
 
 Cada página de projeto segue o template: voltar · eyebrow/título/resumo · **placeholder de
 capa** · problema · solução · **3 placeholders de galeria** · arquitetura · decisões técnicas ·
