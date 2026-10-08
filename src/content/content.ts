@@ -60,6 +60,7 @@ export interface SiteContent {
   };
   hero: {
     eyebrow: string;
+    greeting: string;
     name: string;
     tagline: string;
     ctaPrimary: CtaLink;
@@ -140,6 +141,7 @@ export const content: Record<Locale, SiteContent> = {
     },
     hero: {
       eyebrow: "Engenheiro de Dados",
+      greeting: "Olá, eu sou",
       name: "Matheus Fuzati",
       tagline: "Dados, na prática — da ingestão ao dashboard.",
       ctaPrimary: { label: "Ver Projetos", href: "#projetos" },
@@ -367,6 +369,7 @@ export const content: Record<Locale, SiteContent> = {
     },
     hero: {
       eyebrow: "Data Engineer",
+      greeting: "Hi, I'm",
       name: "Matheus Fuzati",
       tagline: "Data, in practice — from ingestion to dashboard.",
       ctaPrimary: { label: "View Projects", href: "#projects" },

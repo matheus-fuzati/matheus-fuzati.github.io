@@ -27,7 +27,7 @@ export default function Hero() {
     const targets = section.querySelectorAll<HTMLElement>("[data-hero-in]");
     gsap.set(targets, { opacity: 0, y: 28 });
     const tl = gsap.timeline({ delay: 0.15 });
-    tl.to(targets, { opacity: 1, y: 0, duration: 0.9, stagger: 0.09, ease: "power3.out" });
+    tl.to(targets, { opacity: 1, y: 0, duration: 0.9, stagger: 0.07, ease: "power3.out" });
 
     const trigger = ScrollTrigger.create({
       trigger: section,
@@ -36,8 +36,6 @@ export default function Hero() {
       scrub: 0.4,
       onUpdate: (self) => {
         scrollProgress.current = self.progress;
-        // a foto acompanha o mesmo encolher/sumir da esfera de vidro,
-        // senão ela "solta" do grupo 3D ao rolar (fica flutuando sozinha)
         if (photoRef.current) {
           gsap.set(photoRef.current, {
             y: -self.progress * 260,
@@ -54,6 +52,11 @@ export default function Hero() {
     };
   }, [prefersReduced]);
 
+  // destaca o trecho depois do travessão (ex: "— da ingestão ao dashboard")
+  const taglineParts = hero.tagline.split(/—/);
+  const taglineLead = taglineParts[0]?.trim();
+  const taglineHighlight = taglineParts[1]?.trim();
+
   return (
     <section className="hero" ref={sectionRef}>
       {showScene && (
@@ -68,30 +71,43 @@ export default function Hero() {
       <div className="hero-photo" data-hero-in ref={photoRef}>
         <img src="/profile.png" alt={hero.name} />
       </div>
-      <div className="container">
-        <span className="eyebrow" data-hero-in>
-          {hero.eyebrow}
-        </span>
-        <h1 data-hero-in>
-          <HeroNameEffect name={hero.name} />
-        </h1>
-        <p className="tagline" data-hero-in>
-          {hero.tagline}
-        </p>
-        <div className="actions" data-hero-in>
-          <a className="btn btn-primary" href={hero.ctaPrimary.href}>
-            {hero.ctaPrimary.label}
-          </a>
-          <a className="btn btn-ghost" href={hero.ctaSecondary.href}>
-            {hero.ctaSecondary.label}
-          </a>
+      <div className="container hero-grid">
+        <div className="hero-left">
+          <span className="hero-badge" data-hero-in>
+            {hero.eyebrow}
+          </span>
+          <p className="hero-greeting" data-hero-in>
+            {hero.greeting}
+          </p>
+          <h1 data-hero-in>
+            <HeroNameEffect name={hero.name} />
+          </h1>
+          <div className="hero-caption" data-hero-in>
+            {hero.meta.map((m) => (
+              <span key={m.k}>
+                <strong>{m.k}:</strong> {m.v}
+              </span>
+            ))}
+          </div>
         </div>
-        <div className="meta" data-hero-in>
-          {hero.meta.map((m) => (
-            <span key={m.k}>
-              <strong>{m.k}:</strong> {m.v}
-            </span>
-          ))}
+        <div className="hero-right">
+          <p className="hero-statement" data-hero-in>
+            {taglineLead}
+            {taglineHighlight && (
+              <>
+                {" — "}
+                <span className="hero-highlight">{taglineHighlight}</span>
+              </>
+            )}
+          </p>
+          <div className="actions" data-hero-in>
+            <a className="btn btn-primary" href={hero.ctaPrimary.href}>
+              {hero.ctaPrimary.label}
+            </a>
+            <a className="btn btn-ghost" href={hero.ctaSecondary.href}>
+              {hero.ctaSecondary.label}
+            </a>
+          </div>
         </div>
       </div>
     </section>
