@@ -300,10 +300,10 @@ export const content: Record<Locale, SiteContent> = {
       items: [
         {
           slug: "polaris-atlas",
-          title: "Polaris Atlas",
+          title: "Atlas",
           summary: "Observabilidade e governança de dados no GCP: catálogo, lineage, PII, qualidade, freshness, FinOps e Cloud Storage.",
           problem:
-            "A iniciativa de dados da DP6 não tinha visibilidade centralizada sobre saúde, qualidade e custo dos pipelines entre os projetos do programa — cada time descobria problema de dado tarde, sem um catálogo ou histórico de linhagem comum.",
+            "A iniciativa de dados não tinha visibilidade centralizada sobre saúde, qualidade e custo dos pipelines entre os projetos do programa — cada time descobria problema de dado tarde, sem um catálogo ou histórico de linhagem comum.",
           solution:
             "Arquitetei e desenvolvi o Atlas como monorepo (backend, frontend e infraestrutura em Terraform): catálogo de dados, lineage, detecção de PII, métricas de qualidade e freshness, FinOps e integração com Cloud Storage — conduzido em specs antes do código, com arquivo de contexto próprio e disciplina de changelog/sessionlog a cada entrega.",
           architecture:
@@ -362,10 +362,10 @@ export const content: Record<Locale, SiteContent> = {
         },
         {
           slug: "dp6-certifications",
-          title: "DP6 Certifications",
+          title: "Plataforma de Certificações",
           summary: "Gestão das certificações dos colaboradores: catálogo, badges, campanhas e análises.",
           problem:
-            "A DP6 precisava de um jeito estruturado de catalogar, aprovar e acompanhar certificações dos colaboradores e rodar campanhas, sem plataforma própria pra isso.",
+            "Precisávamos de um jeito estruturado de catalogar, aprovar e acompanhar certificações dos colaboradores e rodar campanhas, sem plataforma própria pra isso.",
           solution:
             "Desenvolvi a plataforma em Next.js com armazenamento híbrido (Firestore + BigQuery), usando o fluxo formal de Spec-Kit do GitHub (spec → plano → tarefas) e ADRs.",
           architecture:
@@ -379,7 +379,7 @@ export const content: Record<Locale, SiteContent> = {
             "Campanhas de certificação",
             "Análises em BigQuery",
           ],
-          results: "Plataforma ativa, em uso interno na DP6 para catálogo, badges, aprovação e campanhas de certificação.",
+          results: "Plataforma ativa, em uso interno para catálogo, badges, aprovação e campanhas de certificação.",
           highlight: "É o projeto de referência do Spec-Driven, com 10 specs. O armazenamento é híbrido, Firestore mais BigQuery.",
           stack: ["Next.js", "Firestore", "BigQuery", "GitHub Spec-Kit"],
           cover: "/projects/dp6-certifications/cover.png",
@@ -391,9 +391,9 @@ export const content: Record<Locale, SiteContent> = {
         },
         {
           slug: "polaris-heap",
-          title: "Polaris Heap",
-          summary: "Guia do engenheiro de dados da DP6: padrões, boas práticas e cases.",
-          problem: "O conhecimento de engenharia de dados da DP6 estava espalhado, sem um lugar único e vivo de documentação pro time.",
+          title: "Polaris",
+          summary: "Guia do engenheiro de dados: padrões, boas práticas e cases.",
+          problem: "O conhecimento de engenharia de dados estava espalhado, sem um lugar único e vivo de documentação pro time.",
           solution:
             "Construí um hub de documentação em Docusaurus reunindo padrões, boas práticas e cases, centralizando convenções entre repositórios e integrando o design system da iniciativa.",
           architecture: "Site estático Docusaurus, com os tokens de design compartilhados entre os projetos da iniciativa.",
@@ -405,7 +405,7 @@ export const content: Record<Locale, SiteContent> = {
             "Verificação automática de links e regras de conteúdo",
             "Design tokens compartilhados da iniciativa",
           ],
-          results: "Base de conhecimento ativa da iniciativa de dados da DP6.",
+          results: "Base de conhecimento ativa da iniciativa de dados.",
           highlight: "Um script verifica links e regras de conteúdo automaticamente.",
           stack: ["Docusaurus", "Site estático", "Design tokens"],
           cover: "/projects/polaris-heap/cover.png",
@@ -612,10 +612,10 @@ export const content: Record<Locale, SiteContent> = {
       items: [
         {
           slug: "polaris-atlas",
-          title: "Polaris Atlas",
+          title: "Atlas",
           summary: "Data observability and governance on GCP: catalog, lineage, PII, quality, freshness, FinOps, and Cloud Storage.",
           problem:
-            "DP6's data initiative had no centralized visibility into pipeline health, quality, and cost across the program's projects — teams found data issues late, with no shared catalog or lineage history.",
+            "The data initiative had no centralized visibility into pipeline health, quality, and cost across the program's projects — teams found data issues late, with no shared catalog or lineage history.",
           solution:
             "I architected and built Atlas as a monorepo (backend, frontend, and Terraform infrastructure): a data catalog, lineage, PII detection, quality and freshness metrics, FinOps, and Cloud Storage integration — driven by specs written before code, with its own context file and changelog/sessionlog discipline on every delivery.",
           architecture:
@@ -671,9 +671,9 @@ export const content: Record<Locale, SiteContent> = {
         },
         {
           slug: "dp6-certifications",
-          title: "DP6 Certifications",
+          title: "Certification Platform",
           summary: "Employee certification management: catalog, badges, campaigns, and analytics.",
-          problem: "DP6 needed a structured way to catalog, approve, and track employee certifications and run campaigns, with no dedicated platform for it.",
+          problem: "We needed a structured way to catalog, approve, and track employee certifications and run campaigns, with no dedicated platform for it.",
           solution: "I built the platform in Next.js with hybrid storage (Firestore + BigQuery), using GitHub's formal Spec-Kit flow (spec → plan → tasks) and ADRs.",
           architecture: "Next.js on frontend/backend, Firestore for operational data (catalog, badges, approvals), and BigQuery for analytics and campaigns — hybrid storage, each database doing what it does best.",
           decisions: "It's the initiative's most spec'd project (10 formal specs), serving as the reference for how to structure the Spec-Kit flow in the other repositories.",
@@ -684,7 +684,7 @@ export const content: Record<Locale, SiteContent> = {
             "Certification campaigns",
             "BigQuery analytics",
           ],
-          results: "Active platform, used internally at DP6 for certification catalog, badges, approval, and campaigns.",
+          results: "Active platform, used internally for certification catalog, badges, approval, and campaigns.",
           highlight: "The Spec-Driven reference project, with 10 specs. Storage is hybrid — Firestore plus BigQuery.",
           stack: ["Next.js", "Firestore", "BigQuery", "GitHub Spec-Kit"],
           cover: "/projects/dp6-certifications/cover.png",
@@ -696,9 +696,9 @@ export const content: Record<Locale, SiteContent> = {
         },
         {
           slug: "polaris-heap",
-          title: "Polaris Heap",
-          summary: "DP6's data engineering handbook: standards, best practices, and case studies.",
-          problem: "DP6's data engineering knowledge was scattered, with no single, living place to document it for the team.",
+          title: "Polaris",
+          summary: "Data engineering handbook: standards, best practices, and case studies.",
+          problem: "Data engineering knowledge was scattered, with no single, living place to document it for the team.",
           solution: "I built a Docusaurus documentation hub bringing together standards, best practices, and case studies, centralizing cross-repository conventions and integrating the initiative's design system.",
           architecture: "Static Docusaurus site, sharing the design tokens used across the initiative's projects.",
           decisions: "A custom script automatically checks links and content rules on every update, to catch broken links or off-standard pages.",
@@ -709,7 +709,7 @@ export const content: Record<Locale, SiteContent> = {
             "Automatic link and content-rule checking",
             "Shared design tokens",
           ],
-          results: "The active knowledge base for DP6's data initiative.",
+          results: "The active knowledge base for the data initiative.",
           highlight: "A script automatically checks links and content rules.",
           stack: ["Docusaurus", "Static site", "Design tokens"],
           cover: "/projects/polaris-heap/cover.png",
