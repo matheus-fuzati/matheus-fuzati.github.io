@@ -31,7 +31,7 @@ export function Component() {
         <title>{seo.title}</title>
         <meta name="description" content={seo.description} />
       </Head>
-      <main className="container" style={{ maxWidth: 820, paddingTop: 56, paddingBottom: 80 }}>
+      <main className="container cv-main">
         <div
           className="no-print"
           style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 32 }}
@@ -44,34 +44,23 @@ export function Component() {
           </button>
         </div>
 
-        <header style={{ marginBottom: 40 }}>
-          <h1 style={{ fontSize: 34 }}>{d.hero.name}</h1>
-          <p style={{ color: "var(--accent)", fontFamily: "var(--font-mono)", fontSize: 14, marginTop: 6 }}>{d.hero.eyebrow}</p>
-          <p style={{ marginTop: 14, color: "var(--muted)", maxWidth: "60ch" }}>{d.about.paragraphs[0]}</p>
-          <div style={{ marginTop: 16, display: "flex", flexWrap: "wrap", gap: 16, fontFamily: "var(--font-mono)", fontSize: 12.5, color: "var(--muted)" }}>
+        <header className="cv-header">
+          <h1 className="cv-name">{d.hero.name}</h1>
+          <p className="cv-eyebrow">{d.hero.eyebrow}</p>
+          <p className="cv-lead">{d.about.paragraphs[0]}</p>
+          <div className="cv-channels">
             {d.contact.channels
               .filter((c) => c.k !== "WhatsApp")
               .map((c) => (
-                <a href={c.href} style={{ color: "var(--muted)", textDecoration: "none" }} key={c.k}>
+                <a href={c.href} className="cv-channel" key={c.k}>
                   {c.k}: {c.v}
                 </a>
               ))}
           </div>
         </header>
 
-        <section style={{ marginBottom: 36 }}>
-          <h2
-            style={{
-              fontFamily: "var(--font-mono)",
-              fontSize: 14,
-              textTransform: "uppercase",
-              letterSpacing: ".07em",
-              color: "var(--accent)",
-              marginBottom: 16,
-            }}
-          >
-            {d.experience.title}
-          </h2>
+        <section className="cv-section">
+          <h2 className="cv-section-title">{d.experience.title}</h2>
           <div className="timeline">
             {d.experience.items.map((item) => (
               <div className="tl-item" key={`${item.company}-${item.period}`}>
@@ -97,47 +86,23 @@ export function Component() {
               </div>
             ))}
           </div>
-          {d.experience.footnote && (
-            <p style={{ marginTop: 12, fontSize: 11.5, color: "var(--muted)" }}>{d.experience.footnote}</p>
-          )}
+          {d.experience.footnote && <p className="cv-footnote">{d.experience.footnote}</p>}
         </section>
 
-        <section style={{ marginBottom: 36 }}>
-          <h2
-            style={{
-              fontFamily: "var(--font-mono)",
-              fontSize: 14,
-              textTransform: "uppercase",
-              letterSpacing: ".07em",
-              color: "var(--accent)",
-              marginBottom: 16,
-            }}
-          >
-            {d.skills.title}
-          </h2>
-          <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+        <section className="cv-section">
+          <h2 className="cv-section-title">{d.skills.title}</h2>
+          <div className="cv-skills-list">
             {d.skills.categories.map((cat) => (
-              <div key={cat.title}>
-                <p style={{ fontFamily: "var(--font-mono)", fontSize: 12.5, color: "var(--text)", marginBottom: 6 }}>{cat.title}</p>
-                <p style={{ color: "var(--muted)", fontSize: 14, lineHeight: 1.7 }}>{cat.items.join(" · ")}</p>
+              <div key={cat.title} className="cv-skill-cat">
+                <p className="cv-skill-cat-title">{cat.title}</p>
+                <p className="cv-skill-cat-items">{cat.items.join(" · ")}</p>
               </div>
             ))}
           </div>
         </section>
 
-        <section>
-          <h2
-            style={{
-              fontFamily: "var(--font-mono)",
-              fontSize: 14,
-              textTransform: "uppercase",
-              letterSpacing: ".07em",
-              color: "var(--accent)",
-              marginBottom: 16,
-            }}
-          >
-            {d.education.title}
-          </h2>
+        <section className="cv-section">
+          <h2 className="cv-section-title">{d.education.title}</h2>
           {d.education.academic.map((a) => (
             <div className="edu-item" key={a.degree}>
               <span className="period">{a.period}</span>

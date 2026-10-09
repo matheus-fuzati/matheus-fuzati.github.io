@@ -1,14 +1,19 @@
 import { useLocation } from "react-router-dom";
 import { useContent, useLocale } from "../../content/useContent";
 import { localizePath } from "../../i18n/paths";
+import { contactIcons } from "../icons/ContactIcons";
 import ViewTransitionLink from "../motion/ViewTransitionLink";
 import ThemeToggle from "./ThemeToggle";
 
 export default function Header() {
   const locale = useLocale();
-  const { nav } = useContent();
+  const { nav, contact } = useContent();
   const { pathname } = useLocation();
   const brandHref = locale === "pt" ? "/" : "/en";
+  const email = contact.channels.find((c) => c.k === "Email");
+  const linkedin = contact.channels.find((c) => c.k === "LinkedIn");
+  const EmailIcon = contactIcons.Email;
+  const LinkedInIcon = contactIcons.LinkedIn;
 
   return (
     <header id="top" className="site-header">
@@ -26,6 +31,18 @@ export default function Header() {
           </ul>
         </nav>
         <div className="header-controls">
+          <div className="header-social">
+            {linkedin && (
+              <a href={linkedin.href} target="_blank" rel="noreferrer noopener" aria-label={linkedin.k}>
+                <LinkedInIcon />
+              </a>
+            )}
+            {email && (
+              <a href={email.href} aria-label={email.k}>
+                <EmailIcon />
+              </a>
+            )}
+          </div>
           <div className="lang-toggle">
             <ViewTransitionLink to={localizePath(pathname, "pt")} aria-current={locale === "pt" ? "true" : "false"}>
               PT

@@ -39,11 +39,11 @@
     --surface: #121826;
     --surface-2: #141c2e;
     --text: #e6edf7;
-    --muted: #8b98ae;
+    --muted: #aab6cb;
     --line: rgba(230, 237, 247, 0.14);
     --line-strong: rgba(230, 237, 247, 0.28);
-    --accent: #2f6fed;
-    --accent-dim: rgba(47, 111, 237, 0.14);
+    --accent: #4d84ff;
+    --accent-dim: rgba(77, 132, 255, 0.16);
     --accent2: #5cc8ff;
     --on-accent: #ffffff;
   }
@@ -56,11 +56,11 @@
   --surface: #121826;
   --surface-2: #141c2e;
   --text: #e6edf7;
-  --muted: #8b98ae;
+  --muted: #aab6cb;
   --line: rgba(230, 237, 247, 0.14);
   --line-strong: rgba(230, 237, 247, 0.28);
-  --accent: #2f6fed;
-  --accent-dim: rgba(47, 111, 237, 0.14);
+  --accent: #4d84ff;
+  --accent-dim: rgba(77, 132, 255, 0.16);
   --accent2: #5cc8ff;
   --on-accent: #ffffff;
 }
@@ -187,6 +187,32 @@ p {
   gap: 16px;
 }
 
+.header-social {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.header-social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  color: var(--muted);
+  transition: color 0.18s ease, border-color 0.18s ease;
+}
+
+.header-social a svg {
+  width: 16px;
+  height: 16px;
+}
+
+.header-social a:hover {
+  color: var(--accent);
+}
+
 .lang-toggle {
   display: flex;
   align-items: center;
@@ -278,6 +304,20 @@ p {
   position: relative;
   overflow: hidden;
   padding: clamp(88px, 14vw, 160px) 0 96px;
+}
+
+/* só em telas de notebook/desktop pra cima — em telas pequenas o cálculo de
+   100vh cria um vão vazio grande demais entre o conteúdo e o carrossel */
+@media (min-width: 860px) {
+  .hero {
+    display: flex;
+    align-items: center;
+    /* header (64px) + carrossel de stack (~110px) descontados, pra o
+       carrossel encostar no rodapé de um notebook padrão em vez de sobrar
+       vazio embaixo */
+    min-height: calc(100vh - 64px - 110px);
+    padding: clamp(88px, 14vw, 160px) 0 72px;
+  }
 }
 
 .hero .container {
@@ -447,6 +487,27 @@ p {
 .section-head h2 {
   font-size: clamp(28px, 4vw, 38px);
   margin-top: 12px;
+}
+
+/* títulos longos (Stack&Formação, Projetos IA) numa linha só em telas com espaço —
+   em telas estreitas eles voltam a quebrar normalmente (ver @media abaixo) */
+#stack .section-head,
+#ia-dev .section-head {
+  max-width: none;
+}
+
+#stack .section-head h2,
+#ia-dev .section-head h2 {
+  white-space: nowrap;
+  font-size: clamp(16px, 2.8vw, 38px);
+}
+
+@media (max-width: 560px) {
+  #stack .section-head h2,
+  #ia-dev .section-head h2 {
+    white-space: normal;
+    font-size: clamp(24px, 7vw, 32px);
+  }
 }
 
 /* ---------- experience timeline (vertical — usada só pelo CvPage) ---------- */
@@ -675,7 +736,8 @@ p {
   z-index: 2;
   background: var(--surface);
   border: 1px solid var(--accent);
-  box-shadow: 0 0 0 1px var(--accent-dim), 0 16px 40px -16px var(--accent);
+  /* luz batendo da diagonal superior-esquerda: sombra cai pra direita e pra baixo, suave (cor com alpha baixo, blur largo) */
+  box-shadow: 0 0 0 1px var(--accent-dim), 18px 26px 46px -20px var(--accent-dim);
   padding: 20px 22px;
 }
 
@@ -742,8 +804,8 @@ p {
 }
 
 .tl-h-hint {
-  margin: 28px 0 0;
-  text-align: center;
+  margin: 10px 0 0;
+  text-align: left;
   font-family: var(--font-mono);
   font-size: 11.5px;
   color: var(--muted);
@@ -982,11 +1044,12 @@ p {
 
 .ai-dev-card h3 {
   font-size: 19px;
+  color: var(--accent);
 }
 
 .ai-dev-summary {
   margin-top: 6px;
-  color: var(--accent);
+  color: var(--text);
   font-family: var(--font-mono);
   font-size: 12.5px;
 }
@@ -996,12 +1059,18 @@ p {
   margin-top: 22px;
   font-family: var(--font-mono);
   font-size: 13px;
+  font-weight: 700;
   color: var(--accent);
   text-decoration: none;
+  transition: color 0.2s ease;
 }
 
 .ai-dev-link:hover {
   text-decoration: underline;
+}
+
+.ai-dev-card:hover .ai-dev-link {
+  color: var(--accent2, var(--accent));
 }
 
 /* ---------- project detail page ---------- */
@@ -1024,6 +1093,7 @@ p {
 
 .project-hero h1 {
   font-size: clamp(32px, 5vw, 52px);
+  font-weight: 800;
   margin-top: 12px;
 }
 
@@ -1093,6 +1163,7 @@ p {
   display: block;
   font-family: var(--font-mono);
   font-size: 11px;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--accent);
@@ -1301,6 +1372,87 @@ p {
   margin-top: 2px;
 }
 
+/* ---------- cv page ---------- */
+.cv-main {
+  max-width: 820px;
+  padding-top: 56px;
+  padding-bottom: 80px;
+}
+
+.cv-header {
+  margin-bottom: 40px;
+}
+
+.cv-name {
+  font-size: 34px;
+}
+
+.cv-eyebrow {
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 14px;
+  margin-top: 6px;
+}
+
+.cv-lead {
+  margin-top: 14px;
+  color: var(--muted);
+  max-width: 60ch;
+}
+
+.cv-channels {
+  margin-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  color: var(--muted);
+}
+
+.cv-channel {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.cv-section {
+  margin-bottom: 36px;
+}
+
+.cv-section-title {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+
+.cv-footnote {
+  margin-top: 12px;
+  font-size: 11.5px;
+  color: var(--muted);
+}
+
+.cv-skills-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.cv-skill-cat-title {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+
+.cv-skill-cat-items {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
 /* ---------- contact ---------- */
 .contact-head {
   margin-left: auto;
@@ -1436,21 +1588,71 @@ p {
   }
 }
 
-/* ---------- fundo decorativo (ícones flutuantes, FloatingTechIcons.tsx) ---------- */
+/* ---------- fundo decorativo (ícones flutuantes, FloatingTechIcons.tsx) ----------
+   confinados às margens de fora do container central (nunca cruzam o texto);
+   cada lado é um trilho vertical em loop (sai por uma borda, entra pela outra).
+   Só aparece em telas largas o bastante pra sobrar margem real dos dois lados. */
 .floating-icons {
   position: fixed;
   inset: 0;
   z-index: 0;
   overflow: hidden;
   pointer-events: none;
+  display: none;
+}
+
+@media (min-width: 1360px) {
+  .floating-icons {
+    display: block;
+  }
+}
+
+.floating-lane {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: calc((100vw - var(--container)) / 2 - 28px);
+  overflow: hidden;
+}
+
+.floating-lane-left {
+  left: 0;
+}
+
+.floating-lane-right {
+  right: 0;
+}
+
+.floating-lane-track {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 110px;
+  padding-top: 60px;
+  width: 100%;
+  animation-name: floating-lane-scroll;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.floating-lane-reverse {
+  animation-direction: reverse;
+}
+
+@keyframes floating-lane-scroll {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-50%);
+  }
 }
 
 .floating-icon {
-  position: absolute;
   font-family: var(--font-mono);
   font-weight: 600;
   color: var(--text);
-  opacity: 0.05;
+  opacity: 0.06;
   white-space: nowrap;
   animation-name: floating-icon-drift;
   animation-timing-function: ease-in-out;
@@ -1482,5 +1684,137 @@ p {
   }
   a {
     text-decoration: none;
+  }
+
+  /* compacta a página de currículo pra caber em 1 folha A4 */
+  .cv-main {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .cv-header {
+    margin-bottom: 14px;
+  }
+
+  .cv-name {
+    font-size: 22px;
+  }
+
+  .cv-eyebrow {
+    font-size: 11px;
+    margin-top: 2px;
+  }
+
+  .cv-lead {
+    margin-top: 6px;
+    font-size: 11px;
+    line-height: 1.4;
+  }
+
+  .cv-channels {
+    margin-top: 6px;
+    gap: 10px;
+    font-size: 9.5px;
+  }
+
+  .cv-section {
+    margin-bottom: 6px;
+  }
+
+  .cv-section-title {
+    font-size: 9.5px;
+    margin-bottom: 4px;
+  }
+
+  .cv-footnote {
+    margin-top: 4px;
+    font-size: 8.5px;
+  }
+
+  .cv-skills-list {
+    gap: 3px;
+  }
+
+  .cv-skill-cat-title {
+    font-size: 9px;
+    margin-bottom: 1px;
+  }
+
+  .cv-skill-cat-items {
+    font-size: 9px;
+    line-height: 1.25;
+  }
+
+  .timeline::before {
+    display: none;
+  }
+
+  .tl-item {
+    padding: 3px 0 3px 14px;
+  }
+
+  .tl-item::before {
+    top: 9px;
+    width: 5px;
+    height: 5px;
+  }
+
+  .tl-item .period {
+    font-size: 8.5px;
+  }
+
+  .tl-item .role {
+    font-size: 11.5px;
+    margin-top: 1px;
+  }
+
+  .tl-item .company {
+    font-size: 9.5px;
+    margin-top: 0;
+  }
+
+  .tl-item .desc {
+    margin-top: 2px;
+    font-size: 9.5px;
+    line-height: 1.25;
+  }
+
+  .tl-highlights {
+    margin-top: 3px;
+    gap: 2px;
+    padding-left: 8px;
+  }
+
+  .tl-highlight-head {
+    font-size: 9px;
+  }
+
+  .tl-highlight-head .period {
+    font-size: 8px;
+  }
+
+  .tl-highlight p {
+    margin-top: 0;
+    font-size: 8.5px;
+    line-height: 1.2;
+  }
+
+  .edu-item {
+    padding: 1px 0 1px 8px;
+    margin-bottom: 3px;
+  }
+
+  .edu-item .period {
+    font-size: 8px;
+  }
+
+  .edu-item .title {
+    font-size: 10.5px;
+    margin-top: 0;
+  }
+
+  .edu-item .inst {
+    font-size: 9px;
+    margin-top: 0;
   }
 }

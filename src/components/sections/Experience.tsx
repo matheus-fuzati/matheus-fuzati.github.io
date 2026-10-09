@@ -67,6 +67,7 @@ export default function Experience({ id }: Props) {
         <Reveal className="section-head">
           <span className="eyebrow">{experience.eyebrow}</span>
           <h2>{experience.title}</h2>
+          <p className="tl-h-hint">clique no ícone de cada cargo para ver o detalhamento</p>
         </Reveal>
 
         <div className="tl-h">
@@ -169,8 +170,6 @@ export default function Experience({ id }: Props) {
               );
             })}
           </div>
-
-          <p className="tl-h-hint">clica no ícone de cada parada pra expandir os detalhes</p>
         </div>
 
         {experience.footnote && (
