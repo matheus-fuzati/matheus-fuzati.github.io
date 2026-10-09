@@ -39,12 +39,12 @@ const SEO: Record<Locale, { title: string; description: string }> = {
   pt: {
     title: "Matheus Fuzati — Engenheiro de Dados & AI Developer",
     description:
-      "Engenheiro de Dados e AI Developer. Pipelines multi-cloud (GCP e AWS) no Itaú e plataformas internas de dados desenvolvidas com IA na DP6, com Spec Driven, ADRs e guardrails.",
+      "Engenheiro de Dados e AI Developer. Pipelines multi-cloud (GCP e AWS), consultor em clientes e líder e desenvolvedor de plataformas internas de dados desenvolvidas com IA, com Spec Driven, ADRs e guardrails.",
   },
   en: {
     title: "Matheus Fuzati — Data Engineer & AI Developer",
     description:
-      "Data Engineer and AI Developer. Multi-cloud (GCP and AWS) pipelines at Itaú, and internal data platforms built with AI at DP6, using Spec-Driven Development, ADRs, and guardrails.",
+      "Data Engineer and AI Developer. Multi-cloud (GCP and AWS) pipelines, consultant for clients, and leader and developer of internal data platforms built with AI, using Spec-Driven Development, ADRs, and guardrails.",
   },
 };
 

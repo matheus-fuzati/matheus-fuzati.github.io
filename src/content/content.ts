@@ -157,16 +157,16 @@ export const content: Record<Locale, SiteContent> = {
       eyebrow: "Sobre",
       title: "Sobre mim",
       summary:
-        "Engenheiro de Dados formado em Ciência de Dados, com pós-graduação em Arquitetura e Projetos de Cloud Computing em andamento. Construo pipelines multi-cloud (GCP e AWS) na DP6, hoje atuando no Itaú e liderando o CI Polaris — plataformas internas de dados desenvolvidas com IA.",
+        "Engenheiro de Dados formado em Ciência de Dados, com pós-graduação em Arquitetura e Projetos de Cloud Computing em andamento. Construo pipelines multi-cloud (GCP e AWS) na DP6, atuando como consultor em clientes externos e também em liderança e desenvolvimento de iniciativas internas de engenharia de dados desenvolvidas com IA.",
       paragraphs: [
         "Sou Engenheiro de Dados formado em Ciência de Dados. Atuo com data pipelines de ponta a ponta em ambientes multi-cloud (GCP e AWS), da extração à entrega de produtos de dados.",
-        "Hoje atuo em duas frentes na DP6. No Itaú, faço parte da squad de democratização de dados (Data Mesh), onde mantenho e crio pipelines que conectam dados do GA4 no BigQuery ao processamento na AWS, com Glue, Lambda, Step Functions, EMR, S3 e Athena. Em paralelo, lidero e desenvolvo o CI Polaris, iniciativa interna que reúne as ferramentas de dia a dia da engenharia de dados: governança no GCP, FinOps da conta de faturamento, gestão de certificações e a base de conhecimento da área.",
+        "Hoje atuo em duas frentes na DP6, como consultor de engenharia de dados em clientes externos, onde já passei por grandes bancos e ecommerces, lidando com pipelines que conectam dados do GA4 no BigQuery ao processamento na AWS, com Glue, Lambda, Step Functions, EMR, S3 e Athena. Em paralelo, atuo na liderança e desenvolvimento de iniciativas internas de inovação, que reúnem as ferramentas de dia a dia da engenharia de dados: governança no GCP, FinOps da conta de faturamento, gestão de certificações e a base de conhecimento da área.",
         "Essas ferramentas foram construídas com IA, dentro de um processo de engenharia. Isso inclui Spec-Driven Development, ADRs, infraestrutura em Terraform, CI/CD com ambientes dev e prod, e um plugin com hook de política que impede o agente de executar ações irreversíveis sem confirmação. A IA acelera a entrega, e o processo garante que o resultado seja confiável.",
         "Antes da DP6, passei pela Atento (ETL on-premise com SQL Server e Azure/Databricks, em consultoria para grandes clientes) e pela ESEG (pipelines em GCP, gestão de data lake e automação em Python).",
       ],
       facts: [
         { k: "Empresa", v: "DP6 — consultoria de dados" },
-        { k: "Alocação atual", v: "Itaú" },
+        { k: "Alocação atual", v: "Consultoria externa" },
         { k: "Base", v: "Brasil" },
         { k: "Inglês", v: "C1" },
         { k: "Idiomas do site", v: "PT-BR / EN" },
@@ -180,24 +180,24 @@ export const content: Record<Locale, SiteContent> = {
           period: "Desde 02/2026",
           current: true,
           role: "Data Engineer Consultant",
-          company: "DP6 | Itaú & MagaluAds",
+          company: "DP6",
           description:
-            "Consultoria de dados atuando em duas frentes: cliente (Itaú) e iniciativa interna (CI Polaris), depois de uma passagem inicial pela conta Magalu Ads.",
+            "Consultoria de dados atuando em duas frentes: cliente do setor bancário e iniciativa interna de inovação, depois de uma passagem inicial por um cliente de e-commerce.",
           highlights: [
             {
-              label: "Itaú",
+              label: "Setor Bancário",
               period: "Desde 06/2026",
               description:
                 "Squad de democratização de dados (Data Mesh) — mantenho e crio pipelines que conectam dados do GA4 no BigQuery ao processamento na AWS, com Glue, Lambda, Step Functions, EMR, S3 e Athena.",
             },
             {
-              label: "CI Polaris",
+              label: "Inovação Interna",
               period: "Desde 04/2026",
               description:
                 "Desenvolvimento e liderança das plataformas internas e dos padrões do hub — organizo entregas e prazos e gerencio demandas.",
             },
             {
-              label: "Magalu Ads",
+              label: "Setor de E-commerce",
               period: "02/2026 – 06/2026",
               description:
                 "Discovery de dados e processos do cliente e definição da nova arquitetura do Data Warehouse, incluindo um cubo de dados.",
@@ -285,7 +285,7 @@ export const content: Record<Locale, SiteContent> = {
       eyebrow: "Projetos com IA",
       title: "Plataformas Desenvolvidas - IA Development",
       intro:
-        "Ferramentas que desenhei e construí com IA dentro do CI Polaris, iniciativa interna da DP6. Cada projeto tem uma página com problema, arquitetura, decisões técnicas e como a IA entrou no processo.",
+        "Ferramentas que desenhei e construí com IA dentro de uma iniciativa interna da DP6. Cada projeto tem uma página com problema, arquitetura, decisões técnicas e como a IA entrou no processo.",
       labels: {
         description: "Descrição",
         built: "Como foi construído",
@@ -396,7 +396,7 @@ export const content: Record<Locale, SiteContent> = {
           problem: "O conhecimento de engenharia de dados da DP6 estava espalhado, sem um lugar único e vivo de documentação pro time.",
           solution:
             "Construí um hub de documentação em Docusaurus reunindo padrões, boas práticas e cases, centralizando convenções entre repositórios e integrando o design system da iniciativa.",
-          architecture: "Site estático Docusaurus, com os tokens de design compartilhados da iniciativa CI Polaris.",
+          architecture: "Site estático Docusaurus, com os tokens de design compartilhados entre os projetos da iniciativa.",
           decisions: "Um script próprio verifica links e regras de conteúdo automaticamente a cada atualização, pra evitar link quebrado ou página fora do padrão.",
           features: [
             "Hub de documentação centralizado",
@@ -489,16 +489,16 @@ export const content: Record<Locale, SiteContent> = {
       eyebrow: "About",
       title: "About me",
       summary:
-        "Data Engineer with a degree in Data Science, currently pursuing a postgraduate program in Cloud Architecture & Design. I build multi-cloud (GCP and AWS) pipelines at DP6, working at Itaú and leading CI Polaris — internal data platforms built with AI.",
+        "Data Engineer with a degree in Data Science, currently pursuing a postgraduate program in Cloud Architecture & Design. I build multi-cloud (GCP and AWS) pipelines at DP6, working as a consultant for external clients and also leading and developing internal data engineering initiatives built with AI.",
       paragraphs: [
         "I'm a Data Engineer with a degree in Data Science. I work on end-to-end data pipelines across multi-cloud environments (GCP and AWS), from extraction to delivering data products.",
-        "Today I work on two fronts at DP6. At Itaú, I'm part of the data democratization squad (Data Mesh), where I maintain and build pipelines connecting GA4 data in BigQuery to processing on AWS, using Glue, Lambda, Step Functions, EMR, S3, and Athena. In parallel, I lead and develop CI Polaris, an internal initiative that brings together the data engineering team's everyday tools: GCP governance, billing-account FinOps, certification management, and the team's knowledge base.",
+        "Today I work on two fronts at DP6: as a data engineering consultant for external clients, where I've worked with large banks and e-commerce companies, handling pipelines that connect GA4 data in BigQuery to processing on AWS, using Glue, Lambda, Step Functions, EMR, S3, and Athena. In parallel, I lead and develop internal innovation initiatives that bring together the data engineering team's everyday tools: GCP governance, billing-account FinOps, certification management, and the team's knowledge base.",
         "These tools were built with AI, inside an engineering process. That includes Spec-Driven Development, ADRs, Terraform infrastructure, CI/CD with dev and prod environments, and a plugin with a policy hook that stops the agent from taking irreversible actions without confirmation. AI speeds up delivery, and the process keeps the result reliable.",
         "Before DP6, I worked at Atento (on-premise ETL with SQL Server and Azure/Databricks, consulting for large clients) and at ESEG (GCP pipelines, data lake management, and Python automation).",
       ],
       facts: [
         { k: "Company", v: "DP6 — data consultancy" },
-        { k: "Current allocation", v: "Itaú" },
+        { k: "Current allocation", v: "External Consulting" },
         { k: "Based in", v: "Brazil" },
         { k: "English", v: "C1" },
         { k: "Site languages", v: "PT-BR / EN" },
@@ -512,22 +512,22 @@ export const content: Record<Locale, SiteContent> = {
           period: "Since 02/2026",
           current: true,
           role: "Data Engineer Consultant",
-          company: "DP6 | Itaú & MagaluAds",
-          description: "Data consulting across two fronts: a client account (Itaú) and an internal initiative (CI Polaris), after an initial stint on the Magalu Ads account.",
+          company: "DP6",
+          description: "Data consulting across two fronts: a banking-sector client and an internal innovation initiative, after an initial stint with an e-commerce client.",
           highlights: [
             {
-              label: "Itaú",
+              label: "Banking Sector",
               period: "Since 06/2026",
               description:
                 "Data democratization squad (Data Mesh) — I maintain and build pipelines connecting GA4 data in BigQuery to processing on AWS, using Glue, Lambda, Step Functions, EMR, S3, and Athena.",
             },
             {
-              label: "CI Polaris",
+              label: "Internal Innovation",
               period: "Since 04/2026",
               description: "Development and leadership of the internal platforms and hub standards — I organize deliveries, deadlines, and manage demand.",
             },
             {
-              label: "Magalu Ads",
+              label: "E-commerce Sector",
               period: "02/2026 – 06/2026",
               description: "Data and process discovery for the client, and defining the new Data Warehouse architecture, including a data cube.",
             },
@@ -597,7 +597,7 @@ export const content: Record<Locale, SiteContent> = {
       eyebrow: "AI Projects",
       title: "Developed Platforms - IA Development",
       intro:
-        "Tools I designed and built with AI inside CI Polaris, an internal DP6 initiative. Each project has its own page with problem, architecture, technical decisions, and how AI was part of the process.",
+        "Tools I designed and built with AI inside an internal DP6 initiative. Each project has its own page with problem, architecture, technical decisions, and how AI was part of the process.",
       labels: {
         description: "Description",
         built: "How it was built",
@@ -700,7 +700,7 @@ export const content: Record<Locale, SiteContent> = {
           summary: "DP6's data engineering handbook: standards, best practices, and case studies.",
           problem: "DP6's data engineering knowledge was scattered, with no single, living place to document it for the team.",
           solution: "I built a Docusaurus documentation hub bringing together standards, best practices, and case studies, centralizing cross-repository conventions and integrating the initiative's design system.",
-          architecture: "Static Docusaurus site, sharing the CI Polaris initiative's design tokens.",
+          architecture: "Static Docusaurus site, sharing the design tokens used across the initiative's projects.",
           decisions: "A custom script automatically checks links and content rules on every update, to catch broken links or off-standard pages.",
           features: [
             "Centralized documentation hub",

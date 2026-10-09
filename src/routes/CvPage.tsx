@@ -5,11 +5,11 @@ import type { Locale } from "../i18n/paths";
 const SEO: Record<Locale, { title: string; description: string }> = {
   pt: {
     title: "Currículo — Matheus Fuzati",
-    description: "Currículo de Matheus Fuzati, Engenheiro de Dados na DP6, alocado no Itaú.",
+    description: "Currículo de Matheus Fuzati, Engenheiro de Dados.",
   },
   en: {
     title: "Resume — Matheus Fuzati",
-    description: "Resume of Matheus Fuzati, Data Engineer at DP6, on-site at Itaú.",
+    description: "Resume of Matheus Fuzati, Data Engineer.",
   },
 };
 
