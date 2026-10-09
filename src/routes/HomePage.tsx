@@ -5,8 +5,10 @@ import SmoothScrollProvider from "../app/providers/SmoothScrollProvider";
 import FloatingTechIcons from "../components/decor/FloatingTechIcons";
 import Header from "../components/layout/Header";
 import Footer from "../components/layout/Footer";
+import Splash from "../components/motion/Splash";
 import Hero from "../components/sections/Hero";
 import StackCarousel from "../components/sections/StackCarousel";
+import About from "../components/sections/About";
 import AIDevelopment from "../components/sections/AIDevelopment";
 import Experience from "../components/sections/Experience";
 import StackFormacao from "../components/sections/StackFormacao";
@@ -14,16 +16,18 @@ import Contact from "../components/sections/Contact";
 import { useContent, useLocale } from "../content/useContent";
 import type { Locale } from "../i18n/paths";
 
-type SectionKey = "experience" | "stack" | "iaDev" | "contact";
+type SectionKey = "about" | "experience" | "stack" | "iaDev" | "contact";
 
 const SECTION_IDS: Record<Locale, Record<SectionKey, string>> = {
   pt: {
+    about: "sobre",
     experience: "experiencia",
     stack: "stack",
     iaDev: "ia-dev",
     contact: "contato",
   },
   en: {
+    about: "about",
     experience: "experience",
     stack: "stack",
     iaDev: "ia-dev",
@@ -75,12 +79,14 @@ export function Component() {
         <meta property="og:description" content={seo.description} />
         <meta property="og:type" content="website" />
       </Head>
+      <Splash />
       <SmoothScrollProvider>
         <FloatingTechIcons />
         <Header />
         <main>
           <Hero />
           <StackCarousel />
+          <About id={ids.about} />
           <Experience id={ids.experience} />
           <AIDevelopment id={ids.iaDev} />
           <StackFormacao id={ids.stack} />

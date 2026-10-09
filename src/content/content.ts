@@ -75,6 +75,7 @@ export interface SiteContent {
   about: {
     eyebrow: string;
     title: string;
+    summary: string;
     paragraphs: string[];
     facts: LabeledValue[];
   };
@@ -155,6 +156,8 @@ export const content: Record<Locale, SiteContent> = {
     about: {
       eyebrow: "Sobre",
       title: "Sobre mim",
+      summary:
+        "Engenheiro de Dados formado em Ciência de Dados, com pós-graduação em Arquitetura e Projetos de Cloud Computing em andamento. Construo pipelines multi-cloud (GCP e AWS) na DP6, hoje atuando no Itaú e liderando o CI Polaris — plataformas internas de dados desenvolvidas com IA.",
       paragraphs: [
         "Sou Engenheiro de Dados formado em Ciência de Dados. Atuo com data pipelines de ponta a ponta em ambientes multi-cloud (GCP e AWS), da extração à entrega de produtos de dados.",
         "Hoje atuo em duas frentes na DP6. No Itaú, faço parte da squad de democratização de dados (Data Mesh), onde mantenho e crio pipelines que conectam dados do GA4 no BigQuery ao processamento na AWS, com Glue, Lambda, Step Functions, EMR, S3 e Athena. Em paralelo, lidero e desenvolvo o CI Polaris, iniciativa interna que reúne as ferramentas de dia a dia da engenharia de dados: governança no GCP, FinOps da conta de faturamento, gestão de certificações e a base de conhecimento da área.",
@@ -485,6 +488,8 @@ export const content: Record<Locale, SiteContent> = {
     about: {
       eyebrow: "About",
       title: "About me",
+      summary:
+        "Data Engineer with a degree in Data Science, currently pursuing a postgraduate program in Cloud Architecture & Design. I build multi-cloud (GCP and AWS) pipelines at DP6, working at Itaú and leading CI Polaris — internal data platforms built with AI.",
       paragraphs: [
         "I'm a Data Engineer with a degree in Data Science. I work on end-to-end data pipelines across multi-cloud environments (GCP and AWS), from extraction to delivering data products.",
         "Today I work on two fronts at DP6. At Itaú, I'm part of the data democratization squad (Data Mesh), where I maintain and build pipelines connecting GA4 data in BigQuery to processing on AWS, using Glue, Lambda, Step Functions, EMR, S3, and Athena. In parallel, I lead and develop CI Polaris, an internal initiative that brings together the data engineering team's everyday tools: GCP governance, billing-account FinOps, certification management, and the team's knowledge base.",
