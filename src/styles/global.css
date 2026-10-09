@@ -11,7 +11,6 @@
 
   --bg: #f3f6fb;
   --bg-rgb: 243, 246, 251;
-  --bg-alt: #f0f0ee;
   --surface: #ffffff;
   --surface-2: #e9effa;
   --text: #10182b;
@@ -37,7 +36,6 @@
     color-scheme: dark;
     --bg: #0d1117;
     --bg-rgb: 13, 17, 23;
-    --bg-alt: #14171c;
     --surface: #121826;
     --surface-2: #141c2e;
     --text: #e6edf7;
@@ -55,7 +53,6 @@
   color-scheme: dark;
   --bg: #0d1117;
   --bg-rgb: 13, 17, 23;
-  --bg-alt: #14171c;
   --surface: #121826;
   --surface-2: #141c2e;
   --text: #e6edf7;
@@ -500,17 +497,18 @@ p {
   max-width: 62ch;
 }
 
-/* dobras alternando fundo azul (--bg, padrão do body) / cinza (--bg-alt).
+/* dobras alternando dois tons de azul (--bg, o mesmo do body, e --surface-2,
+   um azul um pouco mais saturado — nada de cinza/bege).
    nth-of-type conta a <section> do Hero também (mesmo sem classe .section),
    então "odd" cai nas posições 3/5 (Experience/Stack) e "even" em 2/4/6
-   (About/AIDev/Contato) — resultado: Hero(azul) > About(cinza) >
-   Experience(azul) > AIDev(cinza) > Stack(azul) > Contato(cinza). */
+   (About/AIDev/Contato) — resultado: Hero(--bg) > About(--surface-2) >
+   Experience(--bg) > AIDev(--surface-2) > Stack(--bg) > Contato(--surface-2). */
 .section:nth-of-type(odd) {
   background: var(--bg);
 }
 
 .section:nth-of-type(even) {
-  background: var(--bg-alt);
+  background: var(--surface-2);
 }
 
 /* títulos longos (Stack&Formação, Projetos IA) numa linha só em telas com espaço —
