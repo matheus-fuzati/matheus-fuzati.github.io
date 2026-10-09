@@ -285,7 +285,7 @@ export const content: Record<Locale, SiteContent> = {
       eyebrow: "Projetos com IA",
       title: "Plataformas Desenvolvidas - IA Development",
       intro:
-        "Ferramentas que desenhei e construí com IA dentro de uma iniciativa interna da DP6. Cada projeto tem uma página com problema, arquitetura, decisões técnicas e como a IA entrou no processo.",
+        "Soluções desenvolvidas com IA. Cada projeto tem uma página com problema, arquitetura, decisões técnicas e como a IA entrou no processo.",
       labels: {
         description: "Descrição",
         built: "Como foi construído",
@@ -597,7 +597,7 @@ export const content: Record<Locale, SiteContent> = {
       eyebrow: "AI Projects",
       title: "Developed Platforms - IA Development",
       intro:
-        "Tools I designed and built with AI inside an internal DP6 initiative. Each project has its own page with problem, architecture, technical decisions, and how AI was part of the process.",
+        "Solutions built with AI. Each project has its own page with problem, architecture, technical decisions, and how AI was part of the process.",
       labels: {
         description: "Description",
         built: "How it was built",
