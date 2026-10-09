@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { Head } from "vite-react-ssg";
 import SmoothScrollProvider from "../app/providers/SmoothScrollProvider";
 import FloatingTechIcons from "../components/decor/FloatingTechIcons";
@@ -47,6 +49,22 @@ export function Component() {
   const d = useContent();
   const ids = SECTION_IDS[locale];
   const seo = SEO[locale];
+  const location = useLocation();
+
+  // navegação de volta de /projetos/:slug chega aqui como SPA nav (sem
+  // reload) — o browser não rola pra âncora sozinho nesse caso, então
+  // fazemos manualmente depois que o layout assenta (hero 3D/carrossel
+  // ainda estão carregando no primeiro paint).
+  useEffect(() => {
+    if (!location.hash) return;
+    const id = location.hash.slice(1);
+    const raf = requestAnimationFrame(() =>
+      requestAnimationFrame(() => {
+        document.getElementById(id)?.scrollIntoView({ behavior: "instant" as ScrollBehavior });
+      })
+    );
+    return () => cancelAnimationFrame(raf);
+  }, [location.hash]);
 
   return (
     <>

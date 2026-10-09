@@ -15,6 +15,10 @@ interface Props {
   delay?: number;
   /** "up" (padrão) sobe+escala; "left"/"right" entra de lado — dá variedade ao scroll */
   from?: "up" | "left" | "right";
+  /** true = só entra (fica visível depois); não some de novo ao sair da viewport —
+   * usado em páginas de leitura longa (ProjectPage), onde o fade bi-direcional da
+   * home faz o conteúdo já lido "sumir" atrás do scroll */
+  once?: boolean;
 }
 
 /**
@@ -25,7 +29,7 @@ interface Props {
  * anima nada — o conteúdo já nasce visível (ver "Make the page complete
  * at rest").
  */
-export default function Reveal({ children, className, delay = 0, from = "up" }: Props) {
+export default function Reveal({ children, className, delay = 0, from = "up", once = false }: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const prefersReduced = usePrefersReducedMotion();
 
@@ -44,21 +48,23 @@ export default function Reveal({ children, className, delay = 0, from = "up" }: 
     const hide = () => gsap.to(el, { ...fromVars, duration: 0.5, ease: "power2.inOut", overwrite: true });
 
     gsap.set(el, fromVars);
-    const trigger = ScrollTrigger.create({
-      trigger: el,
-      start: "top 85%",
-      end: "bottom 15%",
-      onEnter: show,
-      onEnterBack: show,
-      onLeave: hide,
-      onLeaveBack: hide,
-    });
+    const trigger = once
+      ? ScrollTrigger.create({ trigger: el, start: "top 85%", once: true, onEnter: show })
+      : ScrollTrigger.create({
+          trigger: el,
+          start: "top 85%",
+          end: "bottom 15%",
+          onEnter: show,
+          onEnterBack: show,
+          onLeave: hide,
+          onLeaveBack: hide,
+        });
 
     return () => {
       trigger.kill();
       gsap.set(el, { clearProps: "opacity,transform" });
     };
-  }, [prefersReduced, delay, from]);
+  }, [prefersReduced, delay, from, once]);
 
   return (
     <div ref={ref} className={className}>

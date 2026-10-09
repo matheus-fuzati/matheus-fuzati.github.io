@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Head } from "vite-react-ssg";
 import { useContent, useLocale } from "../content/useContent";
@@ -7,6 +7,7 @@ import Header from "../components/layout/Header";
 import Footer from "../components/layout/Footer";
 import Reveal from "../components/motion/Reveal";
 import ViewTransitionLink from "../components/motion/ViewTransitionLink";
+import Lightbox from "../components/ui/Lightbox";
 
 const NOT_FOUND: Record<Locale, string> = {
   pt: "Projeto não encontrado.",
@@ -20,6 +21,7 @@ export function Component() {
   const { aiDev } = d;
   const project = aiDev.items.find((p) => p.slug === slug);
   const backHref = locale === "pt" ? "/#ia-dev" : "/en/#ia-dev";
+  const [lightbox, setLightbox] = useState<{ src: string; alt: string } | null>(null);
 
   // navegação via ViewTransitionLink é SPA (sem reload) — o browser mantém
   // o scroll da página anterior, então a página de projeto abria no meio.
@@ -49,35 +51,41 @@ export function Component() {
       <Header />
       <main className="project-page">
         <div className="container project-container">
-          <ViewTransitionLink className="project-back" to={locale === "pt" ? "/" : "/en"}>
+          <ViewTransitionLink className="project-back" to={backHref}>
             ← {aiDev.labels.back}
           </ViewTransitionLink>
 
-          <Reveal className="project-hero">
+          <Reveal className="project-hero" once>
             <span className="eyebrow">{aiDev.eyebrow}</span>
             <h1>{project.title}</h1>
             <p className="project-summary">{project.summary}</p>
           </Reveal>
 
-          <Reveal className="project-cover">
-            <img src={project.cover} alt={project.title} loading="lazy" />
+          <Reveal className="project-cover" once>
+            <button
+              type="button"
+              className="project-cover-btn"
+              onClick={() => setLightbox({ src: project.cover, alt: project.title })}
+            >
+              <img src={project.cover} alt={project.title} loading="lazy" />
+            </button>
           </Reveal>
 
           <div className="project-body">
             <div className="project-main">
-              <Reveal className="project-section">
+              <Reveal className="project-section" once>
                 <span className="project-label">{aiDev.labels.description}</span>
                 <p>{project.problem}</p>
                 <p>{project.solution}</p>
               </Reveal>
 
-              <Reveal className="project-section">
+              <Reveal className="project-section" once>
                 <span className="project-label">{aiDev.labels.built}</span>
                 <p>{project.architecture}</p>
                 <p>{project.decisions}</p>
               </Reveal>
 
-              <Reveal className="project-section">
+              <Reveal className="project-section" once>
                 <span className="project-label">{aiDev.labels.features}</span>
                 <ul className="project-features">
                   {project.features.map((f) => (
@@ -88,7 +96,7 @@ export function Component() {
             </div>
 
             <div className="project-aside">
-              <Reveal className="project-aside-card">
+              <Reveal className="project-aside-card" once>
                 <span className="project-label">{aiDev.labels.stack}</span>
                 <ul className="ai-dev-stack">
                   {project.stack.map((s) => (
@@ -97,31 +105,37 @@ export function Component() {
                 </ul>
               </Reveal>
 
-              <Reveal className="project-highlight" delay={0.05}>
+              <Reveal className="project-highlight" delay={0.05} once>
                 <span className="project-label">{aiDev.labels.highlight}</span>
                 <p>{project.highlight}</p>
               </Reveal>
 
-              <Reveal className="project-aside-card" delay={0.1}>
+              <Reveal className="project-aside-card" delay={0.1} once>
                 <span className="project-label">{aiDev.labels.results}</span>
                 <p>{project.results}</p>
               </Reveal>
             </div>
           </div>
 
-          <Reveal className="project-section project-gallery-section">
+          <Reveal className="project-section project-gallery-section" once>
             <span className="project-label">{aiDev.labels.gallery}</span>
             <div className="project-gallery">
-              {project.gallery.map((src, i) => (
-                <div className="project-gallery-item" key={src}>
-                  <img src={src} alt={`${project.title} — ${aiDev.labels.gallery} ${i + 1}`} loading="lazy" />
-                </div>
-              ))}
+              {project.gallery.map((src, i) => {
+                const alt = `${project.title} — ${aiDev.labels.gallery} ${i + 1}`;
+                return (
+                  <div className="project-gallery-item" key={src}>
+                    <button type="button" onClick={() => setLightbox({ src, alt })}>
+                      <img src={src} alt={alt} loading="lazy" />
+                    </button>
+                  </div>
+                );
+              })}
             </div>
           </Reveal>
         </div>
       </main>
       <Footer />
+      <Lightbox src={lightbox?.src ?? null} alt={lightbox?.alt ?? ""} onClose={() => setLightbox(null)} />
     </>
   );
 }
