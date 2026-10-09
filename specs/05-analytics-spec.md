@@ -1,12 +1,11 @@
 # 05 — Spec de Analytics (GTM + GA4)
 
-> Status: conta GA4 e container GTM já criados — Measurement ID `G-NFTH0GYHQQ`, Container ID
-> `GTM-WFGD5HGP` (já no `index.html`). As 4 tags originais (`select_content`,
-> `project_gallery_open`, `contact_click`, `cv_print_click`) já configuradas e confirmadas via
-> Preview. **Pendente do autor**: configurar as 2 tags novas (`nav_click`, `ui_toggle`, adicionadas
-> numa rodada seguinte) e publicar o container. Sem a publicação, os `pushEvent(...)` já chamam
-> `window.dataLayer.push(...)` normalmente, mas o GTM ainda não tem instrução de repassar nada pro
-> GA4.
+> Status: **ao vivo em produção.** Conta GA4 (Measurement ID `G-NFTH0GYHQQ`) e container GTM
+> (`GTM-WFGD5HGP`) criados; as 6 tags de evento (`select_content`, `project_gallery_open`,
+> `contact_click`, `cv_print_click`, `nav_click`, `ui_toggle`) configuradas, confirmadas via
+> Preview e **publicadas** (Versão 2, 09/10/2026). As 8 dimensões personalizadas de evento
+> registradas no GA4 Admin. Pendente só o link GA4→BigQuery (passo 5 do guia abaixo), quando a
+> ferramenta de visualização futura entrar em pauta.
 
 ## Objetivo
 
@@ -89,7 +88,11 @@ visualizar esses 3 objetivos — este spec cobre só a instrumentação do site 
       `cv_print_click`)
 - [x] Instrumentados `nav_click` (menu, "voltar", "Baixar Currículo") e `ui_toggle` (idioma, tema)
       — pedido numa rodada seguinte, fora dos 3 objetivos originais
-- [ ] **Ação do autor**: configurar as 2 tags novas (`nav_click`, `ui_toggle`) dentro do GTM e
+- [x] **Ação do autor**: configurar as 2 tags novas (`nav_click`, `ui_toggle`) dentro do GTM e
       confirmar via Preview
-- [ ] **Ação do autor**: publicar o container GTM
-- [ ] **Ação do autor**: vincular GA4 ao BigQuery (passo 5 acima)
+- [x] **Ação do autor**: publicar o container GTM (Versão 2, 09/10/2026 — 6 tags de evento + Tag
+      do Google, 6 triggers, 9 variáveis de camada de dados)
+- [x] **Ação do autor**: registrar as 8 dimensões personalizadas de evento no GA4 Admin (`item_id`,
+      `image`, `channel`, `placement`, `link`, `control`, `value`, `locale`)
+- [ ] **Ação do autor**: vincular GA4 ao BigQuery (passo 5 acima) — pendente, só quando a
+      ferramenta de visualização futura entrar em pauta
