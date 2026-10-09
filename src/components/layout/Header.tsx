@@ -1,6 +1,7 @@
 import { useLocation } from "react-router-dom";
 import { useContent, useLocale } from "../../content/useContent";
 import { localizePath } from "../../i18n/paths";
+import { pushEvent } from "../../lib/analytics";
 import { contactIcons } from "../icons/ContactIcons";
 import ViewTransitionLink from "../motion/ViewTransitionLink";
 import ThemeToggle from "./ThemeToggle";
@@ -33,12 +34,22 @@ export default function Header() {
         <div className="header-controls">
           <div className="header-social">
             {linkedin && (
-              <a href={linkedin.href} target="_blank" rel="noreferrer noopener" aria-label={linkedin.k}>
+              <a
+                href={linkedin.href}
+                target="_blank"
+                rel="noreferrer noopener"
+                aria-label={linkedin.k}
+                onClick={() => pushEvent("contact_click", { channel: "linkedin", placement: "header" })}
+              >
                 <LinkedInIcon />
               </a>
             )}
             {email && (
-              <a href={email.href} aria-label={email.k}>
+              <a
+                href={email.href}
+                aria-label={email.k}
+                onClick={() => pushEvent("contact_click", { channel: "email", placement: "header" })}
+              >
                 <EmailIcon />
               </a>
             )}

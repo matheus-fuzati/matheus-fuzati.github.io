@@ -1,4 +1,5 @@
 import { useContent, useLocale } from "../../content/useContent";
+import { pushEvent } from "../../lib/analytics";
 import Reveal from "../motion/Reveal";
 import ParallaxLabel from "../motion/ParallaxLabel";
 import SectionSideLabel from "../motion/SectionSideLabel";
@@ -30,7 +31,11 @@ export default function AIDevelopment({ id }: Props) {
             <Reveal className="ai-dev-card" delay={(i % 2) * 0.1} from={SIDES[i % 2]} key={item.slug}>
               <h3>{item.title}</h3>
               <p className="ai-dev-summary">{item.summary}</p>
-              <ViewTransitionLink className="ai-dev-link" to={`${base}/${item.slug}`}>
+              <ViewTransitionLink
+                className="ai-dev-link"
+                to={`${base}/${item.slug}`}
+                onClick={() => pushEvent("select_content", { content_type: "project", item_id: item.slug })}
+              >
                 {aiDev.labels.viewProject} →
               </ViewTransitionLink>
             </Reveal>

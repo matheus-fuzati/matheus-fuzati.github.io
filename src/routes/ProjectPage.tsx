@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Head } from "vite-react-ssg";
 import { useContent, useLocale } from "../content/useContent";
+import { pushEvent } from "../lib/analytics";
 import type { Locale } from "../i18n/paths";
 import Header from "../components/layout/Header";
 import Footer from "../components/layout/Footer";
@@ -65,7 +66,10 @@ export function Component() {
             <button
               type="button"
               className="project-cover-btn"
-              onClick={() => setLightbox({ src: project.cover, alt: project.title })}
+              onClick={() => {
+                pushEvent("project_gallery_open", { item_id: project.slug, image: "cover" });
+                setLightbox({ src: project.cover, alt: project.title });
+              }}
             >
               <img src={project.cover} alt={project.title} loading="lazy" />
             </button>
@@ -124,7 +128,13 @@ export function Component() {
                 const alt = `${project.title} — ${aiDev.labels.gallery} ${i + 1}`;
                 return (
                   <div className="project-gallery-item" key={src}>
-                    <button type="button" onClick={() => setLightbox({ src, alt })}>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        pushEvent("project_gallery_open", { item_id: project.slug, image: src.split("/").pop() });
+                        setLightbox({ src, alt });
+                      }}
+                    >
                       <img src={src} alt={alt} loading="lazy" />
                     </button>
                   </div>

@@ -1,5 +1,6 @@
 import { Head } from "vite-react-ssg";
 import { useContent, useLocale } from "../content/useContent";
+import { pushEvent } from "../lib/analytics";
 import type { Locale } from "../i18n/paths";
 
 const SEO: Record<Locale, { title: string; description: string }> = {
@@ -39,7 +40,13 @@ export function Component() {
           <a href={backHref} style={{ fontFamily: "var(--font-mono)", fontSize: 13, color: "var(--muted)", textDecoration: "none" }}>
             ← {d.cv.backCta}
           </a>
-          <button className="btn btn-primary" onClick={() => window.print()}>
+          <button
+            className="btn btn-primary"
+            onClick={() => {
+              pushEvent("cv_print_click", { locale });
+              window.print();
+            }}
+          >
             {d.cv.printCta}
           </button>
         </div>

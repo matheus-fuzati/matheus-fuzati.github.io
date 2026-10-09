@@ -1,4 +1,5 @@
 import { useContent } from "../../content/useContent";
+import { pushEvent } from "../../lib/analytics";
 import Reveal from "../motion/Reveal";
 import ViewTransitionLink from "../motion/ViewTransitionLink";
 import SectionSideLabel from "../motion/SectionSideLabel";
@@ -29,7 +30,14 @@ export default function Contact({ id }: Props) {
           {contact.channels.map((c) => {
             const Icon = contactIcons[c.k];
             return (
-              <a className="contact-card" href={c.href} target="_blank" rel="noopener" key={c.k}>
+              <a
+                className="contact-card"
+                href={c.href}
+                target="_blank"
+                rel="noopener"
+                key={c.k}
+                onClick={() => pushEvent("contact_click", { channel: c.k.toLowerCase(), placement: "contact_section" })}
+              >
                 <span className="contact-card-head">
                   {Icon && <Icon />}
                   <span className="k">{c.k}</span>
