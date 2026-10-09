@@ -21,7 +21,11 @@ export default function Contact({ id }: Props) {
           <h2>{contact.title}</h2>
           <p className="contact-body">{contact.body}</p>
           <div className="contact-cta">
-            <ViewTransitionLink className="btn btn-primary" to={contact.cvHref}>
+            <ViewTransitionLink
+              className="btn btn-primary"
+              to={contact.cvHref}
+              onClick={() => pushEvent("nav_click", { link: "cv" })}
+            >
               {contact.cvLabel}
             </ViewTransitionLink>
           </div>

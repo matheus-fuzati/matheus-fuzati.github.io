@@ -52,7 +52,11 @@ export function Component() {
       <Header />
       <main className="project-page">
         <div className="container project-container">
-          <ViewTransitionLink className="project-back" to={backHref}>
+          <ViewTransitionLink
+            className="project-back"
+            to={backHref}
+            onClick={() => pushEvent("nav_click", { link: "back_to_home" })}
+          >
             ← {aiDev.labels.back}
           </ViewTransitionLink>
 

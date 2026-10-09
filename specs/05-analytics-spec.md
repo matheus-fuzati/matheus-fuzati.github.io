@@ -1,10 +1,12 @@
 # 05 — Spec de Analytics (GTM + GA4)
 
 > Status: conta GA4 e container GTM já criados — Measurement ID `G-NFTH0GYHQQ`, Container ID
-> `GTM-WFGD5HGP` (já no `index.html`). **Pendente do autor**: configurar as tags/triggers dentro
-> do GTM (tag de configuração do GA4 + 1 tag por evento custom) e publicar o container. Sem a
-> publicação, os `pushEvent(...)` já chamam `window.dataLayer.push(...)` normalmente, mas o GTM
-> ainda não tem instrução de repassar nada pro GA4.
+> `GTM-WFGD5HGP` (já no `index.html`). As 4 tags originais (`select_content`,
+> `project_gallery_open`, `contact_click`, `cv_print_click`) já configuradas e confirmadas via
+> Preview. **Pendente do autor**: configurar as 2 tags novas (`nav_click`, `ui_toggle`, adicionadas
+> numa rodada seguinte) e publicar o container. Sem a publicação, os `pushEvent(...)` já chamam
+> `window.dataLayer.push(...)` normalmente, mas o GTM ainda não tem instrução de repassar nada pro
+> GA4.
 
 ## Objetivo
 
@@ -29,9 +31,10 @@ visualizar esses 3 objetivos — este spec cobre só a instrumentação do site 
 - **Container ID do GTM não é segredo** (fica público no HTML de qualquer site que usa GTM) —
   hardcoded direto no `index.html`, sem criar infraestrutura de env var pra isso (o repo não usa
   nenhuma `import.meta.env` hoje).
-- **Toggle de idioma e toggle de tema ficaram de fora** — não servem a nenhum dos 3 objetivos
-  acima. "Preferência de idioma" já dá pra ler segmentando `page_view` por URL (`/en/` vs sem),
-  sem precisar rastrear o clique no toggle.
+- **Navegação (menu, "voltar", CV, idioma, tema) não respondia a nenhum dos 3 objetivos** de
+  negócio originais, mas o autor pediu pra incluir mesmo assim, numa rodada seguinte — agrupados
+  em só 2 eventos genéricos (`nav_click`/`ui_toggle`) em vez de um evento por botão, pra não
+  multiplicar tags no GTM à toa.
 
 ## Taxonomia de eventos — precisa de tag customizada
 
@@ -41,6 +44,8 @@ visualizar esses 3 objetivos — este spec cobre só a instrumentação do site 
 | Abrir imagem (capa ou galeria) | `project_gallery_open` | Custom | `item_id: <slug>`, `image: <nome do arquivo>` | `src/routes/ProjectPage.tsx` |
 | Clique em Email / LinkedIn / GitHub | `contact_click` | Custom | `channel: "email"\|"linkedin"\|"github"`, `placement: "header"\|"contact_section"` | `src/components/sections/Contact.tsx`, `src/components/layout/Header.tsx` |
 | Clique em "Imprimir / Salvar PDF" do currículo | `cv_print_click` | Custom | `locale: "pt"\|"en"` | `src/routes/CvPage.tsx` |
+| Clique num link do menu, "← Voltar" ou "Baixar Currículo" | `nav_click` | Custom | `link: "experiencia"\|"ia-dev"\|"stack"\|"contato"\|"back_to_home"\|"cv"` (varia por locale/origem) | `Header.tsx`, `ProjectPage.tsx`, `CvPage.tsx`, `Contact.tsx` |
+| Clique no toggle de idioma ou de tema | `ui_toggle` | Custom | `control: "language"\|"theme"`, `value: "pt"\|"en"\|"light"\|"dark"` | `Header.tsx` (idioma), `ThemeToggle.tsx` (tema) |
 
 ## Automático — sem tag customizada
 
@@ -72,14 +77,19 @@ visualizar esses 3 objetivos — este spec cobre só a instrumentação do site 
 ## Tarefas desta rodada
 
 - [x] `src/lib/analytics.ts` — helper `pushEvent(event, params)`, puro `dataLayer`, sem lib externa
-- [x] Instrumentados os 4 pontos da tabela (`AIDevelopment.tsx`, `ProjectPage.tsx` — capa e
-      galeria —, `Contact.tsx`, `Header.tsx`, `CvPage.tsx`)
+- [x] Instrumentados os 4 pontos originais da tabela (`AIDevelopment.tsx`, `ProjectPage.tsx` —
+      capa e galeria —, `Contact.tsx`, `Header.tsx`, `CvPage.tsx`)
 - [x] Snippet do GTM no `index.html` (`<script>` em `<head>` + `<noscript>` em `<body>`), com o
       Container ID real `GTM-WFGD5HGP`
 - [x] `tsc --noEmit` e `npm run build` limpos
 - [x] **Ação do autor**: criar a conta GA4 (Measurement ID `G-NFTH0GYHQQ`) + o container GTM real
       (`GTM-WFGD5HGP`)
-- [ ] **Ação do autor**: configurar as tags/triggers dentro do GTM (passos 3–4 acima) e publicar
+- [x] **Ação do autor**: configurar as 4 tags/triggers originais dentro do GTM — confirmado via
+      Preview que todas disparam (`select_content`, `project_gallery_open`, `contact_click`,
+      `cv_print_click`)
+- [x] Instrumentados `nav_click` (menu, "voltar", "Baixar Currículo") e `ui_toggle` (idioma, tema)
+      — pedido numa rodada seguinte, fora dos 3 objetivos originais
+- [ ] **Ação do autor**: configurar as 2 tags novas (`nav_click`, `ui_toggle`) dentro do GTM e
+      confirmar via Preview
+- [ ] **Ação do autor**: publicar o container GTM
 - [ ] **Ação do autor**: vincular GA4 ao BigQuery (passo 5 acima)
-- [ ] Verificar os 4 eventos reais no GTM Preview / GA4 DebugView depois que o container for
-      publicado com o ID real — não dá pra verificar isso agora sem um container de verdade

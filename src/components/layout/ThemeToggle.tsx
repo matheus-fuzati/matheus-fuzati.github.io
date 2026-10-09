@@ -1,4 +1,5 @@
 import { useTheme } from "../../hooks/useTheme";
+import { pushEvent } from "../../lib/analytics";
 
 export default function ThemeToggle() {
   const [theme, toggle] = useTheme();
@@ -8,7 +9,10 @@ export default function ThemeToggle() {
     <button
       type="button"
       className="theme-toggle"
-      onClick={toggle}
+      onClick={() => {
+        pushEvent("ui_toggle", { control: "theme", value: isDark ? "light" : "dark" });
+        toggle();
+      }}
       aria-label={isDark ? "Mudar para modo claro" : "Mudar para modo escuro"}
       aria-pressed={isDark}
     >

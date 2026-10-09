@@ -26,7 +26,9 @@ export default function Header() {
           <ul className="nav-links">
             {nav.links.map((item) => (
               <li key={item.href}>
-                <a href={item.href}>{item.label}</a>
+                <a href={item.href} onClick={() => pushEvent("nav_click", { link: item.href.replace("#", "") })}>
+                  {item.label}
+                </a>
               </li>
             ))}
           </ul>
@@ -55,11 +57,19 @@ export default function Header() {
             )}
           </div>
           <div className="lang-toggle">
-            <ViewTransitionLink to={localizePath(pathname, "pt")} aria-current={locale === "pt" ? "true" : "false"}>
+            <ViewTransitionLink
+              to={localizePath(pathname, "pt")}
+              aria-current={locale === "pt" ? "true" : "false"}
+              onClick={() => pushEvent("ui_toggle", { control: "language", value: "pt" })}
+            >
               PT
             </ViewTransitionLink>
             <span aria-hidden="true">·</span>
-            <ViewTransitionLink to={localizePath(pathname, "en")} aria-current={locale === "en" ? "true" : "false"}>
+            <ViewTransitionLink
+              to={localizePath(pathname, "en")}
+              aria-current={locale === "en" ? "true" : "false"}
+              onClick={() => pushEvent("ui_toggle", { control: "language", value: "en" })}
+            >
               EN
             </ViewTransitionLink>
           </div>

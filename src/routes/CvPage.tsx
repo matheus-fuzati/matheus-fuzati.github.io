@@ -37,7 +37,11 @@ export function Component() {
           className="no-print"
           style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 32 }}
         >
-          <a href={backHref} style={{ fontFamily: "var(--font-mono)", fontSize: 13, color: "var(--muted)", textDecoration: "none" }}>
+          <a
+            href={backHref}
+            style={{ fontFamily: "var(--font-mono)", fontSize: 13, color: "var(--muted)", textDecoration: "none" }}
+            onClick={() => pushEvent("nav_click", { link: "back_to_home" })}
+          >
             ← {d.cv.backCta}
           </a>
           <button
